@@ -1,0 +1,24 @@
+/*---------------------------------------------------------------------------
+T E R M S   O F   C O N D I T I O N S
+-----------------------------------------------------------------------------
+TOC = Terms Of Conditions page
+--------------------------------
+STRUCTURE
+------------------------------*/
+#RETCcontent h2 { margin:0 0 0 15px;  }
+#RETCcontent h3 { margin:0 0 10px 15px;  }
+#Fcontent { width:550px; padding:0; /* padding: 90px 0 40px 0;*/ position: relative; }
+#Ftxt { width:760px; margin: 0; overflow: visible;  }
+#footer { border-top:1px dotted #6f6f6f; width:760px }
+.Ffooter { width:760px; margin:40px 0 0 30px; position: relative; }
+#flashcontent{ width:680px; padding:0 0 20px 60px; height:289px; position:relative; top:20px;}  
+/* -----------------------------
+HEADERS/PARAGRAPHS
+------------------------------*/
+#Fcontent h2 { width:350px; height:33px; position:relative; left:70px; top:15px; text-indent: -9999px; background: url(https://a248.e.akamai.net/cache.lego.com/upload/contentTemplating/AccountDictionary/images/1033/picBCEF8DAF-0E1E-446A-88DD-6D50C4578A0B.gif) no-repeat; }
+#Fcontent h3 { width:350px; margin:0 0 20px 95px }
+/* -----------------------------
+LINKS
+------------------------------*/
+.FacceptBtn { position:absolute; bottom:15px; right:-190px; } 
+

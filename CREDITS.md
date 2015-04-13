@@ -1,17 +1,31 @@
-This is a file crediting thos who originally worked on the LUNI Server:
+This is a file crediting those who have worked on the LUNI Server:
 
 (Original Repository: http://sourceforge.net/projects/luniserver/)
 
-----------------------------------------------------------------------------------------------------------------------
 
-Original developers:
+Software:
 
-humanoid24
+Code done by humanoid24 (aka Triver) as of 01.12.2013
 
-pwjones jon002
+Additional credits to raffa505 30.01.2013 - 14.02.2013 (Database MySQL, Character, User, World, Color, Threads, Loading both Nimbus Isle and Nimbus Station)
 
-raffa505
+Added code and additional documentation done by Jon002 20.02.2015 (Character Creation, Custom Logins and success states, Dynamic Packets for Auth and Char servers)
 
-lcdr
 
-darwin
+ Client:
+
+Original client by The LEGO Group/Netdevil
+
+
+Client's audio files fixed by CDFalcon and startreklover
+
+
+ Packets:
+
+Captures by pwjones
+
+Decryption by Humanoid24
+
+Extraction by lcdr
+
+Documentation by by humanoid24, lcdr and pwjones

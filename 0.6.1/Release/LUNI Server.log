@@ -1,0 +1,29 @@
+﻿Build started 4/14/2015 10:28:59 AM.
+     1>Project "C:\Users\CGA Computer\Desktop\LEGO Universe Stuff\Servers\0.7\LUNI Server.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server Release Source\MySql\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AuthLoop.cpp Character.cpp CharactersLoop.cpp Common.cpp Database.cpp main.cpp serverLoop.cpp AuthPackets.cpp Packet.cpp CharPackets.cpp User.cpp World.cpp WorldLoop.cpp
+         AuthLoop.cpp
+     1>c:\users\cga computer\desktop\lego universe stuff\servers\0.7\Database.h(5): fatal error C1083: Cannot open include file: 'my_global.h': No such file or directory
+         Character.cpp
+     1>c:\users\cga computer\desktop\lego universe stuff\servers\0.7\Database.h(5): fatal error C1083: Cannot open include file: 'my_global.h': No such file or directory
+         CharactersLoop.cpp
+         Common.cpp
+         Database.cpp
+     1>c:\users\cga computer\desktop\lego universe stuff\servers\0.7\Database.h(5): fatal error C1083: Cannot open include file: 'my_global.h': No such file or directory
+         main.cpp
+     1>c:\users\cga computer\desktop\lego universe stuff\servers\0.7\Database.h(5): fatal error C1083: Cannot open include file: 'my_global.h': No such file or directory
+         serverLoop.cpp
+         AuthPackets.cpp
+         Packet.cpp
+         CharPackets.cpp
+     1>c:\users\cga computer\desktop\lego universe stuff\servers\0.7\Database.h(5): fatal error C1083: Cannot open include file: 'my_global.h': No such file or directory
+         User.cpp
+     1>c:\users\cga computer\desktop\lego universe stuff\servers\0.7\Database.h(5): fatal error C1083: Cannot open include file: 'my_global.h': No such file or directory
+         World.cpp
+         WorldLoop.cpp
+     1>c:\users\cga computer\desktop\lego universe stuff\servers\0.7\Database.h(5): fatal error C1083: Cannot open include file: 'my_global.h': No such file or directory
+     1>Done Building Project "C:\Users\CGA Computer\Desktop\LEGO Universe Stuff\Servers\0.7\LUNI Server.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:10.11

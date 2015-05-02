@@ -1,0 +1,27 @@
+﻿Build started 4/15/2015 11:22:45 AM.
+     1>Project "C:\Users\CGA Computer\Desktop\LEGO Universe Stuff\Servers\0.7\RakNet\RakNet.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt CommandParserInterface.cpp RakNetTypes.cpp RakPeer.cpp SocketLayer.cpp TCPInterface.cpp
+         TCPInterface.cpp
+     1>c:\users\cga computer\desktop\lego universe stuff\servers\0.7\raknet\tcpinterface.cpp(198): error C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1850) : see declaration of 'inet_addr'
+         SocketLayer.cpp
+     1>c:\users\cga computer\desktop\lego universe stuff\servers\0.7\raknet\socketlayer.cpp(283): error C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1850) : see declaration of 'inet_addr'
+         RakPeer.cpp
+     1>c:\users\cga computer\desktop\lego universe stuff\servers\0.7\raknet\rakpeer.cpp(374): error C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1850) : see declaration of 'inet_addr'
+         -- RakNet: _RAKNET_THREADSAFE not defined.  Do NOT use multiple threads on the same instance of RakPeer (Fast!). --
+         -- RakNet: Using WaitForSingleObject. Comment out USE_WAIT_FOR_MULTIPLE_EVENTS in RakNetDefines.h if you want to use Sleep instead. --
+         RakNetTypes.cpp
+     1>c:\users\cga computer\desktop\lego universe stuff\servers\0.7\raknet\raknettypes.cpp(86): error C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1868) : see declaration of 'inet_ntoa'
+         CommandParserInterface.cpp
+     1>c:\users\cga computer\desktop\lego universe stuff\servers\0.7\raknet\commandparserinterface.cpp(151): error C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 c:\program files (x86)\windows kits\8.1\include\um\winsock2.h(1868) : see declaration of 'inet_ntoa'
+         Generating Code...
+     1>Done Building Project "C:\Users\CGA Computer\Desktop\LEGO Universe Stuff\Servers\0.7\RakNet\RakNet.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:21.46

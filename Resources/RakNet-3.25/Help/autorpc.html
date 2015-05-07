@@ -1,0 +1,133 @@
+<HTML>
+<HEAD>
+
+<TITLE>AutoRPC</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</HEAD>
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<span style="background-color: rgb(255, 255, 255);"><img src="RakNet_Icon_Final-copy.jpg" alt="Jenkins Software" width="150" height="150"></span><BR>
+<BR>
+
+<table width="100%" border="0"><tr>
+  <td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">AutoRPC Overview</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR>
+  <TD>
+    <p><span class="RakNetBlueHeader">Call C and C++ functions directly </span><BR>
+        <BR>
+      The AutoRPC plugin adds remote procedure call capability beyond what the <a href="remoteprocedurecalls.html">default RPC functionality</a> in RakPeer provides. In essence, it allows you to call procedures on remote systems using the same syntax as if they were local, and without the need to serialize or deserialize parameters. Internally, it uses assembly to push the parameter list on and off the stack. This does have limitiations however, as the system cannot determine the type of parameters past some basic template checks. Use the newer <A HREF="rpc3.html">RPC3</A> system if you want more flexible functionality.</p>
+    <p><strong>Requirements:</strong></p>
+    <ol><li> Function must be __cdecl</li>
+      <li>Parameters must be passable using memcpy (stack parameters only). Use SetOutgoingExtraData and GetIncomingExtraData to pass non-passable parameters &quot;out of band&quot;.</li>
+    </ol>    
+    <p><strong>Valid Callable Functions:</strong></p>
+    <p class="RakNetCode">void _cdecl PrintNumber(int i, char c)<br>
+      {<br>
+      printf(&quot;%i %i&quot;, i, c);<br>
+}</p>
+    <p class="RakNetCode">struct Bytes
+      {<br>
+      char bytes[20];<br>
+      }</p>
+    <p class="RakNetCode">void _cdecl PrintString(Bytes b)<br>
+      {<br>
+      printf(&quot;%s&quot;, b.bytes);<br>
+      }</p>
+    <p class="RakNetCode">class MyClass<br>
+      {<br>
+      public:<br>
+      int a;<br>
+      MyClass() {a=10;}<br>
+      virtual _cdecl PrintClass(void)	{
+      printf(&quot;%i&quot;, a);
+      }<br>
+      }</p>
+    <p class="RakNetBlueHeader">Setup</p>
+    <p>Create an instance of the plugin:<br>
+      <span class="RakNetCode">AutoRPC autoRpc;</span></p>
+    <p>Attach the plugin:<br>
+      <span class="RakNetCode">rakPeer-&gt;AttachPlugin(&amp;autoRpc);</span></p>
+    <p>If calling C++ functions, create (or use an existing) instance of <a href="networkidobject.html">NetworkIDManager</a><br>
+      <span class="RakNetCode">NetworkIDManager networkIDManager;</span></p>
+    <p>If calling C++ functions, tell the plugin about your instance of <a href="networkobject.html">NetworkIDManager</a><br>
+      <span class="RakNetCode">autoRpc.SetNetworkIDManager(&amp;networkIDManager);</span></p>
+    <p class="RakNetBlueHeader">Registering a function</p>
+    <p>For C functions, just call RegisterFunction with the function pointer and a string identifier<br>
+      <span class="RakNetCode">autoRpc.RegisterFunction(&quot;cFunc0&quot;, cFunc0, false);</span></p>
+    <p>For C++ functions, use the macro to make things easier. It requires the complete function definition. See the definition of ARPC_REGISTER_CPP_FUNCTION in AutoRPC.h for a complete explanation of each parameter.<br>
+      <span class="RakNetCode">ARPC_REGISTER_CPP_FUNCTION(&amp;autoRpc, &quot;DerivedClass::objectMemberFunc&quot;, int, BaseClass, objectMemberFunc, (int a));</span></p>
+    <p><span class="RakNetBlueHeader">Calling a function</span><br>
+      <span class="RakNetCode">autoRpc.Call(&quot;myFunction&quot;, param1, param2, param3);</span></p>
+    <p>To designate the packet recipient, if this is a C call or C++ member function, etc. use the functions in the AutoRPC class. See AutoRPC.h for parameter documentation:<br>
+      <span class="RakNetCode">void SetTimestamp(RakNetTime timeStamp);<br>
+        void SetSendParams(PacketPriority priority, PacketReliability reliability, char orderingChannel);<br>
+        void SetRecipientAddress(SystemAddress systemAddress, bool broadcast);<br>
+        void SetRecipientObject(NetworkID networkID);</span><br>
+    </p>
+    <p>On error, the remote system will send ID_RPC_REMOTE_ERROR. The error code is held in the 2nd byte, e.g. packet-&gt;data[1]. See the enumeration RPCErrorCodes for a full list of error codes.</p>
+    <p class="RakNetBlueHeader">Determining sender, etc.</p>
+    <p>There are two ways to get access to the sender, timestamp, and other parameters relevant to recieving a packet.</p>
+    <p>First, you can query the plugin if you know contextually that the called function is triggered from the network:<br>
+      <span class="RakNetCode">RakNetTime GetLastSenderTimestamp(void) const;<br>
+        SystemAddress GetLastSenderAddress(void) const;<br>
+        RakPeerInterface *GetRakPeer(void) const;<br>
+      const char *GetCurrentExecution(void) const;</span></p>
+    <p>Second, you can add an AutoRPC pointer to the end of your function. This will be filled in automatically by the plugin when the function is called.<br>
+      </p>
+    <p>// Leave off last autoRPC param when calling the function<br>
+      <span class="RakNetCode">autoRpc.Call(&quot;myFunction&quot;, param1, param2, param3);</span></p>
+    <p>// When the function is called by the plugin, it is filled in automatically<br>
+      <span class="RakNetCode">void myFunction(int param1, int param2, int param3, AutoRPC *autoRPC)<br>
+      {<br>
+      if (autoRPC!=0){<br>
+      // Called from the network<br>
+      }<br>
+      }</span></p>
+    <p>You can use this capability to relay the function call. If autoRPC is 0, then relay the call. Otherwise, this was a call from the network.</p>
+    <p class="RakNetBlueHeader">Pointers</p>
+    <p>Pointers are deferenced and the contents copied. Assuming the contents can be shallow copied as well, it is valid to pass</p>
+    <p>struct MyStruct<br>
+      {<br>
+      int a;<br>
+    char b;<br>
+    } myStruct;</p>
+    <p><span class="RakNetCode">autoRpc.Call(&quot;myFunction&quot;, &amp;myStruct);</span></p>
+    <p>In this case the contents will not be endian swapped. If you need them to be endian swapped, pass each element individually.</p>
+    <p><em>See the sample project AutoRPC for an implementation of this system.</em></p>    </TD>
+</TR></TABLE>
+<table width="100%" border="0"><tr>
+  <td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">Constraints</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR>
+  <TD>
+    <p><span class="RakNetBlueHeader">memcpy only!</span><BR>
+      </p>
+    <p>If you need to pass types with constructors, destructors, deep copy, use SetOutgoingExtraData() and GetIncomingExtraData().</p>
+    <p class="RakNetBlueHeader">Currently only tested on Windows, 32 bit compiler</p>
+    <p>On other compilers, be sure to test to make sure the sample works. The assembly code is in <em>AutoRPC::CallWithStack</em> in Source/AutoRPC.cpp. This notice will be updated as users report successful integration.</p>
+    <p class="RakNetBlueHeader">Possibly requires source linking, or building your own .lib and .dll</p>
+    <p>Because every system will generate the assembly differently, the included binaries may not work properly, especially with C++ object member functions. It is recommended you use the source, or <a href="compilersetup.html">rebuild the binaries</a> on your own compiler before using.</p>
+    </TD>
+</TR></TABLE>
+
+
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">See Also</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+
+<A HREF="index.html">Index</A><br>
+<a href="compilersetup.html">Compiler Setup</a><br>
+<a href="networkidobject.html">NetworkIDManager</a><br>
+<a href="plugininterface.html">PluginInterface</a><BR>
+<A HREF="remoteprocedurecalls.html">RemoteProcedureCalls</A><BR>
+<A HREF="rpc3.html">RPC3</A><BR>
+
+</TD></TR></TABLE>
+</BODY>
+</HTML>

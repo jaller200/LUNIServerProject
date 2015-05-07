@@ -1,0 +1,61 @@
+<HTML>
+<HEAD>
+<TITLE>NAT Punch-through</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</HEAD>
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD><BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<span style="background-color: rgb(255, 255, 255);"><img src="RakNet_Icon_Final-copy.jpg" alt="Jenkins Software" width="150" height="150"></span><BR>
+<BR>
+<table width="100%" border="0">
+  <tr>
+    <td bgcolor="#2c5d92" class="RakNetWhiteHeader"><img src="spacer.gif" width="8" height="1">NAT Punchthrough overview</td>
+  </tr>
+</table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%">
+  <TR>
+    <TD>
+	
+	 <span class="RakNetBlueHeader">NAT overview</span>	 <BR>
+      <BR>
+      NAT, or network address translation is a technique used to map one IP, known publicly, to one or more IPs, known privately.
+	  This is used to provide more IP addresses when they are scarce behind a LAN, for security, and/or to share internet connections.
+	  With a NAT, all packets go to the NAT server.  The NAT server has a routing table which will then relay that packet to the correct machine.
+	  When a system behind the NAT sends a packet to a system outside the NAT, the NAT will record the sending machine outgoing destination in the table.
+	  When a return packet is sent it will do a reverse lookup on this table.
+      <P> The problem with this for games is that it requires the machine behind the NAT to first send a packet to all machines it wants to get a packet from.  This makes it impossible to accept unknown incoming connections, which is a problem for a public game server.
+      <P> This can be avoided if one computer is behind a NAT and another is not.  The player behind the NAT must initiate the connection (the client) while the player not behind the NAT acts as the server. 
+      <P> <span class="RakNetBlueHeader">NAT Punchthrough</span> <BR>
+        <BR>
+		
+        If both machines are behind a NAT (router), it is impossible for them to connect to each other unless they know each others public IPs and ports in advance and they happen to try to communicate at the same time.
+		This technique is called NAT punchthrough.
+		One way to know each other's public IPs and ports in advance and how they know to connect at the same time is through a third non-NAT intermediary system. This system could also double as a <a href="lobby.html">lobby server</a>, or a <a href="lightweightdatabase.html">lightweight database</a> / directory server.<BR>
+      <P><span class="RakNetBlueHeader">Using the NatPunchthrough class </span><BR>
+        <BR>
+		
+        The NatPunchthrough class implements the NAT punch through technique, allowing two systems that are behind NATs to connect to each other.<br>
+        The third system needed, called a facilitator, is the system that is not behind a NAT and that both systems are already connected to.<br>
+        It will synchronize a send between both NAT systems such that the routers will both consider themselves as handling a reply to a message, when in
+        fact they are handing an initial message. As replies are allowed, both systems get their corresponding messages and the connection takes place.<br>
+      To use the NatPunchthrough class, you need to consider those 3 involved systems.       
+      <P>        Sender= system that wants to connect<br>
+        Facilitator = the system that is not behind a NAT, to which the other systems connect to. <br>
+      Recipent = system to get the connection request.      
+      <P>        See the sample <em>\Samples\NATPunchtrough</em><br>
+      <table width="100%" border="0">
+        <tr>
+          <td bgcolor="#2c5d92" class="RakNetWhiteHeader"><img src="spacer.gif" width="8" height="1">See Also</td>
+        </tr>
+      </table>
+      <TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%">
+        <TR>
+          <TD> <A HREF="index.html">Index</A><BR>
+            <A HREF="lightweightdatabase.html">Lightweight Database</A><BR>             </TD>
+        </TR>
+      </TABLE>       </TD>
+  </TR>
+</TABLE>
+</BODY>
+</HTML>

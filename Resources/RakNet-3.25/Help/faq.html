@@ -1,0 +1,234 @@
+<HTML>
+<HEAD>
+
+<TITLE>FAQ</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<span style="background-color: rgb(255, 255, 255);"><img src="RakNet_Icon_Final-copy.jpg" alt="Jenkins Software" width="150" height="150"></span><BR>
+<BR>
+
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">FAQ</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+  <p>
+  <B>What is the difference between the license versions?</B><BR>
+  <br>
+  <em>Non-profit applications or engines:</em><br>
+    You can use RakNet for free under the <a rel="license" href="http://creativecommons.org/licenses/by-nc/2.5/">Creative Commons Attribution - NonCommercial 2.5</a> license<br>
+    <br>
+    <em>Single application license:</em><br>
+A <a href="http://www.jenkinssoftware.com/SingleApplicationLicense.html">Single Application license</a>  applies to commercial software sold both online and retail. You may  download RakNet immediately and are only required to pay when you ship  your product. At that time you choose how much to pay based on what you  can afford and how much value you feel RakNet has brought to you.<br>
+<br>
+<em>Site licenses and commercial engine development.</em><br>
+An unlimited application Engine License* applies to commercial software  sold using any distribution model and also allows resale of your  engine. You may use RakNet as long as you wish during development. When  you wish to sell your engine or release your product, you may purchase  a license at a fixed fee.<br>
+  <br>
+    All licenses can support any number of players.<BR>
+      <BR>
+      <B>I'm having problems sending strings.</B><BR>
+    Use the StringCompressor class to send strings.<BR>
+      <BR>
+      <B>My data that I write using bitstreams is messed up on the other side.</B><BR>
+    Make sure if you write one of the ID_* enumerations you cast it to an (unsigned char).  Other than that, make sure your read and write calls match.<BR>
+      <BR>
+      <B>My data pointed to by a pointer isn't arriving.</B><BR>
+    This is the same problem as when trying to use a default copy constructor with allocated memory.  You can just send pointers if you want, but it will send the pointer variable rather than the data pointed to.  You will need to serialize the contents of pointers yourself.<BR>
+      <BR>
+      <B>Question about that ReplicaManager.  If the level, and level objects and so on are replicated, but the objects rely on the level being loaded first, how do you ensure that the Level is replicated and fully constructed before everything else?  What about more complex relationships?</B><BR>
+    Participants in the system are not added until you call AddParticipant, unless you were to call SetAutoParticipateNewConnections(true).<BR>
+    Objects in the system are not constructed on other systems until you call Construct, unless you were to call SetAutoConstructToNewParticipants(true).<BR>
+      <BR>
+    In the case of a map load, you usually wouldn't want systems still in the menu states to be getting updates for game objects.  So you would not add them as a participant in that case.<BR>
+      <BR>
+    Another way to handle this is when you get the ReceiveConstructionInterface::ReceiveConstruction callback, return REPLICA_PROCESS_LATER.  In this way you can defer processing the call until such a time as you choose.<BR>
+      <BR>
+      <B>I get very high pings.</B><BR>
+    Use 0 for the sleep timer, and put a Sleep(0) in your main game loop.  This will ensure responsive context switches.<BR>
+      <BR>
+      <B>How do I use object member remote procedure calls?.</B><BR>
+    Look at the sample ObjectMemberRPC.<br>
+    <BR>
+	
+<strong>My scope and/or serialize sends do not arrive on the remote system.</strong><br>
+
+      Scope and Serialize messages are only sent if the ReplicaManager   knows that your object exists on the remote system.&nbsp; This does not   happen automatically, even when you handle   ReceiveConstructionInterface::ReceiveConstruction.&nbsp; When you locally create an object that   you know exists on the sending system, and don't need to send a   Construction message back to that system, be sure to call   ReplicaManager::Construct with isCopy set to true, instead of (for   example) ReplicaManager::ReferencePointer<br>
+      <BR>
+      <B>How should I deal with firewalls?</B><BR>
+    Be sure to specify that your end-users need to open the appropriate ports, or use a port that is probably already open (such as the http port).  One way to reduce tech support calls in this regard is to have your application try connecting a local client to a local server.  If you can't connect after a couple of tries then the user probably has a firewall blocking this. You can message the user in-game that they probably have a firewall that needs to be turned off on whichever port your game uses.<BR>
+      <BR>
+      <B>I get linker errors such as: unresolved external symbol "public: static void __cdecl RakNetworkFactory::DestroyRakPeerInterface(class RakPeerInterface *)"</B><BR>
+    You didn't link the library into your project.  You must have the .lib and not the .dll in the project.  See <A HREF="compilersetup.html">Compiler Setup</A><BR>
+      <BR>
+      <B>I get conflicting lib errors such as follows</B><BR>
+    LIBCMT.lib(dosmap.obj) : error LNK2005: __dosmaperr already defined in LIBCD.lib(dosmap.obj)<BR>
+    LIBCMT.lib(mbctype.obj) : error LNK2005: __getmbcp already defined in LIBCD.lib(mbctype.obj)<BR>
+    LIBCMT.lib(mbctype.obj) : error LNK2005: __setmbcp already defined in LIBCD.lib(mbctype.obj)<BR>
+    LIBCMT.lib(mbctype.obj) : error LNK2005: ___initmbctable already defined in LIBCD.lib(mbctype.obj)<BR>
+    LIBCMT.lib(tolower.obj) : error LNK2005: __tolower already defined in LIBCD.lib(tolower.obj)<BR>
+    LIBCMT.lib(tolower.obj) : error LNK2005: _tolower already defined in LIBCD.lib(tolower.obj)<BR>
+    LIBCMT.lib(isctype.obj) : error LNK2005: __isctype already defined in LIBCD.lib(isctype.obj)<BR>
+    LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library<BR>
+      <BR>
+    You need to select Multithreaded Debug and Multithreaded libraries in the project options.<BR>
+    <BR>
+      <B>I get linker errors such as follows</B><BR>
+			LIBCMTD.lib(invarg.obj) : error LNK2005: __invoke_watson already defined in MSVCRTD.lib(MSVCR80D.dll)<BR>
+			LIBCMTD.lib(setlocal.obj) : error LNK2005: __configthreadlocale already defined in MSVCRTD.lib(MSVCR80D.dll)<BR>
+			LIBCMTD.lib(tidtable.obj) : error LNK2005: __encode_pointer already defined in MSVCRTD.lib(MSVCR80D.dll)<BR>
+			LIBCMTD.lib(tidtable.obj) : error LNK2005: __decode_pointer already defined in MSVCRTD.lib(MSVCR80D.dll)<BR>
+			LIBCMTD.lib(dbgheap.obj) : error LNK2005: _malloc already defined in MSVCRTD.lib(MSVCR80D.dll)<BR>
+			LIBCMTD.lib(dbgheap.obj) : error LNK2005: _realloc already defined in MSVCRTD.lib(MSVCR80D.dll)<BR>
+			LIBCMTD.lib(dbgheap.obj) : error LNK2005: _free already defined in MSVCRTD.lib(MSVCR80D.dll)<BR>
+			LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library<BR>
+			LINK : warning LNK4098: defaultlib 'LIBCMTD' conflicts with use of other libs; use /NODEFAULTLIB:library<BR>
+      <BR>
+    Right click on the project name, click properties, go to Configuration Properties / C/C++ / Code Generation and change from Multithreaded Debug DLL to Multithreaded Debug (same for release).<BR>
+    <BR>
+      <B>Dropped connections are not detected and/or I can't reconnect after losing the connection.</B><BR>
+    By default, the timeout in debug build is set to 30 seconds, and in release to 10 senconds.  A keepalive is sent every 5 seconds.  So you may have to wait 35 seconds before you can reconnect. You can change the timeout using RakPeerInterface::SetTimeoutTime.<BR>
+      <BR>
+      <B>I want to, or should I call Send and Receive from multiple threads.</B><BR>
+    Those functions are not currently threadsafe.  There is no benefit to calling them from threads, as they are already optimized to run asynchronously with the main network thread.<BR>
+      <BR>
+      <B>I want event callbacks on packet arrival.</B><BR>
+    There are no event callbacks on packet arrival.  If you want an event, poll Receive and make your own event if non-zero is returned.<BR>
+      <BR>
+      <B>No offline ping or advertise system data with a broadcast to 255.255.255.255.  My packet data length is always 1.</B><BR>
+    This is intentional to prevent denial of server attacks.  After you get a response, send another ping or advertise system call directly to that system.<BR>
+      <BR>
+      <B>Is AdvertiseSystem reliable?</B><BR>
+    Yes.<BR>
+      <BR>
+      <B>I can't connect to the other system or other systems can't connect to me.  What are some possible reasons?</B>
+    </p>
+  
+<UL>
+  <LI>The other system isn't running RakNet.
+  <LI>The other system didn't start the connection, or tried to start it and it failed (the startup function returned false).
+  <LI>The server has a firewall blocking incoming connections.
+  <LI>The server has a firewall blocking UDP data on the specified server port or the server port + 1 (for winsock 2.0+).
+  <LI>The client has a firewall blocking UDP data on the specified client port or the server port + 1 (for winsock 2.0+).
+  <LI>The server already has the maximum number of connected clients.
+  <LI>The server has a lot of network traffic and is too busy to respond to your connection request.
+  <LI>You used a different value for connectionValidationInteger than the other system.
+  <LI>You are connecting to the wrong port on the server.
+  <LI>You entered the wrong IP address of the server.  This could be by mistyping or confusing the LAN address with the internet address.
+  <LI>One or both systems are not using high priority threads and are at the same time using a lot of CPU power for other threads.  This could cause the network threads to not respond to the handshaking sequence fast enough.
+  <LI>The handshaking packets were lost due to normal packetloss
+  <LI>You did connect, but never handled the network messaging packets that indicated you you did either because you aren't handling any messages or because you didn't handle those in particular.
+  <LI>The recipient is behind a NAT and didn't use NAT punch-through.
+</UL>
+<B>I get linker errors about winsock function redefinitions<BR>
+i.e. - error C2011: 'WSAData' : 'struct' type redefinition<BR>
+i.e. - warning C4005: 'SO_DONTLINGER' : macro redefinition</B>
+<BR>
+<BR>
+Add this to your preprocessor definitions<BR>
+ _WINSOCKAPI_<BR>
+In .Net this would be project / configuration properties / C/C++ / Preprocessor / Preprocessor defintions.<BR>
+You will get this or a similar warning:<BR>
+warning C4005: '_WINSOCKAPI_' : macro redefinition unknown(0) : see previous definition of '_WINSOCKAPI_'<BR>
+You can ignore it.<BR>
+<BR>
+<B>Whenever I define __USE_IO_COMPLETION_PORTS I get a huge number of errors.<BR>
+All of them are of the type:<BR>
+<BR>
+winsock2.h(2353) : error C2375: 'WSAAsyncSelect' : redefinition; different linkage<BR>
+winsock.h(824) : see declaration of 'WSAAsyncSelect'<BR>
+<BR>
+One for each of the functions exported by winsock2.</B><BR>
+<BR>
+Windows.h has to be included after the Rak* headers. __USE_IO_COMPLETION_PORTS has to be defined globally, or before the headers.
+<BR>
+<BR>
+<B>I can connect but don't get any data from the other system.  What are some possible reasons?</B><BR>
+<BR>
+You aren't calling Receive.<BR>
+The other system didn't send any data, or didn't send any to you.<BR>
+The other system immediately kicked you after you connected, such as due to you being banned or using a wrong password.<BR>
+The network disconnected you because of cheating or because it couldn't deliver a reliable packet.<BR>
+<BR>
+<B>Some kind of networked action happens twice, such as when I press the trigger to fire a bullet two bullets come out.</B><BR>
+<BR>
+The server is broadcasting to everyone, including the client that just initiated the action.  To fix this, pass the systemAddress parameter of the packet to the systemAddress field of RakPeerInterface::Send when broadcasting.  This will relay the message to all players BUT the sender.<BR>
+<BR>
+<B>When I send some particular kind of packet, I immediately get flooded with hundreds of copies the same packet.</B><BR>
+This is a feedback loop, caused by the following sort of coding:<BR>
+<BR>
+  
+// Client<BR>
+void DoMyFunctionA(void)<BR>
+{<BR>
+SendPacketToDoFunctionA();<BR>
+}<BR>
+<BR>
+// Server<BR>
+void HandlePacketToDoFunctionA(void)<BR>
+{<BR>
+// Broadcast to all connected players<BR>
+SendToAllPacketToDoFunctionA();<BR>
+}<BR>
+<BR>
+// Client<BR>
+void ReceivePacketToDoFunctionA(void)<BR>
+{<BR>
+DoMyFunctionA();<BR>
+}<BR>
+<BR>
+
+To fix this, either don't have the function that does the action also send the packet, or use a parameter specifying whether to send a packet or not and set that parameter to false if the function is called from the network code.  See Programming Tips  for help on how to handle this.<BR>
+<BR>
+<B>How do I create a master game browser?</B><BR>
+Use the LightweightDatabaseServer and LightweightDatabaseClient classes. See the sample <em>\Samples\LightweightDatabase</em> <BR>
+<BR>
+<B>Which version of the multithreaded library does RakNet use?</B><BR>
+Multithreaded (/MT)<BR>
+<BR>
+<B>Since RakNet uses threads does my program need to use the multithreaded library?</B><BR>
+If you use the DLL then no.  The threads are confined to the dll.  If you use the static lib or source then yes.<BR>
+<BR>
+<B>Can I run more than one instance of the client or server on the same system?<BR></B>
+Yes, but each instance will have its own thread and require its own memory.  You'll need to remember to give different port assigments to each instance as well.  There isn't really any reason to do this since you can use RakPeer to handle multiple outgoing connections.<BR>
+<BR>
+<B>What's the largest packet I can send?</B><BR>
+65535 * (the MTU Size - the UDP / IP header).  For a cable modem this is about 95 megabytes.  Of course you wouldn't be able to send anything else above the MTU until that arrived.  You can use RakNet for small files but for major file transfers you might as well TCP, which is designed for that.<BR>
+<BR>
+<B>How do I send files?</B><BR>
+Just send it as a data stream using RELIABLE, subject to the packet size restriction.<BR>
+<BR>
+<B>If I purchase one license, can I use it in more than one game?</B><BR>
+A site license will allow you to do this.  A normal license requires one copy of the license per game.  Refer to the License Agreement for full details.<BR>
+<BR>
+<B>Can I use RakNet in non-games?</B><BR>
+Yes<BR><BR>
+<B>My game is too laggy.  How can I decrease lag?</B><BR>
+- Use bandwidth more efficiently (see the optimization section in Programming Tips )<BR>
+- Design your game so it doesn't require as much bandwidth (see the optimization section in Programming Tips )<BR>
+- Use high priority threads<BR>
+- Get a faster computer.  This will make threads more responsive.<BR>
+- Get a better internet connection.<BR>
+- Decrease the number of clients allowed.<BR>
+<BR>
+<B>Does RakNet use TCP at all?</B><BR>
+No.<BR>
+<BR>
+<B>Will RakNet work with my game written in C?</B><BR>
+No.<BR>
+<BR>
+<B>What OSes does RakNet support?</B><BR>
+Unix, Linux, Mac, Windows, and some others.<BR>
+
+</TD></TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">See Also</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+
+<A HREF="index.html">Index</A><BR>
+
+</TD></TR></TABLE>
+</BODY>
+</HTML>

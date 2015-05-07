@@ -1,0 +1,43 @@
+/* 
+	ColorBox example user style
+	The following rules are ordered and tabbed in a way that represents the order/nesting of the generated HTML, 
+	in hope that this will make the relationship easier to understand. Thanks, jack@colorpowered.com
+*/
+#cboxOverlay{background:url(http://cache.lego.com/images/Universe/Account/Colorbox/stripe.png) 0 0 repeat;}
+
+#colorbox{} 
+#cboxTopLeft{width:25px; height:25px; background:url(http://cache.lego.com/images/Universe/Account/Colorbox/borderTopLeft.png) 0 0 no-repeat;}
+#cboxTopCenter{height:25px; background:url(http://cache.lego.com/images/Universe/Account/Colorbox/borderTopCenter.png) 0 0 repeat-x;}
+#cboxTopRight{width:25px; height:25px; background:url(http://cache.lego.com/images/Universe/Account/Colorbox/borderTopRight.png) 0 0 no-repeat;}
+#cboxBottomLeft{width:25px; height:25px; background:url(http://cache.lego.com/images/Universe/Account/Colorbox/borderBottomLeft.png) 0 0 no-repeat;}
+#cboxBottomCenter{height:25px; background:url(http://cache.lego.com/images/Universe/Account/Colorbox/borderBottomCenter.png) 0 0 repeat-x;}
+#cboxBottomRight{width:25px; height:25px; background:url(http://cache.lego.com/images/Universe/Account/Colorbox/borderBottomRight.png) 0 0 no-repeat;}
+#cboxMiddleLeft{width:25px; background:url(http://cache.lego.com/images/Universe/Account/Colorbox/borderMiddleLeft.png) 0 0 repeat-y;}
+#cboxMiddleRight{width:25px; background:url(http://cache.lego.com/images/Universe/Account/Colorbox/borderMiddleRight.png) 0 0 repeat-y;}
+#cboxContent{background:#fff;}
+#cboxLoadedContent{margin-bottom:28px;}
+#cboxTitle{position:absolute; bottom:3px; left:0; text-align:center; width:100%; color:#949494;}
+#cboxCurrent{position:absolute; bottom:3px; left:58px; color:#949494;}
+#cboxSlideshow{position:absolute; bottom:3px; right:30px; color:#0092ef;}
+#cboxPrevious{position:absolute; bottom:0; left:0px; background:url(http://cache.lego.com/images/Universe/Account/Colorbox/controls.png) -25px 0px no-repeat; width:25px; height:25px; text-indent:-9999px;}
+#cboxPrevious.hover{background-position:-25px -25px;}
+#cboxNext{position:absolute; bottom:0; left:27px; background:url(http://cache.lego.com/images/Universe/Account/Colorbox/controls.png) 0px 0px no-repeat; width:25px; height:25px; text-indent:-9999px;}
+#cboxNext.hover{background-position:0px -25px;}
+#cboxLoadingOverlay{background:url(http://cache.lego.com/images/Universe/Account/Colorbox/loading.png) center center no-repeat;} 
+#cboxLoadingGraphic{background:url(http://cache.lego.com/images/Universe/Account/Colorbox/loading.png) center center no-repeat;} 
+#cboxClose{position:absolute; top:-21px; right:-24px; background:transparent url(http://cache.lego.com/images/Universe/Account/Colorbox/controls.png) 0 0px no-repeat; width:37px; height:35px; text-indent:-9999px;}
+#cboxClose.hover{background-position:0;}
+		
+		
+#SurveyPopUp {width: 298px;}
+#SurveyPopUpText {width: 250px; }
+.MiniFig { z-index:9999; width: 262px; height:255px; position:absolute; left:263px; top:30px;background:url(http://cache.lego.com/images/Universe/Account/Colorbox/iniFig.png); }
+
+.buttonLeft { width: 6px; height: 32px; background: url(http://cache.lego.com/images/Universe/Account/Colorbox/buttonLeft.png) 0 0 no-repeat; float:left;}
+.buttonMiddle { height: 32px; background: url(http://cache.lego.com/images/Universe/Account/Colorbox/buttonMiddle.png) 0 0 repeat-x; float:left; }
+.buttonBody { margin: 6px 10px 0 10px; font-weight:bold; color:#fff;  }
+.buttonRight { width: 6px; height: 32px; background: url(http://cache.lego.com/images/Universe/Account/Colorbox/buttonRight.png) 0 0 no-repeat; float:left;}
+
+#SurveyButton { float:left; cursor: pointer;}
+#CloseButton { float:left; cursor: pointer; margin: 0 0 0 10px; }
+#SurveyPopUpButtonContainer { margin: 36px 0 0 0; position:absolute; left:0; top: 100px; }

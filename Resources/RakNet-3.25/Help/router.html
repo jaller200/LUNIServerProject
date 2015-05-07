@@ -1,0 +1,43 @@
+<HTML>
+<HEAD>
+<TITLE>Router Manual</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</HEAD>
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD><BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<span style="background-color: rgb(255, 255, 255);"><img src="RakNet_Icon_Final-copy.jpg" alt="Jenkins Software" width="150" height="150"></span><BR>
+<BR>
+<table width="100%" border="0">
+  <tr>
+    <td bgcolor="#2c5d92" class="RakNetWhiteHeader">&nbsp;Router Overview</td>
+  </tr>
+</table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%">
+  <TR>
+    <TD><p><span class="RakNetBlueHeader">Send messages through intermediate systems</span><BR>
+        </p>
+      <p>Games often have a need to send to remote systems through an intermediate system, where the intermediate system itself does not act upon the data. That is to say, the intermediate system is just a relay. To make this easier, the Router plugin will do this automatically. To use, attach one instance of the Router plugin to each system. THe sending system needs to also have the <a href="connectiongraph.html">ConnectionGraph</a> plugin installed in order to determine the path to use to send through.</p>
+      <p>Once the router plugin is installed, you can use Router::Send() function to send to more than one system at a time efficiently. Or you can also use RakPeerInterface::Send() to send as usual.</p>
+      <p>Sample applications:</p>
+      <ul>
+        <li>Sending chat messages through a server between players</li>
+        <li>Having a distributed server cluster communicate with a client directly connected to another server in the cluster</li>
+        <li>Using the <a href="rakvoice.html">RakVoice</a> plugin without requiring clients to directly connect to each other (not recommended for more than few clients due to bandwidth constraints).</li>
+      </ul>
+    <p><em>Note: Reliabile messaging when using the Router plugin only applies to each immediate connection in the routing path. Should a system drop while routing a message, that message will be lost even if another path would have been available had the message been resent. For guaranteed delivery, connect the systems directly, or send your own acks to confirm delivery.</em></p>    
+  </TR>
+</TABLE>
+<table width="100%" border="0">
+      <tr>
+        <td bgcolor="#2c5d92" class="RakNetWhiteHeader"><img src="spacer.gif" width="8" height="1">See Also</td>
+      </tr>
+</table>
+    <TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%">
+      <TR>
+        <TD> <A HREF="index.html">Index</A><BR>          </TD>
+      </TR>
+    </TABLE></TD>
+</TR></TABLE>
+</BODY>
+</HTML>

@@ -1,0 +1,275 @@
+<HTML>
+<HEAD>
+
+<TITLE>Detailed Implementation</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<img src="RakNet_Icon_Final-copy.jpg" alt="Jenkins Software" width="150" height="150"><BR>
+<BR>
+
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">Detailed Implementation</td>
+</tr></table>
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+  <tr>
+    <td>Implementation <BR>
+      <BR>
+To implement RakNet all you have to do is get an instance of RakPeer in your program.<BR>
+<BR>
+These are the most common headers you'll need:</td>
+  </tr>
+</table>
+<table width="100%" border="0">
+  <tr>
+    <td bgcolor="#2c5d92" class="RakNetWhiteHeader"><img src="spacer.gif" width="8" height="1">Headers</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+  <tr>
+    <td class="RakNetManualTextBody">#include "MessageIdentifiers.h"<BR>
+#include "RakNetworkFactory.h"<BR>
+#include "RakPeerInterface.h"<BR>
+#include "RakNetTypes.h"<BR>
+<BR>
+MessageIdentifiers.h contains a giant enumeration representing the native message identifiers that RakNet uses to send you messages, such as disconnection notifications.  Since you will probably want to define your own message identifiers, your enumerations should start at the 
+        highest enumeration in MessageIdentifiers.h + 1<font color="#666666" size="2" face="Geneva, Verdana, Arial, Helvetica, sans-serif">. RakNetworkFactory.h is an implementation of the factory design pattern, used to get a pointer to RakPeerInterface.  This is necessary to use the DLL.  RakPeerInterface.h is an interface for the RakPeer 
+    class. RakNetTypes.h defines the structures used in RakNet, including <I>SystemAddress</I> - a unique identifier for systems, and <I>Packet</I> which the API returns to you when you get data or when it needs to send you a message.</td>
+  </tr>
+</table>
+<table width="100%" border="0">
+  <tr>
+    <td bgcolor="#2c5d92" class="RakNetWhiteHeader"><img src="spacer.gif" width="8" height="1">Instancing</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+  <tr>
+    <td class="RakNetManualTextBody"><BR>
+RakPeerInterface* peer = RakNetworkFactory::GetRakPeerInterface();<BR>
+<BR>
+That code would give you one instance of  the peer.  Usually you would only want one of these in a particular exe.<BR>
+<BR>
+The next step is to connect, either as client or as a server.<BR>
+<BR>
+For example:<BR></td>
+  </tr>
+</table>
+<table width="100%" border="0">
+  <tr>
+    <td bgcolor="#2c5d92" class="RakNetWhiteHeader"><img src="spacer.gif" width="8" height="1">Connection as Client </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+  <tr>
+    <td class="RakNetManualTextBody">peer->Startup(1, 30, &SocketDescriptor(), 1)<BR>
+peer
+    ->Connect(serverIP, serverPort, 0, 0);<BR>
+    <BR>
+The call to Startup starts the network threads.<br>
+The first parameter is the maximum mumber of connections. For a pure client, we use 1.<br>
+The second parameter (set to 30 in this example) is the thread sleep timer.  A value of 0 is good for games that need fast responses, such as a shooter.  Otherwise, a value of 30 will give good response times and will require very little CPU usage.<br>
+The third parameter (SocketDescriptor()), specifies the ports/addresses to listen on . Since we want a client, we don't need to specify anything.<BR>
+<br>
+The call to Connect connects to the server.<br>
+The first parameter, serverIP, is the IP address of the server.  If you want to connect to your own system, such as when running two copies of the same program, use "127.0.0.1" or "localhost" which is accepted notation for your own system.  If the server is on a different system you'd enter the IP address of the other system.<BR>
+The next  parameter in Connect is the serverPort.  This is the port you want to try to connect to on the server.  If you specify a port the server is not expecting data on you won't be able to connect just like if you had entered the wrong IP.  The IP and the port always work together in this fashion to form the complete address.  How do you know what port to connect to?  Well as the programmer you decide this ahead of time and then just hardcode it into your program.  How do you choose a port?  You can choose whatever you want as long as no one else is using it and its within the range of 2^16 (0 to 65535).  However, certain ports are reserved for use by established programs, such as your web browser, telnet, and FTP.  You can look up these port assignments on the internet, but the quick and dirty answer is most ports under 32000 are reserved and ports over 32000 are open to whoever wants them.  I like to pick from the high ranges, such as over 60000, to be safe.<BR>
+<BR>
+In practice ports are generally set with #define per program and not changed.  For example:<BR>
+<BR>
+#define SERVER_PORT 60005<BR>
+#define CLIENT_PORT 60006<BR>
+<BR>
+This way the server will always know what port to respond to and the clients will always know what port to connect to.  It also saves end-users the trouble of typing the ports in.<BR>
+<BR>
+Note that connections are asynchronous.  The function will return true immediately if it succeeded in the attempt to connect, but it does not mean your connection succeeded. You know your connection succeeded when you get a network message ID_CONNECTION_ACCEPTED.<br>
+You get a network message ID_CONNECTION_ATTEMPT_FAILED when the connection fails.<br>
+RakNet connects quickly so if you don't connect within a few seconds it's not going to connect.<BR>
+<BR>
+Starting as a server is similar.</td>
+  </tr>
+</table>
+<table width="100%" border="0">
+  <tr>
+    <td bgcolor="#2c5d92" class="RakNetWhiteHeader"><img src="spacer.gif" width="8" height="1">Connection as Server </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+  <tr>
+    <td class="RakNetManualTextBody"><p>peer->Startup(maxConnectionsAllowed, 30, &SocketDescriptor(serverPort,0), 1);<br>
+      peer->SetMaximumIncomingConnections(maxPlayersPerServer); </p>
+      <p>The first parameter to Startup is how many simultaneous clinet connections to allow. The Second parameter is the thread sleep time, and the third tells what port to listen on.<br>
+        The call to SetMaximumIncomingConnections sets how many incoming connections are allowed.<BR>
+        Keep in mind that the actual number of players you could have playing is one more than the number of clients you support if you program your game to allow the server to act as a player.  If your server is a dedicated server or if you program your game to have both a client and a server on the same system (not recommended) then obviously the number of people who could play would change accordingly.<BR>
+  <BR>
+    How do I know if the connection was successful or if anyone connected to me?  Keep reading.</p></td>
+  </tr>
+</table>
+<table width="100%" border="0">
+  <tr>
+    <td bgcolor="#2c5d92" class="RakNetWhiteHeader"><img src="spacer.gif" width="8" height="1">Peer to peer connections </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+  <tr>
+    <td class="RakNetManualTextBody">peer->Startup(10, 30, &amp;SocketDescriptor(60000,0), 1);<BR>
+peer->SetMaximumIncomingConnections(4);<BR>
+<BR>
+Startup sets 10 allowable connections.  An allowable connection is either incoming or outgoing.  It uses port 60000 to receive data.<br>
+SetMaximumIncomingConnections is necessary if you want to allow other peers to connect to you, but is not necessary if you only plan to connect to others.  In this case, it sets the value to 4.  This is a maximum value rather than a reserved value, so it is still possible to say connect to 8 peers - you would then only be able to accept 2 incoming connections until you disconnected from one or more of those peers.</td>
+  </tr>
+</table>
+<table width="100%" border="0">
+  <tr>
+    <td bgcolor="#2c5d92" class="RakNetWhiteHeader"><img src="spacer.gif" width="8" height="1">Reading Packets </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+  <tr>
+    <td class="RakNetManualTextBody">Packet *packet = peer->Receive();<BR>
+      <BR>
+It's that easy.  If packet is 0 then there was nothing to read and you can go on with your game.  Otherwise you got some data.<BR>
+<BR>
+You can get two kinds of data:<BR>
+Messages from the engine<BR>
+Messages from other instances of RakNet, on the same computer or from other computers<BR>
+Both are handled the same way.<BR>
+<BR>
+Lets look at the Packet struct:<BR>
+struct Packet<BR>
+{ <BR>
+SystemIndex systemIndex; /// Server only - this is the index into the player array that this systemAddress maps to <BR>
+SystemAddress systemAddress; /// The system that send this packet. <BR>
+unsigned int length; /// The length of the data in bytes. Deprecated You should use bitSize. <BR>
+unsigned int bitSize; /// The length of the data in bits <BR>
+unsigned char* data ;/// The data from the sender<BR>
+bool deleteData; /// Internal. Indicates whether to delete the data, or to simply delete the packet.<BR>
+};<BR>
+<BR>
+systemAddress specifies the origin of the packet. Every connected system has a unique SystemAddress which is assigned automatically. Certain native network messages use this field - for example ID_REMOTE_DISCONNECTION_NOTIFICATION tells you as a client that another client has disconnected.  systemAddress in that case specifies which client.  UNASSIGNED_SYSTEM_ADDRESS is a reserved value for "Unknown".<BR>
+<BR>
+bitSize tells you how many bits long the data field of the struct is.<BR>
+<BR>
+Now that you got a packet you need to determine what the data means.  Usually the first byte of the data is an enum that specifies type (see creating packets for more information).  This is not always the case as you'll later learn, because with some packets, you might get a TimeStamp. To make things easy here it is a function to get the identifier when the packet has a TimeStamp:<BR>
+<BR>
+unsigned char GetPacketIdentifier(Packet *p)<BR>
+{<BR>
+if ((unsigned char)p->data[0] == ID_TIMESTAMP)<BR>
+return (unsigned char) p->data[sizeof(unsigned char) + sizeof(unsigned long)];<BR>
+else<BR>
+return (unsigned char) p->data[0];<BR>
+}<BR>
+<BR>
+This will return an unsigned char, which corresponds to an enum specified in MessageIdentifiers.h.<BR>
+<BR>
+The network engine will return certain messages only for the client, certain messages only for the server, and certain messages for both.  For a full explanation of the messages refer to MessageIdentifiers.h.  The important ones to worry about are ID_NEW_INCOMING_CONNECTION and ID_CONNECTION_REQUEST_ACCEPTED.  These mean that the server or a peer got a new incoming client, and the client or a peer has successfully connected respectively.  At this point you can send your own messages. <BR>
+<BR>
+If the packet identifier is NOT one of the pre-defined identifiers then you got user data which was sent by another system.  You can then decode the data and handle it in your game as appropriate.  See <A HREF="creatingpackets.html">creating packets</A> for information on encoding and decoding data.<BR>
+<BR>
+<I>IMPORTANT!</I><BR>
+When you are done with your data, don't forget to deallocate the packet!  Just pass it to DeallocatePacket.<br>
+<BR>
+peer->DeallocatePacket(p);</td>
+  </tr>
+</table>
+<table width="100%" border="0">
+  <tr>
+    <td bgcolor="#2c5d92" class="RakNetWhiteHeader"><img src="spacer.gif" width="8" height="1">Sending Data </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+  <tr>
+    <td class="RakNetManualTextBody"><p>The best way to illustrate sending data is with an example:<BR>
+      const char* message = "Hello World";<BR>
+  <BR>
+      To all connected systems:<BR>
+      peer->Send((char*)message, strlen(message)+1, HIGH_PRIORITY, RELIABLE, 0, UNASSIGNED_SYSTEM_ADDRESS, true);<BR>
+  <BR>
+      The first parameter is your data and must be a byte stream.  Since we're sending a string, and a string is a byte stream, we can send it directly without any casting.<BR>
+  <BR>
+      The second parameter is how many bytes to send.  In this example we send the length of the string and one more for the null terminator.<BR>
+  <BR>
+      The third  parameter is the priority of the packet.  This takes one of three values:<BR>
+      HIGH_PRIORITY<BR>
+      MEDIUM_PRIORITY<BR>
+      LOW_PRIORITY<BR>
+  <BR>
+      High priority packets go out before medium ones, and medium ones go out before low ones do.  Simple.<BR>
+  <BR>
+      The fourth  parameter takes one of five values.  Lets say you send data 1,2,3,4,5,6.  Here's the order and substance of what you might get back:<BR>
+  <BR>
+      UNRELIABLE - 5, 1, 6<BR>
+      UNRELIABLE_SEQUENCED - 5<BR>
+      RELIABLE - 5, 1, 4, 6, 2, 3<BR>
+      RELIABLE_ORDERED - 1, 2, 3, 4, 5, 6<BR>
+      RELIABLE_SEQUENCED - 5, 6<BR>
+  <BR>
+      RELIABLE and RELIABLE_ORDERED are fine for most cases.  For more details on this refer to PacketPriority.h<BR>
+  <BR>
+      The fifth parameter (0 in this example) is which ordering stream to use.  This is used for relative ordering of packets in relation to other packets on the same stream.  It's not important for now, but for more information on this refer to the <A HREF="sendingpackets.html">Sending Packets</A> section.</p>
+      <p><font color="#666666" size="2" face="Geneva, Verdana, Arial, Helvetica, sans-serif">The sixth parameter (UNASSIGNED_SYSTEM_ADDRESS), is the SystemAddress to send to. UNASSIGNED_SYSTEM_ADDRESS is a reversed value meaning &quot;no-ono in particular&quot;. This parameter means one of two things : either who you want to send the packet to, or who you don't want to send the packet to, depending on the value of broadcast, which is the last parameter.<br>
+          <BR>
+    The seventh parameter (true in this example) is whether to broadcast to all connected systems or not.  This parameter works with the sixth parameter, systemAddress.  If broadcast is true, then systemAddres specifies who not to send to.  If it is false, then it specifies who to send to.  If we want to broadcast to everyone, then we just specify UNASSIGNED_SYSTEM_ADRRESS for systemAddress.  This works out quite well when relaying packets, because the Packet::systemAddress field in the packet you get will specify who the sender is.   By passing the sender in the systemAddress parameter of the Send function and specifing broadcast as true, we can relay the packet to everyone BUT the sender, which makes sense since we usually don't want to send the same information back to the person who just sent it to us.</p></td>
+  </tr>
+</table>
+<table width="100%" border="0">
+  <tr>
+    <td bgcolor="#2c5d92" class="RakNetWhiteHeader"><img src="spacer.gif" width="8" height="1">Shutting Down </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+  <tr>
+    <td class="RakNetManualTextBody"><BR>
+Shutting down is easy and nearly instantaneous.  Just call Shutdown() on your peer object, and then destroy it <BR>
+<BR>
+somePeer->Shutdown(300);<br>
+<BR>
+Shutdown stops the network threads so RakNet will not consume CPU cycles unnecessarily.  You can always restart the network with the Startup and Connect methods.  Obviously, if you shut down the a server with clients connected they will stop getting data and eventually drop due to time-out.  If you want to be polite you can use the Kick method to drop everyone first so they get a disconnection message.</td>
+  </tr>
+</table>
+<table width="100%" border="0">
+  <tr>
+    <td bgcolor="#2c5d92" class="RakNetWhiteHeader"><img src="spacer.gif" width="8" height="1">Cleaning Up </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+  <tr>
+    <td>Just pass the instance that the factory gave you to the DestroyRakPeerInterface.  You may want to do this mid-program to free memory but it is not required.<BR>
+      <BR>
+RakNetworkFactory::DestroyRakPeerInterface(somePeer);<BR>
+<BR>
+Firewall and NAT users take note <BR>
+<BR>
+Firewalls are hardware or software utilities intended to only let authorized data pass to and from a computer to the general network.  As RakNet is a networking API, a firewall will block RakNet just as indiscriminately as it would any other API or application.  To get past this, you have to use certain tricks.  One way is to use a well-known port for RakNet, such as the HTTP port 80.  This often works for the server, or for fussy clients.  Another way is to use port 0 for the client, which will automatically pick an open port.<BR>
+<BR>
+You can use the master server to serve from behind a NAT.  When the game server estabilishes a connection to the master server, it can then accept any incoming connections on the broadcast IP / Port (Note this is only true for UDP).<BR>
+<BR>
+For a full list of reasons on why a connection attempt might fail, see the <A HREF="faq.html">FAQ.</A><BR>
+<BR>
+Final Word </td>
+  </tr>
+</table>
+<table width="100%" border="0">
+  <tr>
+    <td bgcolor="#2c5d92" class="RakNetWhiteHeader"><img src="spacer.gif" width="8" height="1">See Also </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="10">
+  <tr>
+    <td><p><BR>
+    Next page: <A HREF="tutorial.html">Step by step tutorial</A></p>
+    <p><A HREF="index.html">Index</A><BR>
+      <A HREF="introduction.html">Introduction</A><BR>
+      <A HREF="systemoverview.html">System Overview</A><BR>
+      <A HREF="tutorial.html">Tutorial</A><BR>
+      <A HREF="compilersetup.html">Compiler Setup</A><BR>
+</p></td>
+  </tr>
+</table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD><p><BR>
+</p>
+  </TD></TR></TABLE>
+
+</BODY>
+</HTML>

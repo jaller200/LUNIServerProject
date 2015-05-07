@@ -1,0 +1,43 @@
+<HTML>
+<HEAD>
+<TITLE>ReadyEvent manual</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</HEAD>
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD><BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<span style="background-color: rgb(255, 255, 255);"><img src="RakNet_Icon_Final-copy.jpg" alt="Jenkins Software" width="150" height="150"></span><BR>
+<BR>
+<table width="100%" border="0">
+  <tr>
+    <td bgcolor="#2c5d92" class="RakNetWhiteHeader">&nbsp;ReadyEvent Overview</td>
+  </tr>
+</table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%">
+  <TR>
+    <TD><p><span class="RakNetBlueHeader">Signal that an event is ready to proceed</span> <BR>
+        <BR>
+    In a peer-to-peer enviroment, it is non-trivial to determine when all peers are ready to take some shared event, such as starting a game from a lobby, or taking the next turn in a turn based game. The problem is that while your system may be ready, and all systems you are connected to may be ready as far as you know, those systems may not know they are ready relative to each other. This is because latency or packetloss may break or degrade the connection between two other systems, so as far as those two systems are concerned not everyone is ready yet.</p>
+      <p>The ReadyEvent plugin handles this situation automatically. Given a user-defined numerical event identifier, each system can call ReadyEvent::SetEvent(eventId, isReady). When all systems are ready relative to both you and each other, ReadyEvent::IsEventCompleted(eventId) will return true, and you can proceed with the shared event. This value will be stored until the event is deleted with DeleteEvent(eventId);</p>
+      <p><strong>Common uses:</strong></p>
+      <ul>
+        <li>In a peer to peer lobby, this can be used to store when users toggle between ready and unready. When all users are ready, the game can start.</li>
+        <li>In a peer to peer turn based game, this can be used to signal that everyone is ready for the next turn.</li>
+        <li>In any peer to peer game, it can be used to proceed on generic events that everyone has to wait for, such as all players done loading the level.</li>
+      </ul>
+      
+  </TR>
+</TABLE>
+<table width="100%" border="0">
+      <tr>
+        <td bgcolor="#2c5d92" class="RakNetWhiteHeader"><img src="spacer.gif" width="8" height="1">See Also</td>
+      </tr>
+</table>
+    <TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%">
+      <TR>
+        <TD> <A HREF="index.html">Index</A><BR>          </TD>
+      </TR>
+    </TABLE></TD>
+</TR></TABLE>
+</BODY>
+</HTML>

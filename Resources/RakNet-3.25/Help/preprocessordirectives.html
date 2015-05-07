@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+
+<TITLE>Preprocessor directives</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<span style="background-color: rgb(255, 255, 255);"><img src="RakNet_Icon_Final-copy.jpg" alt="Jenkins Software" width="150" height="150"></span><BR>
+<BR>
+
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">Preprocessor directives</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR>
+  <TD>
+In RakNetDefines.h: Recompile with these set to enable or disable blocks of code.
+
+
+  <UL>
+<LI><strong>__GET_TIME_64BIT</strong>: Use 64 bits for the structure RakNetTime. Doubles bandwidth usage to tranmit this structure, but prevents time overflow after a month.
+<LI><B>_RAKNET_THREADSAFE</B>: Enable to make RakNet safe to call from multiple threads. It is OK to normally have multiple threads running, but not to call non-threadsafe functions from multiple threads. Enabling makes those calls significantly slower.
+<LI><B>__BITSTREAM_NATIVE_END</B>: Don't use endian swapping [Default].  Only comment out if you plan to connect between systems of different endianness.  This is enabled by default in BitStream.cpp.
+<LI><strong>MAX_ALLOCA_STACK_ALLOCATION: </strong>Maximum amount to allocate on the stack using _alloca(). If you crash when _alloca() is called (especially for RPC), decrease this value.
+  <LI><strong>USE_WAIT_FOR_MULTIPLE_EVENTS:</strong> On Windows, use the event timer system for when network messages arrive internally. When off, the reported (but not actual) CPU usage in Task Manager approaches 100%, but the internal update thread runs very consistently. When on, the reported CPU usage is very low. Whether the update thread runs consistently seems to depend on the individual computer, but generally runs acceptably on Windows XP or newer  
+    </UL>
+<TABLE><TR><TD>
+<A HREF="preprocessordirectives.jpg"><IMG SRC="preprocessordirectivessmall.jpg"></A><BR>
+</TD>
+<TR ALIGN="CENTER"><TD>  <B>Defining __BITSTREAM_NATIVE_END in .net 2003<br>
+</B><strong>(You could also just modify RakNetDefines.h)</strong></TD>
+</TR></TABLE>
+
+</TD></TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">See Also</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+
+<A HREF="index.html">Index</A><BR>
+
+</TD></TR></TABLE>
+</BODY>
+</HTML>

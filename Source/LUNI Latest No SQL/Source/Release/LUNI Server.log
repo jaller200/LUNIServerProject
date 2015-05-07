@@ -1,0 +1,38 @@
+﻿Build started 1/26/2015 9:48:29 PM.
+     1>Project "C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server\LUNI Server.vcxproj" on node 2 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server\MySql\include" /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AuthLoop.cpp Character.cpp CharactersLoop.cpp Common.cpp Database.cpp main.cpp serverLoop.cpp User.cpp World.cpp WorldLoop.cpp
+         AuthLoop.cpp
+         Character.cpp
+         CharactersLoop.cpp
+         Common.cpp
+         Database.cpp
+         main.cpp
+         serverLoop.cpp
+         User.cpp
+         World.cpp
+         WorldLoop.cpp
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /l"0x0409" /nologo /fo"Release\Resource.res" Resource.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server\Release\LUNI Server.exe" /NOLOGO /LIBPATH:"C:\Users\The Doctor\LuniServer\RakNet-3.25\Lib" /LIBPATH:"C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server\MySql\lib" ws2_32.lib libmysql.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server\Release\LUNI Server.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server\Release\LUNI Server.lib" /MACHINE:X86 /SAFESEH Release\Resource.res
+         Release\AuthLoop.obj
+         Release\Character.obj
+         Release\CharactersLoop.obj
+         Release\Common.obj
+         Release\Database.obj
+         Release\main.obj
+         Release\serverLoop.obj
+         Release\User.obj
+         Release\World.obj
+         Release\WorldLoop.obj
+         "C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server\Release\RakNet.lib"
+         "C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server\Release\SUtil.lib"
+         Generating code
+         Finished generating code
+         LUNI Server.vcxproj -> C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server\Release\LUNI Server.exe
+     1>Done Building Project "C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server\LUNI Server.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:20.54

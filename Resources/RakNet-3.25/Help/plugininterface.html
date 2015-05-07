@@ -1,0 +1,72 @@
+<HTML>
+<HEAD>
+
+<TITLE>Plugin Interface</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<span style="background-color: rgb(255, 255, 255);"><img src="RakNet_Icon_Final-copy.jpg" alt="Jenkins Software" width="150" height="150"></span><BR>
+<BR>
+
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">Plugin Interface</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR>
+  <TD>
+    <p><span class="RakNetBlueHeader">Plugin Interface Overview</span>      <BR>
+      <BR>
+      <I>PluginInterface.h</I> is a class interface that works with RakNet to provide automatic functionality.  It can intercept, modify, and create messages before they get to the user. It can also update automatically every time RakPeerInterface::Receive() is called. To use it, derive from the base class and implement the virtual functions you want to handle.  Then register your class by calling RakPeerInterface::AttachPlugin()</p>
+    <p> These are the virtual functions you'll probably need to handle in most cases:</p>
+    <p>Called when you attach the plugin to the RakPeer<BR>
+        
+        
+        virtual void OnAttach(RakPeerInterface *peer);<BR>
+         <BR>
+        Called when the plugin is detached<BR>
+        
+        
+        virtual void OnDetach(RakPeerInterface *peer);<BR>
+         <BR>				
+        Update is called everytime Receive is called through RakNet<BR>
+                		
+        
+        virtual void Update(RakPeerInterface *peer);<BR>
+                
+        <BR>
+      
+        OnReceive is called everytime a packet goes through RakNet.  You can handle it or not as you want.  Return RR_STOP_PROCESSING_AND_DEALLOCATE to absorb the packet, or RR_CONTINUE_PROCESSING to allow the packet to propagate to another handler, or to the game.  Generally you will return RR_CONTINUE_PROCESSING unless the packet type is specific to your handler.<BR>
+                
+        
+        virtual PluginReceiveResult OnReceive(RakPeerInterface *peer, Packet *packet);<BR>
+                
+        <BR>
+      
+        Called when Shutdown is called for the RakPeer.<BR>
+                
+        virtual void OnShutdown(RakPeerInterface *peer);<BR>
+                
+        <BR>
+      
+        Called when a connection is dropped because the user called RakPeer::CloseConnection() for a particular system.<BR>
+        
+        
+        virtual void OnCloseConnection(RakPeerInterface *peer, SystemAddress systemAddress);<BR>
+                
+        <BR>
+      
+      </p></TD></TR></TABLE>
+
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">See Also</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+
+<A HREF="index.html">Index</A><BR>
+<A HREF="fullyconnectedmesh.html">Fully Connected Mesh</A><BR>
+<A HREF="replicamanager.html">Replica Manager</A><BR>
+
+</TD></TR></TABLE>
+</BODY>
+</HTML>

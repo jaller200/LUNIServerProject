@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+
+<TITLE>Secure Connections</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<span style="background-color: rgb(255, 255, 255);"><img src="RakNet_Icon_Final-copy.jpg" alt="Jenkins Software" width="150" height="150"></span><BR>
+<BR>
+
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">Secure Connections</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<span class="RakNetBlueHeader">Protect your game from hackers</span><BR>
+<BR>
+
+Once your online game reaches a certain popularity people will try to cheat.  You will need to account for this both at the game layer and at the network layer.  RakNet handles the network layer by providing secure connections if you wish to use them.  Secure connections:
+<UL>
+<LI>Uses AES encryption with randomized, chained blocks, preventing unauthorized reads and blocking replay attacks.
+<LI>Adds CRCs so that data tampering can be detected.
+<LI>Uses randomized, encrypted SYNCookies to prevent unauthorized logins.
+<LI>Uses RSA encryption to protect the AES key.
+</UL>
+Most games will want to use secure connections.  However, they add up to 15 bytes per packet and take time to compute so you may wish to limit usage to release mode.<BR>
+<BR>
+The relevant header is as follows:<BR>
+<BR>
+<span class="RakNetCode">void InitializeSecurity(const char *pubKeyE, const char *pubKeyN, const char *privKeyP, const char *privKeyQ )</span><BR>
+<BR>
+pubKeyE and pubKeyN are the private keys corresponding to the well-known variables of the same name.  The same holds true with privKeyP and privKeyQ.<BR>
+<BR>
+In all cases you can pass 0 to all the parameters and RakNet will generate a new key.  However, it takes a few moments to do this which you may wish to avoid by generating the RSA keys in advance and passing them to the function.<BR>
+<BR>
+While it isn't necessary for the client to have the public key in advance, if you don't do this you will be vulnerable to a man in the middle attack.  This attack consists of someone sitting between you and the server, modifying the transmitted public key to something with known results, decrypting the AES key, and sending that to the server encrypted with the transmitted public key.  The AES key can then be used to read data transmissions between the client and server.<BR>
+<BR>
+See the sample at <I>Samples\Encryption</I> to see how to save and load keys.
+<BR>
+
+</TD>
+</TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">See Also</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+
+<A HREF="index.html">Index</A><BR>
+
+</TD></TR></TABLE>
+</BODY>
+</HTML>

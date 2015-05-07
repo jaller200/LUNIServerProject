@@ -1,0 +1,188 @@
+<HTML>
+<HEAD>
+
+<TITLE>Statistics</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</HEAD>
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<span style="background-color: rgb(255, 255, 255);"><img src="RakNet_Icon_Final-copy.jpg" alt="Jenkins Software" width="150" height="150"></span><BR>
+<BR>
+
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">Statistics</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+  <p>How to read and interpret RakNet's statistical data
+    <BR>
+    <BR>
+    
+    Statistical data is important for an online game because it lets you see where your traffic bottlenecks are.  To this end, Raknet provides the structure RakNetStatistics which is returned by the GetStatistics() function present in RakPeerInterface.  This structure is defined in <I>Source/RakNetStatistics.h</I>.  The function StatisticsToString is also provided which will convert these statistics to a formatted buffer.<BR>
+  <BR>
+    Terms used
+  <BR>
+  <BR>
+  <B>CRC</B> - Cyclic Redundancy Check data used with encrypted messages to detect tampering.<BR>
+  <B>Encryption bits</B> - Extra data in the header that is used solely for encryption headers and block alignment required for encryption.<BR>
+  <B>Resend queue</B> - A queue of reliable messages waiting for acknowlegements.<BR>
+  <B>Split message</B> - A block of data that is a segment of a larger block of data.  The original message is split if it is larger than the MTU when accounting for headers from RakNet and UDP.<BR>
+  <B>Message</B> - A block of data to be sent.<BR>
+  <B>Packet</B> - A packet contains zero or more acknowlegements and zero or more messages, at least one of either.<BR>
+  <BR>
+    Structure member variables
+  <BR>
+  <BR>
+  <B>unsigned messageSendBuffer[NUMBER_OF_PRIORITIES];</B><BR>
+  <I>Description:</I> Number of messages waiting in the send buffer, at each priority level.<BR>
+  <I>High values:</I> You are sending more data than the available bandwidth.<BR>
+  <I>Low values:</I> You are sending less data than the available bandwidth.<BR>
+  <BR>
+  <B>unsigned messagesSent[NUMBER_OF_PRIORITIES];</B><BR>
+  <I>Description:</I> Number of messages that have been sent at each priority level.<BR>
+  <I>High values:</I> You are sending more data than the available bandwidth.<BR>
+  <I>Low values:</I> You are sending less data than the available bandwidth.<BR>
+  <BR>
+  <B>unsigned messageDataBitsSent[NUMBER_OF_PRIORITIES];</B><BR>
+  <I>Description:</I> How many bits of message data you have sent, at each priority level.<BR>
+  <BR>
+  <B>unsigned messageTotalBitsSent[NUMBER_OF_PRIORITIES];</B><BR>
+  <I>Description:</I> How many bits of total data has been sent, including RakNet's headers, at each priority level.<BR>
+  <BR>
+  <B>unsigned packetsContainingOnlyAcknowlegements;</B><BR>
+  <I>Description:</I> Number of packets that have been sent that contain only acknowlegements.<BR>
+  <I>High values:</I> If this number rises continually, then the sender is flooding the recipient. Could also mean a network spike.<BR>
+  <I>Zero value:</I> Normal performance.<BR>
+  <BR>
+  <B>unsigned acknowlegementsSent;</B><BR>
+  <I>Description:</I> Number of acknowlegements sent for reliable messages.  Each reliable message recieved generates one acknowlegement, including resends.<BR>
+  <BR>
+  <B>unsigned acknowlegementsPending;</B><BR>
+  <I>Description:</I> Number of acknowlegements waiting to be sent for reliable messages.  Each reliable message recieved generates one acknowlegement, including resends.<BR>
+  <I>High values:</I> The internal update thread has stopped running or is spiking so no data is being sent.<BR>
+  <I>Zero value:</I> Normal performance.<BR>
+  <BR>
+  <B>unsigned acknowlegementBitsSent;</B><BR>
+  <I>Description:</I> Total number of bits spent on sending acknowlegement packets.<BR>
+  <BR>
+  <B>unsigned packetsContainingOnlyAcknowlegementsAndResends;</B><BR>
+  <I>Description:</I> Number of packets that have been sent that contain only acknowlegements and resends.<BR>
+  <I>High values:</I> If this number rises continually then the sender is flooding the recipient at the same time the sender is not acknowleging packets.  This could be poor network performance or could be when traffic is only flowing one way.<BR>
+  <I>Low values:</I> Normal performance.<BR>
+  <BR>
+  <B>unsigned messageResends;</B><BR>
+  <I>Description:</I> Number of messages that were not acknowleged in time so were resent.  This is equivalent to packetloss.<BR>
+  <I>High values:</I> High packetloss, large ping variations, and/or internally RakNet is not waiting long enough before doing resends.<BR>
+  <I>2% or less values:</I> Normal performance.<BR>
+  <BR>
+  <B>unsigned messageDataBitsResent;</B><BR>
+  <I>Description:</I> How many bits of data, excluding RakNet's headers, were resent due to packetloss.<BR>
+  <BR>
+  <B>unsigned messagesTotalBitsResent;</B><BR>
+  <I>Description:</I> How many bits of data, including RakNet's headers, were resent due to packetloss.<BR>
+  <BR>
+  <B>unsigned messagesOnResendQueue;</B><BR>
+  <I>Description:</I> How many messages are waiting before they can be sent.  This is the most useful statistic to see if you are sending faster than the reciever can handle..<BR>
+  <I>High Values:</I> Send rate is exceeding bandwidth.  Lag may be experienced.<BR>
+  <I>Zero:</I> High performance, a lot of bandwidth still available.<BR>
+  <BR>
+  <B>unsigned numberOfUnsplitMessages;</B><BR>
+  <I>Description:</I> Number of messages sent that were under the MTU size, including RakNet's and the UDP headers.<BR>
+  <I>High values:</I> Normal performance.<BR>
+  <I>Low values:</I> Many messages are split.  This will result in lag as messages wait to be reassembled.<BR>
+  <BR>
+  <B>unsigned numberOfSplitMessages;</B><BR>
+  <I>Description:</I> Number of messages sent that were over the MTU size, including RakNet's and the UDP headers.<BR>
+  <I>High values:</I> Many messages are split.  This will result in lag as messages wait to be reassembled.<BR>
+  <I>Low values:</I> Normal performance.<BR>
+  <BR>
+  <B>unsigned totalSplits;</B><BR>
+  <I>Description:</I> How many splits have been performed.<BR>
+  <BR>
+  <B>unsigned packetsSent;</B><BR>
+  <I>Description:</I> How many packets have been sent, containing any type of data.<BR>
+  <I>High values relative to messages sent:</I> UDP headers will be taking a greater percentage of bandwidth.  Manual Aggregation can improve bandwith usage.<BR>
+  <I>Low values relative to messages sent:</I> UDP headers will be taking a small percentage of bandwidth.  Messages are aggreggated efficiently<BR>
+  <BR>
+  <B>unsigned encryptionBitsSent;</B><BR>
+  <I>Description:</I> Number of bits added to data solely due to usage of secure connections.<BR>
+  <I>High values relative to message bits sent:</I> Many small messages are being sent and encryption is using bandwith inefficiently.<BR>
+  <I>Low values relative to message bits sent:</I> Packets that are sent tend to be near the MTU size, using bandwidth efficiently.<BR>
+  <BR>
+  <B>unsigned totalBitsSent;</B><BR>
+  <I>Description:</I> Total number of bits sent - accounting for all data.<BR>
+  <BR>
+  <B>unsigned sequencedMessagesOutOfOrder;</B><BR>
+  <I>Description:</I> Number of sequenced messages that arrived out of order.  This is equal to the number of sequenced messages dropped.<BR>
+  <BR>
+  <B>unsigned sequencedMessagesInOrder;</B><BR>
+  <I>Description:</I> Number of sequenced messages that arrived in order.<BR>
+  <BR>
+  <B>unsigned orderedMessagesOutOfOrder;</B><BR>
+  <I>Description:</I> Number of ordered messages that arrived out of order.  Everytime this happens all ordered messages on that stream are delayed.  If you encounter a lot of spiking this may be the cause.<BR>
+  <BR>
+  <B>unsigned orderedMessagesInOrder;</B><BR>
+  <I>Description:</I> Number of ordered messages that arrived in order.<BR>
+  <BR>
+  <B>unsigned packetsReceived;</B><BR>
+  <I>Description:</I> When using secure connections, the number of packets that passed the CRC check.  Otherwise, the actual number of packets that arrived.<BR>
+  <I>High values:</I> Normal performance.<BR>
+  <BR>
+  <B>unsigned packetsWithBadCRCRecieved;</B><BR>
+  <I>Description:</I> When using secure connections, the number of packets that didn't pass the CRC check.<BR>
+  <I>Non-zero values:</I> This can occur to connection sequence packets arriving late.  If the values rises consistently and rapidly, then someone is modifying packets during transmission.<BR>
+  <BR>
+  <B>unsigned bitsReceived;</B><BR>
+  <I>Description:</I> Number of bits that have been recieved while the connection is active, excluding bits with a bad CRC if secure connections are used.<BR>
+  <BR>
+  <B>unsigned bitsWithBadCRCReceived;</B><BR>
+  <I>Description:</I> Number of bits comprising messages with a failed CRC check.<BR>
+  <BR>
+  <B>unsigned acknowlegementsReceived;</B><BR>
+  <I>Description:</I> How many acknowlgements we recieved for message waiting to be resent.  Values near the number of reliably sent messages indicate low packetloss.<BR>
+  <BR>
+  <B>unsigned duplicateAcknowlegementsReceived;</B><BR>
+  <I>Description:</I> How many acknowlgements we recieved for messages that have already been acknowleged - or were never reliable to begin with.<BR>
+  <I>Non-zero values:</I> The sender has high packetloss.<BR>
+  <BR>
+  <B>unsigned messagesReceived;</B><BR>
+  <I>Description:</I> Number of data messages that have arrived.  This is always equal to or greater than the number of packets recieved.  High values indicate good message aggreggation by the sender.<BR>
+  <BR>
+  <B>unsigned invalidMessagesReceived;</B><BR>
+  <I>Description:</I> How many data messages, other than acknowlgements, we recieved with corrupt internal information.<BR>
+  <I>Non-zero values:</I> Packet tampering or an internal send error.<BR>
+  <BR>
+  <B>unsigned duplicateMessagesReceived;</B><BR>
+  <I>Description:</I> How many data messages, other than acknowlgements, we recieved more than once.<BR>
+  <I>High values:</I> Acknowlegements are not sent fast enough for the messages received, the sender isn't waiting long enough to resend, or  there's a lot of packetloss.<BR>
+  <I>Low values:</I> Normal performance.<BR>
+  <BR>
+  <B>unsigned messagesWaitingForReassembly;</B><BR>
+  <I>Description:</I> How many split messages are waiting to be completed.<BR>
+  <I>High values:</I> One or more very large messages have been sent at the same time, possibly accompanied by packetloss.  Extremely high values may degrade performance.<BR>
+  <I>Low values:</I> Normal performance.<BR>
+  <BR>
+  <B>unsigned internalOutputQueueSize;</B><BR>
+  <I>Description:</I> How many messages are waiting to be passed out of the reliability layer.<BR>
+  <I>Non-zero values:</I> The update thread is spending all its time recieving messages and is not updating the reliability layer in a timely fashion.  This could be due to handling too many clients on a slow server.<BR>
+  <BR>
+    
+  <B>double bitsPerSecond;</B><BR>
+  <I>Description:</I> Current bandwidth used, in bits per second.<BR>
+  <BR>
+  <B>unsigned long connectionStartTime;</B><BR>
+  <I>Description:</I> System time returned by getTime() when the connection was established.</p>
+  <p><strong>bool bandwidthExceeded;</strong><BR>
+  <em>Description:</em> On the last update cycle, RakNet did not send all the data waiting to go out due to flow control, and under certain conditions will increase the allowed output throughput. This will normally be true for the first 30 seconds of a new connection as the available bandwidth is established. It will be false if you are sending data below current allowed capacity. </p></TD>
+</TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">See Also</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+
+<A HREF="index.html">Index</A><BR>
+
+</TD></TR></TABLE>
+</BODY>
+</HTML>

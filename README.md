@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # LUNIServerProject
 A repository trying to bring back the defunct game, LEGO Universe
 
@@ -52,4 +51,3 @@ many bugs. If you are searching for a tested version of the LUNI-Server, visit h
 Owner of Repository:
 
 jaller200 (Jon002)
->>>>>>> 46aa46e822f61f9d9f35f33be36c047a9378cb55

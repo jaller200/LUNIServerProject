@@ -3,6 +3,8 @@ A repository trying to bring back the defunct game, LEGO Universe.
 
 This is a GitHub-Project for the developers of LUNI (Lego Universe Newly Imagined), a project to create a server in C++, using the RakNet libraries, that will be able to provide all aspects of the LEGO Universe game as it was when it was live. Don't download any files from here if you aren't a developer, because the versions here aren't tested and may include many bugs. If you are searching for a tested version of the LUNI-Server, visit http://timtechsoftware.com/?page_id=1065.
 
+If you would like to get involved, but don't have enough knowledge, please see the [kickstart in the wiki](https://github.com/jaller200/LUNIServerProject/wiki/Getting-Started-in-Development).
+
 Repository Owner: [jaller200 (Jon002)](https://github.com/jaller200)
 
 ##Requirements

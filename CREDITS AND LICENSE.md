@@ -30,11 +30,3 @@ Documentation by by humanoid24, lcdr and pwjones
 
 This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/4.0/.
 
-
-##Disclaimer
-
-The LEGO® Group does endorse or authorize the operation of this game and is not liable for any safety issues in relation to the operation of this game. Use permitted on a solely non-commercial basis.
-
-
-This project is not endorsed or addiliated with the original LUNI Server repository at http://sourceforge.net/projects/luniserver/
-

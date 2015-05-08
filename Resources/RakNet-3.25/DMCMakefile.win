@@ -1,0 +1,111 @@
+# Project: RakNet
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = dmc.exe
+WINDRES = windres.exe
+RES  = 
+OBJ  = Source\StringCompressor.o Source\AES128.o Source\AsynchronousFileIO.o Source\BitStream.o Source\CheckSum.o Source\DataBlockEncryptor.o Source\DistributedNetworkObject.o Source\DistributedNetworkObjectManager.o Source\DistributedNetworkObjectStub.o Source\EncodeClassName.o Source\ExtendedOverlappedPool.o Source\GetTime.o Source\InternalPacketPool.o Source\NetworkObject.o Source\NetworkTypes.o Source\PacketPool.o Source\RakClient.o Source\RakNetStatistics.o Source\RakNetworkFactory.o Source\RakPeer.o Source\RakServer.o Source\Rand.o Source\ReliabilityLayer.o Source\RPCNode.o Source\SHA1.o Source\SimpleMutex.o Source\SocketLayer.o Source\FullyConnectedMesh.o Source\MessageHandlerInterface.o $(RES)
+LINKOBJ  = Source\StringCompressor.o Source\AES128.o Source\AsynchronousFileIO.o Source\BitStream.o Source\CheckSum.o Source\DataBlockEncryptor.o Source\DistributedNetworkObject.o Source\DistributedNetworkObjectManager.o Source\DistributedNetworkObjectStub.o Source\EncodeClassName.o Source\ExtendedOverlappedPool.o Source\GetTime.o Source\InternalPacketPool.o Source\NetworkObject.o Source\NetworkTypes.o Source\PacketPool.o Source\RakClient.o Source\RakNetStatistics.o Source\RakNetworkFactory.o Source\RakPeer.o Source\RakServer.o Source\Rand.o Source\ReliabilityLayer.o Source\RPCNode.o Source\SHA1.o Source\SimpleMutex.o Source\SocketLayer.o Source\FullyConnectedMesh.o Source\MessageHandlerInterface.o $(RES)
+LIBS =  -LC:\dm\lib  
+INCS =  
+CXXINCS =  -IC:\dm\include -IC:\RakNet\include
+BIN  = RakNet.lib
+CXXFLAGS = -w $(CXXINCS)  
+CFLAGS = $(INCS)  
+RM = rm -f
+
+all: $(LINKOBJ)
+	lib -c $(BIN) $(LINKOBJ)
+
+clean: 	
+	$(RM) $(OBJ) $(BIN)
+
+$(BIN): $(LINKOBJ)
+	lib -c $(BIN) $(LINKOBJ)
+
+Source\StringCompressor.o: Source\StringCompressor.cpp
+	$(CPP) -c Source\StringCompressor.cpp -o Source\StringCompressor.o $(CXXFLAGS)
+
+Source\AES128.o: Source\AES128.cpp
+	$(CPP) -c Source\AES128.cpp -o Source\AES128.o $(CXXFLAGS)
+
+Source\AsynchronousFileIO.o: Source\AsynchronousFileIO.cpp
+	$(CPP) -c Source\AsynchronousFileIO.cpp -o Source\AsynchronousFileIO.o $(CXXFLAGS)
+
+Source\BitStream.o: Source\BitStream.cpp
+	$(CPP) -c Source\BitStream.cpp -o Source\BitStream.o $(CXXFLAGS)
+
+Source\CheckSum.o: Source\CheckSum.cpp
+	$(CPP) -c Source\CheckSum.cpp -o Source\CheckSum.o $(CXXFLAGS)
+
+Source\DataBlockEncryptor.o: Source\DataBlockEncryptor.cpp
+	$(CPP) -c Source\DataBlockEncryptor.cpp -o Source\DataBlockEncryptor.o $(CXXFLAGS)
+
+Source\DistributedNetworkObject.o: Source\DistributedNetworkObject.cpp
+	$(CPP) -c Source\DistributedNetworkObject.cpp -o Source\DistributedNetworkObject.o $(CXXFLAGS)
+
+Source\DistributedNetworkObjectManager.o: Source\DistributedNetworkObjectManager.cpp
+	$(CPP) -c Source\DistributedNetworkObjectManager.cpp -o Source\DistributedNetworkObjectManager.o $(CXXFLAGS)
+
+Source\DistributedNetworkObjectStub.o: Source\DistributedNetworkObjectStub.cpp
+	$(CPP) -c Source\DistributedNetworkObjectStub.cpp -o Source\DistributedNetworkObjectStub.o $(CXXFLAGS)
+
+Source\EncodeClassName.o: Source\EncodeClassName.cpp
+	$(CPP) -c Source\EncodeClassName.cpp -o Source\EncodeClassName.o $(CXXFLAGS)
+
+Source\ExtendedOverlappedPool.o: Source\ExtendedOverlappedPool.cpp
+	$(CPP) -c Source\ExtendedOverlappedPool.cpp -o Source\ExtendedOverlappedPool.o $(CXXFLAGS)
+
+Source\GetTime.o: Source\GetTime.cpp
+	$(CPP) -c Source\GetTime.cpp -o Source\GetTime.o $(CXXFLAGS)
+
+Source\InternalPacketPool.o: Source\InternalPacketPool.cpp
+	$(CPP) -c Source\InternalPacketPool.cpp -o Source\InternalPacketPool.o $(CXXFLAGS)
+
+Source\NetworkObject.o: Source\NetworkObject.cpp
+	$(CPP) -c Source\NetworkObject.cpp -o Source\NetworkObject.o $(CXXFLAGS)
+
+Source\NetworkTypes.o: Source\NetworkTypes.cpp
+	$(CPP) -c Source\NetworkTypes.cpp -o Source\NetworkTypes.o $(CXXFLAGS)
+
+Source\PacketPool.o: Source\PacketPool.cpp
+	$(CPP) -c Source\PacketPool.cpp -o Source\PacketPool.o $(CXXFLAGS)
+
+Source\RakClient.o: Source\RakClient.cpp
+	$(CPP) -c Source\RakClient.cpp -o Source\RakClient.o $(CXXFLAGS)
+
+Source\RakNetStatistics.o: Source\RakNetStatistics.cpp
+	$(CPP) -c Source\RakNetStatistics.cpp -o Source\RakNetStatistics.o $(CXXFLAGS)
+
+Source\RakNetworkFactory.o: Source\RakNetworkFactory.cpp
+	$(CPP) -c Source\RakNetworkFactory.cpp -o Source\RakNetworkFactory.o $(CXXFLAGS)
+
+Source\RakPeer.o: Source\RakPeer.cpp
+	$(CPP) -c Source\RakPeer.cpp -o Source\RakPeer.o $(CXXFLAGS)
+
+Source\RakServer.o: Source\RakServer.cpp
+	$(CPP) -c Source\RakServer.cpp -o Source\RakServer.o $(CXXFLAGS)
+
+Source\Rand.o: Source\Rand.cpp
+	$(CPP) -c Source\Rand.cpp -o Source\Rand.o $(CXXFLAGS)
+
+Source\ReliabilityLayer.o: Source\ReliabilityLayer.cpp
+	$(CPP) -c Source\ReliabilityLayer.cpp -o Source\ReliabilityLayer.o $(CXXFLAGS)
+
+Source\RPCNode.o: Source\RPCNode.cpp
+	$(CPP) -c Source\RPCNode.cpp -o Source\RPCNode.o $(CXXFLAGS)
+
+Source\SHA1.o: Source\SHA1.cpp
+	$(CPP) -c Source\SHA1.cpp -o Source\SHA1.o $(CXXFLAGS)
+
+Source\SimpleMutex.o: Source\SimpleMutex.cpp
+	$(CPP) -c Source\SimpleMutex.cpp -o Source\SimpleMutex.o $(CXXFLAGS)
+
+Source\SocketLayer.o: Source\SocketLayer.cpp
+	$(CPP) -c Source\SocketLayer.cpp -o Source\SocketLayer.o $(CXXFLAGS)
+
+Source\FullyConnectedMesh.o: Source\FullyConnectedMesh.cpp
+	$(CPP) -c Source\FullyConnectedMesh.cpp -o Source\FullyConnectedMesh.o $(CXXFLAGS)
+
+Source\MessageHandlerInterface.o: Source\MessageHandlerInterface.cpp
+	$(CPP) -c Source\MessageHandlerInterface.cpp -o Source\MessageHandlerInterface.o $(CXXFLAGS)

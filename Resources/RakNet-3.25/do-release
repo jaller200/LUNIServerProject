@@ -1,0 +1,54 @@
+#!/bin/bash
+# Script to build a release and then upload it to sourceforge
+# Requires : autoconf, automake, autoheader, libtool, ncftp, doxygen
+# Author : Renaud Chaput <renchap@cocoa-x.com>
+
+function error {
+	echo "Error : $1"
+	exit
+}
+
+sf_repos="https://raknetjenkinsso.svn.sourceforge.net/svnroot/raknetjenkinsso"
+
+echo "Updating local version... "
+svn update .
+echo -n "Enter the new RakNet version number : "
+read version
+echo -n "Replacing version number in configure.ac... "
+sed -i -e "s/AC_INIT\(.*\)/AC_INIT\(raknet, $version\)/" configure.ac || error "Error while replacing version number !"
+echo "OK !"
+
+echo -n "Replacing version number in Source/RakNetVersion.h... "
+sed -i -e "s/#define RAKNET_VERSION \".*\"/#define RAKNET_VERSION \"$version\"/" Source/RakNetVersion.h || error "Error while replacing version number !"
+echo "OK !"
+
+echo "Exporting files to ./export... "
+svn export . export || error "Error while exporting to ./export !"
+echo -n "Copying windows libs to ./export..."
+cp -r Lib/*.dll Lib/*.lib ./export/Lib/ || error "Cant copy windows libs !"
+echo " OK !"
+cd export
+echo "Creating API documentation..."
+doxygen || error "Error while running doxygen !"
+echo "Bootstraping... "
+./bootstrap || error "Error while boostraping !"
+echo "./configure"
+./configure || error "Error while running configure !"
+echo "make distcheck"
+make distcheck || error "Error while make distcheck !"
+echo "Creating zip file..."
+tar xzf raknet-$version.tar.gz || error "Error while tar xzf"
+mv raknet-$version RakNet || error "Error while renaming"
+cd RakNet && zip -r ../RakNet-$version.zip * && cd .. || error "Error while creating zip file"
+echo "Uploading files to sourceforge... "
+ncftpput upload.sourceforge.net /incoming *.zip *.tar.gz || error "Error while uploading files to sourceforge ftp server !"
+echo -n "Cleaning ./export... "
+cd .. && rm -r export
+echo "OK !"
+
+echo "Commiting new version... "
+svn commit . -m "New RakNet version $version" || error "Error !"
+
+echo "Creating version tag... "
+svn cp "$sf_repos/trunk" "$sf_repos/tags/raknet-$version" -m "Tag for RakNet $version" || error "Error while creating tag"
+

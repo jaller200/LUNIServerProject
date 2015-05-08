@@ -1,0 +1,139 @@
+<HTML>
+<HEAD>
+
+<TITLE>Remote Procedure Calls</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+.style1 {
+	font-size: medium;
+	font-weight: bold;
+}
+-->
+</style>
+</HEAD>
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<span style="background-color: rgb(255, 255, 255);"><img src="RakNet_Icon_Final-copy.jpg" alt="Jenkins Software" width="150" height="150"></span><BR>
+<BR>
+
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">RPC Overview</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<p><span class="RakNetBlueHeader">Overview</span><BR>
+    </p>
+<p class="style1">-- DEPRECIATED: Use <a href="autorpc.html">AutoRPC</a> ---</p>
+<p> Normally, when you send a network message you perform four steps:<BR>
+  
+</p>
+<OL>
+<LI>Create or design a structure to hold your data
+<LI>Write a function to encode and send that data
+<LI>Create a packet identifier so the recipient knows which function to call
+<LI>Write a function to decode and handle that data.
+</OL>
+
+These four steps can be quite cumbersome and force you to focus on the process of networking rather than writing your game.<BR>
+<BR>
+Since the focus of RakNet is to allow you, the end-user, to quickly develop applications, <I>Remote Procedure Calls</I> were built into RakNet to streamline this process down to what you actually need in your code:<BR>
+
+<OL>
+<LI>Encode your data
+<LI>Call a function on the remote system with that data
+</OL>
+
+Here is the complete process of how to implement RPC in your game.<BR>
+
+<BR>
+Step 1: Tell the network system to allow a function to be called using RPC:
+<BR><BR>
+
+
+You can't just call any function on the remote system with RPC, or else this would open up your servers to hacks.  You must first tell the network system to allow a function, defined with a specific prototype, to be called.  You must match the prototype parameters, calling convention, and return value exactly.  This is done as follows:<BR><BR>
+
+<B>C function</B><BR>
+<span class="RakNetCode">void MyFunction(RPCParameters *rpcParameters) {}<BR>
+// A pointer to a peer<BR>
+RakPeerInterface *rakPeer;<BR>
+// A macro to assign the function to the peer<BR>
+REGISTER_STATIC_RPC(rakPeer, MyFunction);</span><BR>
+<BR>
+<B>C++ static function</B><BR>
+<span class="RakNetCode">static void MyClass::MyFunction(RPCParameters *rpcParameters) {}<BR>
+// A pointer to a peer<BR>
+RakPeerInterface *rakPeer;<BR>
+// A macro to assign the function to the client<BR>
+REGISTER_STATIC_RPC(rakPeer, MyClass::MyFunction);</span><BR>
+<BR>
+<B>C++ member function</B><BR>
+<span class="RakNetCode">class MyClass : public NetworkIDObject {<BR>
+void __cdecl func1(RPCParameters *rpcParms);<BR>
+};<BR>
+// A pointer to the client<BR>
+RakPeerInterface *rakPeer;<BR>
+// A macro to assign the function to the client<BR>
+REGISTER_CLASS_MEMBER_RPC(rakPeer, MyClass, func1) </span><BR>
+
+
+<BR>
+
+Step 2: (Optional) Encode your data
+<BR><BR>
+
+You may choose to prepare your data with the help of BitStream, or just use your own data in a (char*) block, as the RPC method of your RakPeerInterface object can take either a (char*) with a length or a Bitstream.  This is equivalent to creating your packet.<BR>
+
+<BR>
+Step 3: Call the RPC method
+<BR><BR>
+
+Call the RPC method of your RakPeerInterface object with either a (char*) and a length, or a Bitstream you used to create your packet. <BR>
+
+<BR>
+Step 4: Handle the call on the remote system
+<BR><BR>
+
+Assuming all went well, the function you specified on the other system will now be called.  If it wasn't called it could be several things:<BR>
+<UL>
+<LI>You didn't register the function as callable
+<LI>You called a different function, or mistyped the name
+<LI>You are not calling Receive(). This is needed because RPCs are handled in the same thread that your code is running. 
+<LI>One of the normal reasons a packet wouldn't arrive
+</UL>
+
+See <I>Samples/RemoteProcedureCalls/RPC.cpp</I> for a complete example.<BR>
+
+
+</TD>
+</TR></TABLE>
+
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">RPC Function prototype</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<span class="RakNetCode">void functionName(RPCParameters *rpcParameters)</span><BR>
+<BR>
+
+All RPC functions should be C functions that use the specified prototype.  RPCParameters::input will point to a stream of bytes that is whatever data you passed when you made the call.  RPCParameters::numberOfBitsOfData is just that - how many bits you sent.  Note that if you parse this to a BitStream constructor, the BitStream constructor wants bytes of data.  To convert bits to bytes, assuming you have at least one bit, use (numberOfBits-1)/8+1, or the macro BYTES_TO_BITS.  The last parameter, RPCParameters::sender, is  the SystemAddress of the system that made the call to RPC.<BR>
+<BR>
+
+As stated above, function names must be composed of a string with only characters from a-z and is not case sensitive.
+
+</TD>
+</TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">See Also</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+
+<A HREF="index.html">Index</A><BR>
+<A HREF="creatingpackets.html">Creating Packets</A><BR>
+<A HREF="sendingpackets.html">Sending Packets</A><BR>
+<A HREF="receivingpackets.html">Receiving Packets</A><BR>
+<A HREF="bitstreams.html">Bitstreams</A><BR>
+
+</TD></TR></TABLE>
+</BODY>
+</HTML>

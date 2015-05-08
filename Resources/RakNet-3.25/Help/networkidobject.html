@@ -1,0 +1,207 @@
+<HTML>
+<HEAD>
+
+<TITLE>Network ID Object</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</HEAD>
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<span style="background-color: rgb(255, 255, 255);"><img src="RakNet_Icon_Final-copy.jpg" alt="Jenkins Software" width="150" height="150"></span><BR>
+<BR>
+
+<table width="100%" border="0"><tr>
+  <td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">Network ID Object</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR>
+  <TD>
+<p><span class="RakNetBlueHeader">The NetworkIDObject class allows you to refer to objects in a common fashion over different computers</span><BR>
+    <BR>
+  
+  The NetworkIDObject class is an optional class you can derive from that will automatically assign identification numbers (NetworkID) to objects that inherit from it.  This is very useful for multiplayer games, because otherwise you have no way to refer to dynamic objects on remote systems.</p>
+<p>  NetworkIDObject is tightly coupled with NetworkIDManager, which is responsible for providing the unique NetworkID value each NetworkIDObject object has.<br>
+  <BR>
+  In the simplest case, here's how it works:<BR>
+  Use GetNetworkID() to get the ID of an object.<BR>
+  Use SetNetworkID() to set the ID of an object.<br>
+  <br>
+  Before using any of those methods, you should call SetNetworkIDManager on that object.</p>
+<p>  You must 
+  also call SetNetworkIDManager on the RakPeerInterface instance you are using. <BR>
+  <BR>
+  It's easy to get in trouble if you do this wrong, which is why the NetworkIDObject class has commented printf and puts statements in there.  For debug, you should uncomment those and run your own message handler so you can get the warnings or errors if you do something wrong.<BR>
+</p>
+<OL>
+<LI>Don't call SetNetworkID on an object that already had it set, unless you want to reassign IDs.
+<LI>If you delete an object on one system this will invalidate the IDs so you need to delete the object on all systems.
+<LI>Due to lag it's possible that an object exists on one system but not another.  When you use GET_OBJECT_FROM_ID to convert an objectID into a pointer, you must check for a 0 return value.
+</OL>
+
+<p><B>As a server:<br>
+</B><br>
+ The server should be the only system responsible for assigning IDs. You do that by calling  SetIsNetworkIDAuthority(true).
+<PRE class="RakNetCode">
+// With global scope
+NetworkIDManager serverNetworkIDManager;
+
+int main(void)
+{
+
+	// ....Code to initialize the server RakPeerInterface instance
+ <strong>
+	serverNetworkIDManager.SetIsNetworkIDAuthority(true);
+	peer->SetNetworkIDManager(&serverNetworkIDManager);
+</strong>
+	//  ... Other code
+}
+</PRE>  
+  <br>
+  In this case, since the server is the network authority, IDs are automatically assigned, so GetNetworkID() will always work and you should not call SetNetworkID().  When the server creates a new NetworkIDObject object, the clients must know about it.
+  Note that you must do that yourself. It’s not done automatically. 
+  So you would generally do this in the server:<BR>
+  
+<PRE class="RakNetCode">
+
+// ----------- In some common header file, used in both the Server and Client.
+
+// Define our custom message to let the clients know we have created a NetworkIDObject object
+enum {
+	ID_MYOBJECT_CREATED = ID_USER_PACKET_ENUM
+};
+
+// Must derive from NetworkIDObject
+class MyObject : public NetworkIDObject {
+	//......
+};
+// ---------------------
+
+
+MyObject* CreateServerSideObject(void){
+	// Create the object
+	MyObject *myObject = new MyObject;  // MyObject inherits from NetworkIDObject
+	myObject-&gt;SetNetworkIDManager(&amp;serverNetworkIDManager);
+	NetworkID networkID = myObject-&gt;GetNetworkID();
+
+	//  Let all connected clients know about the object, by constructing
+	// a simple packet with the NetworkID value of the object.
+	RakNet::BitStream bs;
+	bs.Write(unsigned char(ID_MYOBJECT_CREATED));
+	<strong>bs.Write(apple-&gt;GetNetworkID());</strong>
+	peer-&gt;Send(&amp;bs, HIGH_PRIORITY, RELIABLE_ORDERED, 0, UNASSIGNED_SYSTEM_ADDRESS, true); // Broadcast to all clients
+
+	return myObject;
+}
+
+</PRE>
+
+When the client gets the packet with the NetworkID value, you do something like this:
+
+<PRE class="RakNetCode">
+
+// Global scope.
+// You should call SetIsNetworkIDAuthority(false) before using it.
+NetworkIDManager clientNetworkIDManager;
+
+MyObject* CreateClientSideObject(Packet *p)
+{
+	assert(p-&gt;data[0]==ID_MYOBJECT_CREATED);
+	
+	RakNet::BitStream bs(p-&gt;data, p-&gt;length, false);	
+	bs.IgnoreBits(8); // Ignore the packet ID
+	NetworkID networkID;
+	bs.Read(networkID); 
+	
+	MyObject *myObject = new MyObject; // MyObject inherits from NetworkIDObject
+	myObject-&gt;SetNetworkIDManager(&amp;clientNetworkIDManager);
+	<strong>
+	// Set to the NetworkID we got from the server
+	myObject-&gt;SetNetworkID(networkID);
+	</strong>	
+	return myObject;
+}
+
+int main(void)
+{
+	// ... Initialize, and do something until you receive the packet with the NetworkID
+	
+	if (packet-&gt;data[0]==ID_MYOBJECT_CREATED){
+		object = CreateClientSideObject(packet);
+	}
+	
+	// ...
+}
+
+</PRE>
+
+        <B>As a client:</B><br>
+        <BR>
+        IDs are never assigned, you must get them from the server.  If you create or want to create an object, you must program things in such a way that the server will return a packet to you telling you what the ID is of the object you just created.  If the server creates an object (or another client did and the server tells you about it, which is the same thing) then you can just assign IDs as usual.<BR>
+        <BR>
+        The easiest way to handle creation of objects on the client is to ask the server for the object and only create the object when the server replies.  Send something like ID_REQUEST_CREATE_OBJECT or whatever.  You can then program the server to create the object and reply to the sender of this packet (or all clients) with the ID encoded into the packet (just like we did above).<BR>
+        <BR>
+        On the server:
+
+<PRE class="RakNetCode">
+// ... Code to receive packets
+
+if (packet-&gt;data[0]==ID_REQUEST_CREATE_OBJECT){
+	// Create the object, and let all clients know about it.
+	// You might want to change CreateServerSideObject to reply only to the system that requested the object.
+	object = CreateServerSideMyObject(packet); 
+}
+</PRE>
+
+        <p>The CreateServerSideObject function we created above, creates the object on the Server, and informs all the clients.<BR>
+          <BR>
+        When the client gets the packet, we just need to create the object on the client side, like we did above, with the CreateClientSideObject function:<BR>
+        <BR>
+        As a side note, it's a good idea to put some kind of cheat detection when the clients request objects from the server.  For example if the client asks to create 50 tanks, and it's only 5 seconds into the game, you know something is wrong.  Generally RakNet will block any kind of packet modification or duplication.  But ANYTHING can be hacked given enough time, so it can't hurt as long as it's easy to code.<BR>
+      </p>
+        <p><strong>Peer to peer:</strong></p>
+        <p>1. In RakNetTypes.h, in the structure NetworkID, there is a static member peerToPeerMode. Set this to true. Doing so will expand the NetworkID structure to include both the originating system, and the numerical object identifier. By default, the originating system is not written to save bandwidth, because usually there is only one such system (the server)</p>
+        <p>2. In NetworkIDManager.h, undefine NETWORK_ID_USE_PTR_TABLE. This is an optimization for when you only have a numerical object identifier. When active. it uses a pointer table 65536 elements long to look up pointers by ID. This is not possible to do when peerToPeerMode is true. You may also want to comment this out in the unlikely event that you have more than 65536 objects instantiated at the same time (not ever).<BR>
+      </p>
+        <p><strong>Programming Tip</strong><BR>
+<BR>
+Not everything in your game has to or should derive from NetworkIDObject.  Only the things you need to refer to in some common fashion over the various systems need this.  If there is some obvious way to refer to the objects, such as there only being one type of that object per system, you wouldn't need it.<BR>
+<BR>
+<I>Examples of when to derive from NetworkIDObject:</I><BR>
+Your game has many enemies arranged in no particular order.<BR>
+Your game has many enemies, who are deleted when they die.<BR>
+Your game has triggers, such as when a player walks within 10 feet of a barrel it explodes.  You could make the trigger itself derive from NetworkIDObject.<BR>
+<BR>
+<I>Examples of when not to derive from NetworkIDObject:</I><BR>
+All the enemies in your game are created in a specific order in an array.  You could just send the array index in that case.<BR>
+There's only one castle in your game.  Whenever a packet refers to a castle, you implicitly know which one it is.<BR>
+The object is never referred to by the network.  For example, a bullet fired from a gun.  You interact with the player doing the shooting and the player getting hit, but don't worry about the gun itself.</p>
+        <p><strong>Other notes</strong></p>
+        <p>Comment out NETWORK_ID_USE_PTR_TABLE in NetworkIDManager.h if you will have more than 65536 objects instantiated at the same time. It is OK to have more than 65536 objects ever, because the code checks for identifiers already in use. You just cannot have more than this at the same time. Should this happen, the code will assert as well.</p>
+        <p>          <span class="RakNetBlueHeader">Other functions</span><BR>
+          <BR>
+          
+          <B>template <class returnType> returnType GET_OBJECT_FROM_ID(NetworkID x)</B><BR>
+          This function will lookup the item you are looking for in its internal representation (an AVL balanced binary tree or pointer table) and return a pointer to a NetworkIDObject.  You can then cast the pointer to the type you know it should be, depending on the context of what you are looking up.<BR>
+          <BR>
+          Example:<BR>
+          <span class="RakNetCode">MyObject *myObject = networkIDManager.GET_OBJECT_FROM_ID &lt; MyObject * &gt; (networkId);<BR>
+          if (myObject==0)<BR>
+          return; // Couldn't find the object</span><BR>
+          
+          <BR>
+          <B> unsigned short NetworkIDManager::GetSharedNetworkID(void);<BR>
+          void NetworkIDManager::SetSharedNetworkID(unsigned short i);</B><BR>
+          These are advanced functions you probably won't need and shouldn't use unless you fully understand the NetworkIDObject and NetworkIDManager.  You can use them for force ID numbers to start at some particular value, and to get the current high value that the server will use for ID numbers.  This is only useful for loading the server into an existing game state that already uses IDs.  For example, if I were to save a game on the server that used IDs from 0 to 1000 and wanted to continue that game I could load the game and call SetSharedNetworkID(1001);  That way newly assigned IDs won't conflict with existing IDs. </p>
+        </p></TD>
+</TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">See Also</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+
+<A HREF="index.html">Index</A><BR>
+
+</TD></TR></TABLE>
+</BODY>
+</HTML>

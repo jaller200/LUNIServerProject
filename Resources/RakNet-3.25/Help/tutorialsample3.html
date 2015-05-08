@@ -1,0 +1,143 @@
+<HTML>
+<HEAD>
+
+<TITLE>Tutorial code sample 3</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<img src="RakNetLogo.jpg" alt="Jenkins Software"><BR><BR>
+
+<table width="100%" border="0"><tr><td bgcolor="#6699CC"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong> 
+<img src="spacer.gif" width="8" height="1">Tutorial code sample 3</strong></font></td></tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#3366CC"><strong>Remote procedure call setup.
+</strong></FONT>
+<FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="2" CLASS="G10" COLOR="#666666">
+<BR><BR>
+The target of this exercise was to add the following features to sample 2:
+<OL>
+<LI>Implement code to handle ID_RECEIVED_STATIC_DATA
+<LI>Implement an RPC header called "PrintMessage".  Have it print "Hello world."  Both the client and server should be able to call it.
+<LI>When the client successfully connects, call the RPC function.
+</OL>
+New code over sample 2 is in bold.
+</FONT>
+<PRE><FONT FACE="Geneva, Verdana, Arial, Helvetica, sans-serif" size="1" CLASS="G10" COLOR="#111122">
+
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+#include "RakNetworkFactory.h"
+#include "RakPeerInterface.h"
+#include "MessageIdentifiers.h"
+
+#define MAX_CLIENTS 10
+#define SERVER_PORT 60000
+
+<strong>
+void PrintMessage(RPCParameters *rpcParameters)
+{
+	printf("Hello World!\n");
+}
+</strong>
+
+
+int main(void)
+{
+	char str[512];
+	RakPeerInterface *peer = RakNetworkFactory::GetRakPeerInterface();
+	bool isServer;
+	Packet *packet;
+	
+	printf("(C) or (S)erver?\n");
+	gets(str);
+	if ((str[0]=='c')||(str[0]=='C'))
+	{
+		peer-&gt;Startup(1,30,&amp;SocketDescriptor(), 1);
+		isServer = false;
+	} else {
+		peer-&gt;Startup(MAX_CLIENTS, 30, &amp;SocketDescriptor(SERVER_PORT,0), 1);
+		isServer = true;
+	}
+
+	if (isServer)
+	{
+		printf("Starting the server.\n");
+		// We need to let the server accept incoming connections from the clients
+		peer-&gt;SetMaximumIncomingConnections(MAX_CLIENTS);
+	} else {
+		printf("Enter server IP or hit enter for 127.0.0.1\n");
+		gets(str);
+		if (str[0]==0){
+			strcpy(str, "127.0.0.1");
+		}
+		printf("Starting the client.\n");
+		peer-&gt;Connect(str, SERVER_PORT, 0,0);
+	}
+
+	<strong>
+	REGISTER_STATIC_RPC(peer, PrintMessage);
+	</strong>
+
+	while (1)
+	{
+		packet=peer-&gt;Receive();
+
+		if (packet)
+		{
+			switch (packet-&gt;data[0])
+			{
+			case ID_REMOTE_DISCONNECTION_NOTIFICATION:
+				printf("Another client has disconnected.\n");
+				break;
+			case ID_REMOTE_CONNECTION_LOST:
+				printf("Another client has lost the connection.\n");
+				break;
+			case ID_REMOTE_NEW_INCOMING_CONNECTION:
+				printf("Another client has connected.\n");
+				break;
+			case ID_CONNECTION_REQUEST_ACCEPTED:
+				printf("Our connection request has been accepted.\n");
+				<strong>
+				peer-&gt;RPC("PrintMessage",0,0,HIGH_PRIORITY, RELIABLE_ORDERED, 0, UNASSIGNED_SYSTEM_ADDRESS, true, 0, UNASSIGNED_NETWORK_ID, 0);
+				</strong>
+				break;
+
+			case ID_NEW_INCOMING_CONNECTION:
+				printf("A connection is incoming.\n");
+				break;
+			case ID_NO_FREE_INCOMING_CONNECTIONS:
+				printf("The server is full.\n");
+				break;
+			case ID_DISCONNECTION_NOTIFICATION:
+				if (isServer){
+					printf("A client has disconnected.\n");
+				} else {
+					printf("We have been disconnected.\n");
+				}
+				break;
+			case ID_CONNECTION_LOST:
+				if (isServer){
+					printf("A client lost the connection.\n");
+				} else {
+					printf("Connection lost.\n");
+				}
+				break;
+			default:
+				printf("Message with identifier %i has arrived.\n", packet-&gt;data[0]);
+				break;
+			}
+
+			peer-&gt;DeallocatePacket(packet);
+		}
+	}
+	
+	RakNetworkFactory::DestroyRakPeerInterface(peer);
+
+	return 0;
+}
+
+</FONT></PRE>
+</TD></TR></TABLE>
+</BODY>
+</HTML>

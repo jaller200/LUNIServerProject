@@ -1,0 +1,207 @@
+<HTML>
+<HEAD>
+
+<TITLE>Jenkins Software</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+</HEAD>
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<img src="RakNet_Icon_Final-copy.jpg" alt="Jenkins Software" width="150" height="150"><BR>
+<BR>
+
+<table width="100%" border="0"><tr>
+  <td bgcolor="2c5d92"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif" class="RakNetWhiteHeader"><span class="RakNetWhiteHeader">&nbsp;Introduction</span></td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR>
+  <TD>  <p><span class="RakNetBlueHeader">Manual Last Updated
+    05/04/2008.  See readme.txt for the current version number.</span></p>
+    <p>RakNet is a free to low cost C++ UDP based network library designed to allow programmers to 
+      add response time-critical network capabilities to their applications. It is 
+      mostly used for games, but is application independent.   RakNet is designed 
+    for speed, ease of use, application independence, platform independence, and feature set.</p>
+    </TD>
+</TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="2c5d92">&nbsp;<span class="RakNetWhiteHeader">Quick Start</span></td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR>
+  <TD><A HREF="introduction.html">Introduction</A><BR>
+<A HREF="systemoverview.html">System Overview</A><BR>
+<A HREF="detailedimplementation.html">Detailed Implementation</A><BR>
+<A HREF="tutorial.html">Tutorial</A><BR>
+<A HREF="compilersetup.html">Compiler Setup</A><BR>
+</TD></TR></TABLE>
+
+<table width="100%" border="0"><tr>
+  <td bgcolor="2c5d92" class="RakNetWhiteHeader">&nbsp;Training Videos</td>
+</tr>
+</table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR>
+  <TD><p><A HREF="http://www.jenkinssoftware.com/raknet/manual/RakNetMajorFeatures.html">Introduction:Major Features</A><br>
+    <A HREF="http://www.jenkinssoftware.com/raknet/manual/helloworldvideo.html">Tutorial 1: Hello World</A><br>
+      <A HREF="http://www.jenkinssoftware.com/raknet/manual/RPC3Video.htm">Tutorial 2: RPC3</A><BR>
+      <A HREF="http://www.jenkinssoftware.com/raknet/manual/ReplicaManager2.html">Tutorial 3: Replica Manager 2</A><BR>
+      </p>
+    </TD></TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="2c5d92">
+<img src="spacer.gif" width="8" height="1"><span class="RakNetWhiteHeader">The Basics</span></td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+  <p><a href="connecting.html">Connecting</a> <BR>
+    - How to find and connect to other systems, and what to do if there are problems  </p>
+  <p><A HREF="creatingpackets.html">Creating Packets</A><BR>
+- How to create custom packets using structures and bitstreams, and how to encode timestamps.<BR>
+<BR>
+<A HREF="sendingpackets.html">Sending Packets</A><BR>
+- How to send packets already prepared, and what parameters to use.<BR>
+<BR>
+<A HREF="receivingpackets.html">Receiving Packets</A><BR>
+- How to converting raw data back to a packet you can read via a structure or bitstream.</p>
+  <p><A HREF="systemaddresses.html">SystemAddress</A><BR>
+    - Describes the purpose and use of the SystemAddress structure used in packets and in some function parameters.</p>
+  <p><A HREF="bitstreams.html">Bitstreams</A><BR>
+    - An overview of RakNet's bitstream class, used throughout the API.</p>
+  <p><A HREF="reliabilitytypes.html">Reliability types</A><BR>
+- Covers parameters you can use to control how data gets sent.</p>
+  <p><A HREF="networkmessages.html">Network Messages</A><BR>
+- Gives an overview of the messages the API will send to the user.  This is also listed in MessageIdentifiers.h.<BR>
+</p>
+  <p><A HREF="timestamping.html">Timestamping your packets</A><BR>
+- Covers the purpose of timestamps.<BR>
+<BR>
+    <A HREF="networkidobject.html">NetworkIDObject</A><BR>
+- A Utility class to give each class instance a unique identifier that all systems can share.</p>
+  <p><A HREF="statistics.html">Statistics</A><BR>
+- The statistics that RakNet provides.<BR>
+<BR>
+<A HREF="secureconnections.html">Secure connections</A><BR>
+- How to activate and use secure connections.<BR>
+<BR>
+      <A HREF="remoteprocedurecalls.html">Remote Procedure Calls</A><BR> 
+    - How to call functions on remote computers, avoiding the necessity of manually creating packets.<BR>
+      <BR>
+      <A HREF="datacompression.html">Data compression</A><BR>
+- Provides an overview of RakNet's ability to compress network data.<BR>
+<BR>
+<A HREF="preprocessordirectives.html">Preprocessor Directives</A><BR>
+- Enables you to rebuild the library with different code settings.<BR>
+<BR>
+<A HREF="networksimulator.html">Network Simulator</A><BR>
+- Purposely drop and lag packets to see how your game holds up under bad network conditions.</p>
+  <p><A HREF="custommemorymanagement.html">Custom Memory Management</A><BR>
+- For consoles, memory tracking, etc.</p></TD></TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong><span class="RakNetWhiteHeader">&nbsp;Plugins</span></strong></td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+
+<p><A HREF="plugininterface.html">Plugin Interface</A><BR>
+    - The base class of all plugins<BR>
+  </p>
+<p><A HREF="autopatcher.html">Autopatcher</A><BR>
+- Overview of the autopatcher included with RakNet.</p>
+<p><a href="rpc3.html">RPC3</a><br>
+- Call C and C++ functions with native parameter lists, using Boost for additional functionality (newer).</p>
+<p><a href="autorpc.html">AutoRPC</a><br>
+- Call C and C++ functions with native parameter lists, using assembly for basic functionality (older).</p>
+<p><A HREF="connectiongraph.html">Connection Graph</A><BR>
+  - A plugin-in that maintains a graph of the entire network.</p>
+<p><a href="directorydeltatransfer.html">Directory Delta Transfer</a><br>
+  - Send changed or missing files between directories.  In essence, a simple autopatcher that can be used for transmitting levels, skins, etc.<br>
+</p>
+<p><a href="filelisttransfer.html">File List Transfer</a><br>
+  - Plugin to send a list of files, encoded in the FileList structure<br>
+</p>
+<p><A HREF="fullyconnectedmesh.html">Fully Connected Mesh</A><BR>
+      - A plug-in to make all peers connect to all other peers automatically.</p>
+<p><A HREF="lightweightdatabase.html">Lightweight Database Client / Lightweight Database Server</A><BR>
+- A simple flat database included with RakNet, useful as a directory server to list games.</p>
+<p><a href="lobby.html">Lobby Client / Lobby Server</a><br>
+  - Complete lobby solution, with support for friends, emails, messaging, and rooms.<BR>
+</p>
+<p><a href="messagefilter.html">Message Filter</a><br>
+  - Prevent unwanted network messages based on sender for added security.<br>
+  <BR>
+  <A HREF="natpunchthrough.html">NAT punch-through</A><BR>
+- How to use the master server and master client for NAT Punch-through.<BR>
+</p>
+<p><a href="packetlogger.html">Packet Logger</a><br>
+- Print network traffic to the screen, file, or elsewhere.</p>
+<p><A HREF="rakvoice.html">RakVoice</A><BR>
+  - Overview of RakVoice.  Refer to RakVoice.h for full implementation and function details. </p>
+<p><a href="readyevent.html">Ready Event</a><br>
+  - Synchronize when a group of systems are all ready on a common identifier, useful in peer to peer enviroments to start games at the same time, or progress turns in a turn based game.</p>
+<p><A HREF="replicamanager.html">Replica Manager 2</A><BR>
+  - A plug-in that provides management for your game objects and players to make serialization, scoping, and object creation and destruction easier.<BR>
+  <BR>
+  <a href="router.html">Router</a><br>
+- Send network messages to one or more remote systems we are not directly connected to.</p>
+</TD></TR></TABLE>
+<table width="100%" border="0"><tr>
+  <td bgcolor="#2c5d92">&nbsp;<strong><span class="RakNetWhiteHeader">Utilities</span></strong></td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+    
+    <p><a href="crashreporter.html">Crash Reporter</a><br>
+      - Sends mini-dumps when your application crashes, writing to disk and/or sending an email.</p>
+    <p><a href="consoleserver.html">Console Server</a><br>
+      - Text based backdoor to a server using either secure RakNet or telnet, allowing execution of predesignated commands or arbitrary command strings.</p>
+    <p><a href="emailsender.html">Email Sender</a><br>
+      - Used by the crash reporter to send emails via TCP</p>
+    <p><a href="stringcompressor.html">String Compressor / String Table</a><br>
+      - Used to encode strings with less bandwidth and more security.<br>
+    </p>
+    <p><a href="tcpinterface.html">TCP Interface</a><br>
+    - Wrapper class for TCP connections</p>
+    <p><a href="phpdirectoryserver.html">PHP Directory Server</a><br>
+    - List games on a webpage from or to C++</p>
+    </TD></TR></TABLE>
+<table width="100%" border="0"><tr>
+  <td bgcolor="#2c5d92"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong><span class="RakNetWhiteHeader">&nbsp;3D Demos</span></strong></td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+    
+    <p><a href="ogre3dinterpdemo.html">Ogre 3D Interpolation Demo</a><br>
+      - Use <A HREF="http://www.ogre3d.org/">Ogre 3D</A> to show a demo of popping popcorn over a client/server network, using <a href="replicamanager.html">ReplicaManager2</a></p>
+    </TD></TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif"><strong><span class="RakNetWhiteHeader">&nbsp;Data Structures</span></strong></td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+
+    <p>DS_BinarySearchTree.h - <a href="http://en.wikipedia.org/wiki/Binary_search_tree">Binary search tree</a>, and an <a href="http://en.wikipedia.org/wiki/AVL_tree">AVL balanced</a> binary search tree.<br>
+      DS_BPlusTree.h - <a href="http://en.wikipedia.org/wiki/B%2B_tree">BPlus tree</a> for fast lookup, delete, and insert.<br>
+      DS_BytePool.h - Returns data blocks at certain size thresholds to reduce memory fragmentation.<br>
+      DS_ByteQueue.h - A queue specialized for reading and writing bytes.<br>
+      DS_Heap.h - <a href="http://en.wikipedia.org/wiki/Heap_%28data_structure%29">Heap data structure</a>, includes both minheap and maxheap.<br>
+      DS_HuffmanEncodingTree.h - <a href="http://en.wikipedia.org/wiki/Huffman_coding">Huffman encoding tree</a>, used to find the minimal bitwise representation given a frequency table.<br>
+      DS_HuffmanEncodingTreeFactory.h - Creates instances of the Huffman encoding tree.<br>
+      DS_HuffmanEncodingTreeNode.h - Node in the Huffman encoding tree.<br>
+      DS_LinkedList.h - Standard <a href="http://en.wikipedia.org/wiki/Linked_list">linked list</a>.<br>
+      DS_List.h - Dynamic <a href="http://en.wikipedia.org/wiki/Array">array</a> (sometimes improperly called a vector). Also doubles as a <a href="http://en.wikipedia.org/wiki/Stack_%28data_structure%29">stack</a>.<br>
+      DS_Map.h - (<a href="http://en.wikipedia.org/wiki/Associative_array">Associative array</a>) Ordered list with an per-element sort key.<br>
+      DS_MemoryPool.h - Allocate and free reused instances of a fixed size structure, used to reduce memory fragmentation.<br>
+      DS_OrderedChannelHeap.h - Maxheap which returns a node based on the relative weight of the node's associated channel. Used for task scheduling with priorities.<br>
+      DS_OrderedList.h - List ordered by an arbitrary key via <a href="http://en.wikipedia.org/wiki/Quicksort">quicksort</a>.<br>
+      DS_Queue.h - Standard <a href="http://en.wikipedia.org/wiki/Queue_%28data_structure%29">queue</a> implemented with an array<br>
+      DS_QueueLinkedList.h - Standard queue implemented with a <a href="http://en.wikipedia.org/wiki/Linked_list">linked list</a><br>
+      DS_RangeList.h - Stores a list of numerical values, and when the values are sequential, represents them as a range rather than individual elements. Useful when storing many values that are usually sequential.<br>
+      DS_Table.h - <a href="http://en.wikipedia.org/wiki/Table_%28database%29">Table</a> with columns and rows, and operations on that table.<br>
+      DS_Tree.h - Noncyclic <a href="http://en.wikipedia.org/wiki/Graph_%28data_structure%29">graph</a><br>
+      DS_WeightedGraph.h - Graph with weighted edges, used for routing via <a href="http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra's algorithm</a><br>
+      RakString - String implementation, up to 4.5 times faster than std::string</p>
+    </TD>
+</TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader"><font color="#FFFFFF" size="3" face="Arial, Helvetica, sans-serif" class="RakNetWhiteHeader">&nbsp;Support</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+
+<A HREF="faq.html">FAQ</A><BR>
+<A HREF="programmingtips.html">Programming Tips</A><BR>
+<A HREF="revisionlog.html">Revision Log</A><BR>
+<A HREF="http://www.jenkinssoftware.com/forum">Forum</A><BR>
+<A HREF="mailto:rakkar@jenkinssoftware.com">Email Author</A><BR>
+
+</TD></TR></TABLE>
+</BODY>
+</HTML>

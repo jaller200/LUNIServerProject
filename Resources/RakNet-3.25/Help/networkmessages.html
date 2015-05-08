@@ -1,0 +1,228 @@
+<HTML>
+<HEAD>
+
+<TITLE>Network Messages</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<span style="background-color: rgb(255, 255, 255);"><img src="RakNet_Icon_Final-copy.jpg" alt="Jenkins Software" width="150" height="150"></span><BR>
+<BR>
+
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">Network Messages</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+  <p>Messages from the network engine
+    <BR>
+    <BR>
+    
+      Certain packets that you get will not be from your code, using your defined types, but are instead from the network engine.    However, you have to know what they are to handle them properly.  The first byte of each packet that originated from the API will map to one of the following enumerations.  Possible recipient systems are in brackets.<BR>
+  </p>
+ 
+
+<STRONG>Messages generated in RakPeerInterface</STRONG><BR><BR>
+<I>ID_CONNECTION_REQUEST_ACCEPTED</I><BR>
+13 : In a client/server environment, our connection request to the server has been accepted.<BR>
+<BR>
+<I>ID_CONNECTION_ATTEMPT_FAILED</I><BR>
+14 : Sent to the player when a connection request cannot be completed due to inability to connect.<BR>
+<BR>
+<I>ID_ALREADY_CONNECTED</I><BR>
+15 : Sent when we requested a connection with a system we are already connected to.<BR>
+<BR>
+<I>ID_NEW_INCOMING_CONNECTION</I><BR>
+16 : A remote system has successfully connected.<BR>
+<BR>
+<I>ID_NO_FREE_INCOMING_CONNECTIONS</I><BR>
+17 : The system we attempted to connect to is not accepting new connections.<BR>
+<BR>
+<I>ID_DISCONNECTION_NOTIFICATION</I><BR>
+18: The system specified in Packet::systemAddress has disconnected from us.  For the client, this would mean the server has shutdown.<BR>
+<BR>
+<I>ID_CONNECTION_LOST</I><BR>
+19 : Reliable packets cannot be delivered to the system specifed in Packet::systemAddress.  The connection to that system has been closed.<BR>
+<BR>
+<I>ID_RSA_PUBLIC_KEY_MISMATCH</I><BR>
+20 :We preset an RSA public key which does not match what the system we connected to is using.<BR>
+<BR>
+<I>ID_CONNECTION_BANNED</I><BR>
+21 : We are banned from the system we attempted to connect to.<BR>
+<BR>
+<I>ID_INVALID_PASSWORD</I><BR>
+22 : The remote system is using a password and has refused our connection because we did not set the correct password.<BR>
+<BR>
+<I>ID_MODIFIED_PACKET</I><BR>
+23 : A packet has been tampered with in transit.  The sender is contained in Packet::systemAddress.<BR>
+<BR>
+<I>ID_TIMESTAMP</I><BR>
+24 : The four bytes following this byte represent an unsigned int which is automatically modified by the difference in system times between the sender and the recipient. Requires that you call SetOccasionalPing.<BR>
+<BR>
+<I>ID_PONG</I><BR>
+25 : Pong from an unconnected system.  First byte is ID_PONG, second sizeof(RakNetTime) bytes is the ping, following bytes is system specific enumeration data.<BR>
+<BR>
+<I>ID_ADVERTISE_SYSTEM</I><BR>
+26 : Inform a remote system of our IP/Port, plus some offline data.<BR>
+<BR>
+<I>ID_REMOTE_DISCONNECTION_NOTIFICATION</I><BR>
+27 : In a client/server environment, a client other than ourselves has disconnected gracefully.  Packet::systemAddress is modified to reflect the systemAddress of this client.<BR>
+<BR>
+<I>ID_REMOTE_CONNECTION_LOST</I><BR>
+28 : In a client/server environment, a client other than ourselves has been forcefully dropped. Packet::systemAddress is modified to reflect the systemAddress of this client.<BR>
+<BR>
+<I>ID_REMOTE_NEW_INCOMING_CONNECTION</I><BR>
+29 : In a client/server environment, a client other than ourselves has connected.  Packet::systemAddress is modified to reflect the systemAddress of this client.<BR>
+<BR>
+<I>ID_DOWNLOAD_PROGRESS</I><BR>
+30 : Downloading a large message. Format is ID_DOWNLOAD_PROGRESS (MessageID), partCount (unsigned int), partTotal (unsigned int), partLength (unsigned int), first part data (length &lt;= MAX_MTU_SIZE)<BR>
+<BR>
+
+<STRONG>Messages generated in the FileListTransfer plugin</STRONG><BR><BR>
+<I>ID_FILE_LIST_TRANSFER_HEADER</I><BR>
+31 : Setup data<BR>
+<BR>
+<I>ID_FILE_LIST_TRANSFER_FILE</I><BR>
+32 : A file<BR>
+<BR>
+<STRONG>Messages generated in the DirectoryDeltaTransfer plugin</STRONG><BR><BR>
+<I>ID_DDT_DOWNLOAD_REQUEST</I><BR>
+33 : Request from a remote system for a download of a directory<BR>
+<BR>
+
+<STRONG>Messages generated in the RakNetTransport plugin</STRONG><BR><BR>
+<I>ID_TRANSPORT_STRING</I><BR>
+34 : Transport provider message, used for remote console<BR>
+<BR>
+
+<STRONG>Messages generated in the ReplicaManager plugin</STRONG><BR><BR>
+<I>ID_REPLICA_MANAGER_CONSTRUCTION</I><BR>
+35 :  Create an object<BR>
+<BR>
+<I>ID_REPLICA_MANAGER_DESTRUCTION</I><BR>
+36 : Destroy an object<BR>
+<BR>
+ID_REPLICA_MANAGER_SCOPE_CHANGE</I><BR>
+37 : Changed scope of an object<BR>
+<BR>
+ID_REPLICA_MANAGER_SERIALIZE</I><BR>
+38 : Serialized data of an object<BR>
+<BR>
+ID_REPLICA_MANAGER_DOWNLOAD_STARTED</I><BR>
+39 : New connection, about to send all world objects<BR>
+<BR>
+ID_REPLICA_MANAGER_DOWNLOAD_COMPLETE</I><BR>
+40 : Finished downloading all serialized objects<BR>
+<BR>
+<STRONG>Messages generated in the ConnectionGraph plugin</STRONG><BR><BR>
+<I>ID_CONNECTION_GRAPH_REQUEST</I><BR>
+41 : Request the connection graph from another system<BR>
+<BR>
+ID_CONNECTION_GRAPH_REPLY</I><BR>
+42 : Reply to a connection graph download request<BR>
+<BR>
+ID_CONNECTION_GRAPH_UPDATE</I><BR>
+43 : Update edges / nodes for a system with a connection graph<BR>
+<BR>
+ID_CONNECTION_GRAPH_NEW_CONNECTION</I><BR>
+44 : Add a new connection to a connection graph<BR>
+<BR>
+ID_CONNECTION_GRAPH_CONNECTION_LOST</I><BR>
+45 : Remove a connection from a connection graph - connection was abruptly lost<BR>
+<BR>
+ID_CONNECTION_GRAPH_DISCONNECTION_NOTIFICATION</I><BR>
+46 : Remove a connection from a connection graph - connection was gracefully lost<BR>
+<BR>
+
+<STRONG>Messages generated in the Router plugin</STRONG><BR><BR>
+<I>ID_ROUTE_AND_MULTICAST</I><BR>
+47 : route a message through another system<BR>
+<BR>
+
+<STRONG>Messages generated in the RakVoice plugin</STRONG><BR><BR>
+<I>ID_RAKVOICE_OPEN_CHANNEL_REQUEST</I><BR>
+48 :  Open a communication channel<BR>
+<BR>
+<I>ID_RAKVOICE_OPEN_CHANNEL_REPLY</I><BR>
+49 :  Communication channel accepted<BR>
+<BR>
+<I>ID_RAKVOICE_CLOSE_CHANNEL</I><BR>
+50 :  Close a communication channel<BR>
+<BR>
+<I>ID_RAKVOICE_DATA</I><BR>
+51 :  Voice data<BR>
+<BR>
+
+<STRONG>Messages generated in the Autopatcher plugin</STRONG><BR><BR>
+<I>ID_AUTOPATCHER_GET_CHANGELIST_SINCE_DATE</I><BR>
+52 : Get a list of files that have changed since a certain date<BR>
+<BR>
+<I>ID_AUTOPATCHER_CREATION_LIST</I><BR>
+53 : A list of files to create<BR>
+<BR>
+<I>ID_AUTOPATCHER_DELETION_LIST</I><BR>
+54 : A list of files to delete<BR>
+<BR>
+<I>ID_AUTOPATCHER_GET_PATCH</I><BR>
+55 : A list of files to get patches for<BR>
+<BR>
+<I>ID_AUTOPATCHER_PATCH_LIST</I><BR>
+56 : A list of patches for a list of files<BR>
+<BR>
+<I>ID_AUTOPATCHER_REPOSITORY_FATAL_ERROR</I><BR>
+57 : Returned to the user: An error from the database repository for the autopatcher.<BR>
+<BR>
+<I>ID_AUTOPATCHER_FINISHED</I><BR>
+58 : Finished getting all files from the autopatcher<BR>
+<BR>
+<I>ID_AUTOPATCHER_RESTART_APPLICATION</I><BR>
+59 : Returned to the user: You must restart the application to finish patching.<BR>
+<BR>
+<STRONG>Messages generated in the NATPunchthrough plugin</STRONG><BR><BR>
+<I>ID_NAT_PUNCHTHROUGH_REQUEST</I><BR>
+60 : Intermediary got a request to help punch through a nat<BR>
+<BR>
+<I>ID_NAT_TARGET_NOT_CONNECTED</I><BR>
+61 : Intermediary cannot complete the request because the target system is not connected<BR>
+<BR>
+<I>ID_NAT_TARGET_CONNECTION_LOST</I><BR>
+62 : While attempting to connect, we lost the connection to the target system<BR>
+<BR>
+<I>ID_NAT_CONNECT_AT_TIME</I><BR>
+63 : Internal message to connect at a certain time<BR>
+<BR>
+<I>ID_NAT_SEND_OFFLINE_MESSAGE_AT_TIME</I><BR>
+64 : Internal message to send a message (to punch through the nat) at a certain time<BR>
+<BR>
+<STRONG>Messages generated in the LightweightDatabase plugin</STRONG><BR><BR>
+<I>ID_DATABASE_QUERY_REQUEST</I><BR>
+65 : Query<BR>
+<BR>
+<I>ID_DATABASE_UPDATE_ROW</I><BR>
+66 : Update<BR>
+<BR>
+<I>ID_DATABASE_REMOVE_ROW</I><BR>
+67 : Remove<BR>
+<BR>
+<I>ID_DATABASE_QUERY_REPLY</I><BR>
+68 : A serialized table.  Bytes 1+ contain the table.  Pass to TableSerializer::DeserializeTable<BR>
+<BR>
+<I>ID_DATABASE_UNKNOWN_TABLE</I><BR>
+69 : Specified table not found<BR>
+<BR>
+<I>ID_DATABASE_INCORRECT_PASSWORD</I><BR>
+70 :  Incorrect password<BR>
+<BR>
+
+ 
+ </TD></TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">See Also</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+
+<A HREF="index.html">Index</A><BR>
+
+</TD></TR></TABLE>
+</BODY>
+</HTML>

@@ -1,0 +1,207 @@
+<HTML>
+<HEAD>
+
+<TITLE>RakNet Tutorial</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<img src="RakNet_Icon_Final-copy.jpg" alt="Jenkins Software" width="150" height="150"><BR>
+<BR>
+
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">Tutorial Project setup</td>
+</tr></table>
+
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+
+In this tutorial all images and interface references are for Visual Studio .Net, copyrighted by Microsoft.  Use the equivalents for your own compiler.<BR>
+
+<OL>
+<LI>Create a new Win32 Console Project and name it ChatServer<BR>
+  <A HREF="newproject.jpg"><IMG SRC="newprojectsmall.jpg"></A>
+<LI>Make it an empty console application<BR><IMG SRC="consoleapplication.jpg">
+<LI>In your ChatServer directory, create a RakNet directory where we will copy RakNet files to.
+<LI>From the /lib directory of where you installed RakNet, copy RakNetLibStatic.lib and RakNetLibStaticDebug.lib to your ChatServer project in the RakNet directory (for example, C:\ChatServer\RakNet)
+<LI>These are the core source files for RakNet.  Copy these from the /source directory of where you installed RakNet to the RakNet directory of your chat server project.
+<UL>
+<LI>RakPeerInterface.h
+<LI>RakNetworkFactory.h (Creates instances of the peer)
+<LI>RakNetTypes.h (Defines <A HREF="systemaddresses.html">SystemAddress</A> and Packet).
+<LI>PacketPriority.h. (Defines the PacketPriority and PacketReliability enumerations).
+<LI><A HREF="networkmessages.html">MessageIdentifiers.h</A>
+<LI>RakNetDefines.h
+<LI>Export.h
+</UL>
+<LI>Since we put files in a directory other than the project, we need to include that directory in the include search path so we don't have to type out the entire path every time we #include something.  Do this by right clicking the "Chat Server" project name in the project tab.  Select properties.  In the top pane, change the drop down menu to "All Configurations."  Select C/C++ / General / Additional Include Directories.  To that item, add ".\RakNet" .  Hit OK.
+<LI>Go back to your project. Create and add a new blank source file "ChatServer.cpp".  In MSVC you would right click on "Source Files" in the project display, and then select add / Add New Item.<BR><A HREF="addchatserverfile.jpg"><IMG SRC="addchatserverfilesmall.jpg"></A>
+<LI>Set your project to use multi-threaded runtime libraries. Right click on the project, select configuration properties / C/C++ / Code Generation / Runtime Library and change it to Multi-threaded (/MT).  (This step isn't necessary if you use the DLL instead of the static library)<BR><TABLE><TR><TD>
+<A HREF="multithreadeddebug.jpg"><IMG SRC="multithreadeddebugsmall.jpg"></A><BR>
+</TD>
+<TR ALIGN="CENTER"><TD>
+<B>Setting Multithreaded debug in .net 2003</B></TD></TR></TABLE>
+<LI>Set your project to import RakNetLibStatic.lib .  Right click on the project and reopen the project settings if you have closed them.  On the left pane click Linker / Input.  On the top pane there is a drop down menu that should read Active(Debug).  If it does not, change it to Active(Debug) or Debug.  On the right pane, under Additional Dependencies, add .\RakNet\RakNetLibStaticDebug.lib, and ws2_32.lib .  Change the drop down menu on the top pane to "Release".  Go back to Additional Dependencies and now add .\RakNet\RakNetLibStatic.lib and ws2_32.lib .<br>
+<LI>Add the RakNet header files you copied over to the project.  Right click on the "Chat Server" project name in the project tab.  Select Add / Add Existing item.  Double click the RakNet directory, and select everything except the .lib (which may not show up anyway).  Then hit open.  Your final result should look as follows:<BR><IMG SRC="completeproject.jpg">
+</OL>
+</TD></TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">Tutorial Code implementation</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+1. Design
+</p>
+
+Lets make the chat server as basic as possible to begin with.  It will have two main modes: server and client.  The server will relay client messages.  The client will send chat messages.  Both of them will display chat messages as they arrive.  We'll hardcode most of the input variables so we don't clutter the code with non-networking stuff.  This could be done by writing the chat data directly to a packet.  However, we'll use <A HREF="remoteprocedurecalls.html">RPC calls</A> to avoid any chance of chat characters being mistaken for system messages.
+</TD></TR></TABLE>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR>
+  <TD>
+2. First compile
+</p>
+
+Create your main function.  Query the user as to whether they want to run a client or server.  Create the peer   instance, and call Startup with the appropriate parameters for a Server or Client.  Destroy the peer at the end.  This requires 2 of the files you copied earlier:<br>
+-RakNetworkFactory which creates peer instances.<br>
+-RakPeerInterface, which encompasses everything you might want to do with a peer<BR>
+<BR>Try writing it on your own first.  When you are done,<BR>
+<B><A HREF="tutorialsample1.html" target="_blank">Display code sample 1</A></B><BR>
+<BR>
+
+Hit F7 or the equivalent to build.  It should build successfully at this point.  If it doesn't, refer to the <A HREF="faq.html">FAQ</A> which gives many reasons for why something won't build and how to fix it.  If that doesn't answer your question, post a question in the <A HREF="http://www.jenkinssoftware.com/forum">forum</A>.
+</TD></TR></TABLE>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR>
+  <TD>
+3. Adding functionality
+</p>
+
+Now that we have a client and server instantiated, we need to know what it can do.  The best way to find out is to go to the source: RakPeerInterface.h.  It contains all the functions for the class, plus detailed comments on each function. See the comments for the Startup and Connect functions. You should also take a look at SetMaximumIncomingConnections. <BR>
+<BR>
+In the code, after the server was created, add code to start the server.  That takes certain parameters - set whatever you wish, based on the description provided in the comments.<BR><BR>
+Do something similar with the client.  After the code where it is created, add code to connect it.  It takes an IP - add code to read an IP.  For the server port, either put code to read the port, or hardcode the server port you entered above.  For the client port, either put code to read it, or put 0 to automatically choose.<BR><BR>
+This is all you need to do to start a server or connect a client.  To determine if the connection was successful, we need to be able to read messages from the network system.  In RakPeerInterface.h you'll find a Receive function.  This function returns a "Packet" structure, which is defined in RakNetTypes.h.  It encapsulates one message and is quite simple.  Go look at that now.<BR>
+<BR>
+As you can see from the "char *data" member, all packets contain an array of bytes.  These bytes can be anything you want.  The length of the array is indicated by the length and bitSize fields.  The convention RakNet uses is the first byte is always an identifier that tells you what the rest of the data is.  These identifiers are defined in <A HREF="networkmessages.html">MessageIdentifiers.h</A>.  Go look at that now.<BR>
+<BR>
+You'll see there are quite a few pre-defined enumerations.  You should quickly read the comments on each of them.  We only care about the connectivity enumerations for now.  So your next programming step is as follows:
+<OL>
+<LI>Create a loop for the main body of your program.
+<LI>In that loop,  call Receive and store the pointer returned in a pointer variable of type Packet.
+<LI>If the packet variable is not 0 (which means no packets to read), check the first byte of Packet::data.  See which of the connectivity related enumerations this byte matches (a switch/case would be handy here).
+<LI>Print out the comment that goes along with that enumeration.
+<LI>As specified in the comments, when you are done with the Packet pointer deallocate it by passing it to the DeallocatePacket method.
+</OL>
+Try writing it on your own first.  When you are done,<BR>
+<B><A HREF="tutorialsample2.html" target="_blank">Display code sample 2</A></B><BR>
+<BR>
+At this point you should be able to run two instances (In Visual Studio, hit ctrl-F5 twice) and connect to each other.  If you cannot connect, then refer to the <A HREF="faq.html">FAQ</A> or post in the <A HREF="http://www.jenkinssoftware.com/forum">forum</A>.
+<BR>
+This is the output from my version of the sample:<BR>
+
+<BR><B>Server output</B><BR>
+(C)lient or (S)erver?<BR>
+s<BR>
+Starting the server.<BR>
+A connection is incoming.<BR>
+<BR>
+
+<BR><B>Client output</B><BR>
+(C)lient or (S)erver?<BR>
+c<BR>
+Enter server IP or hit enter for 127.0.0.1<BR>
+127.0.0.1<BR>
+Starting the client.<BR>
+Our connection request has been accepted.<BR>
+<BR>
+We are now ready to send user input.  As specified early on, we will use <A HREF="remoteprocedurecalls.html">remote procedure calls</A> for this.  Read that page to learn how to implement them and what the parameters mean.  You can also refer to the sample at <I>\Samples\Remote Procedure Calls</I>.  Lets make an RPC function called "PrintMessage".  All it does is print "Hello World".  We'll deal with user input later.
+Your next programming steps are:
+  <OL><LI>Implement an RPC header called "PrintMessage".  Have it print "Hello world."  Both the client and server should be able to call it.
+<LI>When the client successfully connects, call the RPC function.  Leave the data and bitLength  parameters at 0 for now.
+</OL>
+  <p>When you are done,<BR>
+      <B><A HREF="tutorialsample3.html" target="_blank">Display code sample 3</A></B><BR>
+      <BR>
+    The client output should be similar to before.  The server output should also print "Hello World"<BR>
+      <BR>
+    (C)lient or (S)erver?<BR>
+    s<BR>
+    Starting the server.
+  <BR>
+    A connection is incoming.<br>
+    Hello World<BR>
+    <BR>
+      Now we are ready to send a message from the client to the server, rather than just printing a hardcoded "Hello World".  If you take a look at the definition of RPC in RakPeerInterface you'll see that there are two overloaded versions.  One takes a pointer to a <A HREF="bitstreams.html">BitStream</A> while another takes an array with a length.  The BitStream is a utility class that, as the name indicates, allows you to write data to a stream.  You should refer to your RakNet download directory /Source/BitStream.h to familiarize yourself with the BitStream class and functions.  You can also refer to the sample at <I>Samples\BitStream</I>.  To keep things simple for this tutorial, we'll skip bitstreams for now and use arrays.  You may wish to glance at <A HREF="sendingpackets.html">Sending Packets</A> which has some relevance here.<BR>
+      <BR>
+    Your next programming steps are: </p>
+  <OL>
+<LI>Read an array from the client on connection.
+<LI>Pass that array to the RPC call.
+<LI>Print that array in the RPC function.
+</OL>
+When you are done,<BR>
+<B><A HREF="tutorialsample4.html" target="_blank">Display code sample 4</A></B><BR>
+<BR>
+Did you remember to multiply the number of bytes by 8 to pass the number of bits?  If so, congratulations, you are more careful than I am, who didn't read the documentation and wasted several minutes figuring out why only garbage appeared.<BR>
+<BR>
+As per our original design, we want the server to relay messages.  When the server gets the string, it should send the string back to the client.  You have enough information to do this already so give it a shot.<BR>
+<BR>
+<B>(Hint)</B> The PrintMessage function needs access to the server.<BR>
+<B>(Hint)</B> If it isn't apparent what the systemAddress sender field is for, refer to the section on <A HREF="systemaddresses.html">SystemAddresses</A>.<BR>
+<BR>
+When done,<BR>
+<B><A HREF="tutorialsample5.html" target="_blank">Display code sample 5</A></B><BR>
+<BR>
+This should be the output.  It's the same as before, except the client now also shows the message.<BR>
+<BR>
+<B>Client Output:</B><BR>
+(C)lient or (S)erver?<BR>
+c<BR>
+Enter server IP or hit enter for 127.0.0.1<BR>
+127.0.0.1<BR>
+Starting the client.<BR>
+Our connection request has been accepted.<BR>
+Enter a string to show on the server: This was typed on the client.
+<BR>
+This was typed on the client.<BR>
+<BR>
+<B>Server Output:</B><BR>
+(C)lient or (S)erver?<BR>
+s<BR>
+Starting the server.<BR>
+A connection is incoming.
+<BR>
+This was typed on the client.<BR>
+<BR>
+Almost done.  In practice, we don't want the person typing to see their own messages.  Also, we should provide a mechanism where you can type anytime, not just when you first connect.<BR>
+<BR>
+Try it out, then<BR>
+<B><A HREF="tutorialsample6.html" target="_blank">Display final code sample 6</A></B><BR>
+<BR>
+You'll have to run three instances of the program: 1 server and 2 clients to see anything happen.  While gets() is blocking no network messages will be parsed so you might have to hit enter to bypass it to see other messages.  In a real application you would use a nonblocking input function.  The included samples use kbhit() to detect keyboard input.<BR>
+<BR>
+Some additional things you can try out are:
+  <UL><LI>Write and read your data using bitstreams, instead of arrays.
+<LI>Improve the user interface.
+</UL>
+
+See the index for a list of major systems not covered here.  For further information on setting up your project, see the next page: <A HREF="compilersetup.html">Compiler setup</A>
+
+</TD></TR></TABLE>
+
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">See Also</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+
+<A HREF="index.html">Index</A><BR>
+<A HREF="bitstreams.html">BitStreams</A><BR>
+<A HREF="creatingpackets.html">Creating Packets</A><BR>
+<A HREF="faq.html">FAQ</A><BR>
+<A HREF="networkmessages.html">Network Messages</A><BR>
+<A HREF="networkidobject.html">NetworkIDObject.h</A><BR>
+<A HREF="systemaddresses.html">SystemAddress</A><BR>
+<A HREF="receivingpackets.html">Receiving Packets</A><BR>
+<A HREF="remoteprocedurecalls.html">Remote Procedure calls</A><BR>
+<A HREF="sendingpackets.html">Sending Packets</A><BR><BR>
+
+</TD></TR></TABLE>
+</BODY>
+</HTML>

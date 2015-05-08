@@ -1,0 +1,286 @@
+<HTML>
+<HEAD>
+
+<TITLE>RPC3</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</HEAD>
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<span style="background-color: rgb(255, 255, 255);"><img src="RakNet_Icon_Final-copy.jpg" alt="Jenkins Software" width="150" height="150"></span><BR>
+<BR>
+
+<table width="100%" border="0"><tr>
+  <td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">RPC3 Overview</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR>
+  <TD>
+    <p><span class="RakNetBlueHeader">Call C and C++ functions directly</span><BR>
+        <BR>
+       RPC3 is the third iteration of support for remote procedure calls, superceeding <a href="remoteprocedurecalls.html">RakPeer::RPC</A> and the <A HREF="autorpc.html">AutoRPC</A> plugin. With the help of the 3rd party library <A HREF="http://www.boost.org/">Boost</A>, it uses template metaprogramming to automatically write custom C++ code based on function parameter types. Like the prior systems, it allows you to call procedures on remote systems using the same syntax as if they were local, and without the need to serialize or deserialize parameters. If you do not want to use Boost, use the older <A HREF="autorpc.html">AutoRPC</A> system instead.<BR>
+      <BR>
+      Because this plugin has a third party dependency, the code is located at \DependentExtensions\RPC3 rather than \Source as the other plugins. Feel free to copy the code to \Source or with the other code as you wish.
+      <BR>
+      <BR>
+   	A simple example demonstrating that you do not need to serialize packets or use Message Identifiers with this plugin.<BR>
+    <p class="RakNetCode">
+    // Remote system<BR>
+    RPC3_REGISTER_FUNCTION(&rpc3Inst, PrintNumber);<BR>
+    void PrintNumber(int i) { printf("%i", i); };<BR>    
+    <BR>
+    ...<BR>
+    <BR>
+    // Local system<BR>
+    RakPeerInterface *rakPeer;<BR>
+    RakNet::RPC3 rpc3Inst;<BR>
+    rakPeer->AttachPlugin(&rpc3Inst);<BR>
+    rpc3Inst.Call("PrintNumber", 10);<BR>
+  </P>
+       
+   <p><span class="RakNetBlueHeader">Prerequisite</span><BR>
+   	<BR>
+    <B><A HREF="http://www.boost.org/">Boost</A> 1.35</B> or later. Download from <A HREF="http://www.boost.org/users/download/">http://www.boost.org/users/download/</A>. The sample project settings assume it is installed at C:\boost_1_35_0.<BR>
+    <p><span class="RakNetBlueHeader">Supported types of function parameters:</span><BR>
+    <OL>
+    	<LI>Standard variables: <p class="RakNetCode">int, char, short, long, float, etc</p></LI>
+    	<LI>C style strings: <p class="RakNetCode">"Hello world", char *myString;, etc.</p></LI>
+    	<LI>Native raknet types:<p class="RakNetCode">Bitstream, RakString, RakNetTime, NetworkID, SystemAddress, etc.</p></LI>
+    	<LI>Enumerations:<p class="RakNetCode">int_32, MessageID, ushort, etc.</p></LI>
+    	<LI>Arrays. <p class="RakNetCode">int intArray[10];<BR>Call("MyFunc", intArray);</p></LI>
+    	<LI>Pointers to arrays: <p class="RakNetCode">int intArray[10];<BR>int *intPtr = &intArray;<BR>Call("MyFunc", RakNet::_RPC3::PtrToArray(10,intPtr));</p></LI>
+    	<LI>Pointers to objects or variables: <p class="RakNetCode">int i;<BR>int *intPtr = &i;</p></LI>
+    	<LI>Standard classes and structures references and pointers: <p class="RakNetCode">struct Vector{float x; float y; float z;};<BR>Call("MyFunc", &vector);</p></LI>
+    	<LI>Objects that derive from NetworkIDObject: <p class="RakNetCode">class Player : public NetworkIDObject {};<BR>Call("MyFunc", &player);</p></LI>
+    </OL>
+    
+   <p><span class="RakNetBlueHeader">Parameter parsing</span><BR>
+   	<BR>
+   <B>1. Class pointers and references:</B><BR>
+   <BR>
+   Pointers and references are automatically dereferenced up to one time to serialize the contents of the pointed to class or structure. These three calls all do the same thing:<BR>
+   <p class="RakNetCode">
+   struct Vector {float x; float y; float z};<BR>
+   void RemotelyPrintVector(Vector *v) {rpc3.Call("PrintVector", v);}<BR>
+   void RemotelyPrintVector(Vector &v) {rpc3.Call("PrintVector", v);}<BR>
+   void RemotelyPrintVector(Vector v) {rpc3.Call("PrintVector", v);}<BR>
+  </P>
+  <BR>
+  However, only a single level of indirection is currently supported. This code would send the pointer address, which is usually not what you want.<BR>
+  <p class="RakNetCode">
+   struct Vector {float x; float y; float z};<BR>
+   void RemotelyPrintVector(Vector **v) {rpc3.Call("PrintVector", v);}<BR>
+   </P>
+   Use this instead:<BR>
+   <p class="RakNetCode">
+   struct Vector {float x; float y; float z};<BR>
+   void RemotelyPrintVector(Vector **v) {rpc3.Call("PrintVector", *v);}<BR>
+   ...<BR>
+   void PrintVector(Vector *v) {printf("%f %f %f", v->x, v->y, v->z);<BR>
+   </P>
+   <BR>
+   <B>2. Pointers to arrays</B><BR>
+   <BR>
+   Sometimes you need to specify RakNet::_RPC3::PtrToArray so the system knows a pointer is actually an array.<BR>
+  <p class="RakNetCode">
+  	<BR>
+  void DoItFirst()<BR>
+   {<BR>
+   	int intArray[10];<BR>
+   	rpc3.Call("DoThat", intArray); // OK<BR>
+   }<BR>
+   <BR>
+   void DoItSecond()<BR>
+   {<BR>
+   	int intArray[10];<BR>
+   	DoItThird(intArray); // passes array to following function<BR>
+   }<BR>
+   <BR>
+   void DoItThird(int intArray[10])<BR>
+   {   <BR>
+   	rpc3.Call("DoThat", intArray); // Wouldn't work, intArray is actually a pointer. Data would arrive as garbage<BR>
+   	rpc3.Call("DoThat", RakNet::_RPC3::PtrToArray(10,intArray)); // Using PtrToArray fixes this<BR>
+   }<BR>
+   <BR>
+   void DoThat(int intArray[10])<BR>
+   {<BR>
+   for (int i=0; i < 10; i++) printf("%i ", intArray[i]);<BR>
+   }<BR>
+  </P>
+   <BR>
+   <B>3. Structures and classes with overloaded operator &lt;&lt; and operator &gt;&gt;</B><BR>
+   <BR>
+   Sometimes you want to individually serialize every member of a structure, rather than essentially memcpy it out. One reason is to do endian swapping on each parameter. Another reason is to do conditional serialization, such as only sending part of a structure.<BR>
+   <BR>
+   To do so, provide an implementation of operator &lt;&lt; and operator &gt;&gt; specialized for <A HREF="bitstreams.html">RakNet::BitStream</A>. Following our prior example with the Vector class:<BR>
+   <BR>
+   <p class="RakNetCode">
+   struct Vector {float x; float y; float z};<BR>
+	RakNet::BitStream& operator<<(RakNet::BitStream& out, Vector& in)<BR>
+	{<BR>
+	// The BitStream class will automatically endian swap x,y, and z if you comment out __BITSTREAM_NATIVE_END in RakNetDefines. So this code could run between Macs and PCs.<BR>
+		out.Write(in.x);<BR>
+		out.Write(in.y);<BR>
+		out.Write(in.z);<BR>
+		return out;<BR>
+	}<BR>
+	RakNet::BitStream& operator>>(RakNet::BitStream& in, Vector& out)<BR>
+	{<BR>
+		out.Read(in.x);<BR>
+		out.Read(in.y);<BR>
+		out.Read(in.z);<BR>
+		return in;<BR>
+	}</P>
+	<BR>
+   <B>4. Pointers to structures and classes that derive from NetworkIDObject</B><BR>
+   <BR>
+   The <A HREF="networkidobject.html">NetworkIDObject</A> class is used to lookup object pointers by NetworkID. RPC3 can do this for you automatically when passed a pointer to a class that derives from NetworkIDObject.<BR>
+   <BR>
+   In the following example, the RPC3 class will automatically call player->GetNetworkID(), serialize and send the NetworkID, look it up on the remote system, and call the function with the correct pointer<BR>
+   <p class="RakNetCode"><BR>
+   	class Player : public NetworkIDObject<BR>
+   	{<BR>
+   	 int health;<BR>
+   	}<BR>
+   	<BR>
+   	void KillPlayer(Player *player)<BR>
+   	{<BR>
+   		if (player==0)<BR>
+   		{<BR>
+   		printf("GET_OBJECT_FROM_ID lookup failed.\n");<BR>
+   		}<BR>
+   	}<BR>
+   	<BR>
+   	rpc3.Call("KillPlayer", &primaryPlayer);<BR>
+  </p>
+  <BR>
+  That this only works for pointers to classes that are convertible to NetworkIDObject. "void KillPlayer(Player *player)" in the example above would not work - it would essentially just memcpy the Player class instance.<BR>
+  <BR>
+  By default, this does not automatically serialize the contents of the Player class. This is keeping inline with how pointers work, which just refer to objects, rather than actually sending the object. You can also serialize the player by using<BR>
+  <BR>
+  <SPAN class="RakNetCode">RakNet::_RPC3::Deref()</SPAN><BR>
+  <BR>
+  For example:<BR>
+ 	<p class="RakNetCode">
+ 		// This would serialize Player in addition to just sending Player::GetNetworkID(). The prior example would only send the latter.<BR>
+ 		rpc3.Call("KillPlayer", RakNet::_RPC3::Deref(&primaryPlayer));<BR>
+ 	</p>
+   <B>5. char *, unsigned char*, const char *, const unsigned char *</B><BR>
+   <BR>
+   These 4 types are treated as standard C strings, and are serialized using RakString::Serialize(); If you want to actually copy an array of bytes, use:<BR>
+   
+   <p class="RakNetCode">
+   	RakNet::_RPC3::PtrToArray(numBytes,charArrayPtr);
+  </P>
+   
+      <B>6. Pointer to RakNet::RPC3.</B>
+      
+      <p class="RakNetCode">
+      	void DoSomething(int i, RakNet::RPC3 *rpc3)<BR>
+      	{<BR>
+      	if (rpcFromNetwork==0)<BR>
+					printf("\nDoSomething called locally\n");<BR>
+				else<BR>
+					printf("\nDoSomething called from %s\n", rpcFromNetwork->GetLastSenderAddress().ToString());<BR>
+					<BR>
+					printf("i=%i\n", i); // Should be 5<BR>
+      	}<BR>
+      	<BR>
+      	rpc3.Call("DoSomething", 5, 0);<BR>
+      </p>
+      
+      On the sender, parameters of type RakNet::RPC3* are ignored. On the reciever, it is changed to match the instance of the RPC3 plugin that is handling the packet. This way you can determine if a function was called from the network, or locally, and can read parameters such as the sender system address.<BR>
+    
+    <p class="RakNetCode">void PrintNumber(int i, char c)<br>
+      {<br>
+      printf(&quot;%i %i&quot;, i, c);<br>
+}</p>
+    <p class="RakNetCode">struct Bytes
+      {<br>
+      char bytes[20];<br>
+      }</p>
+    <p class="RakNetCode">void PrintString(Bytes b)<br>
+      {<br>
+      printf(&quot;%s&quot;, b.bytes);<br>
+      }</p>
+    <p class="RakNetCode">class MyClass<br>
+      {<br>
+      public:<br>
+      int a;<br>
+      MyClass() {a=10;}<br>
+      virtual PrintClass(void)	{
+      printf(&quot;%i&quot;, a);
+      }<br>
+      }</p>
+<table width="100%" border="0"><tr>
+<td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">Setup</td>
+</tr></table>
+<p class="RakNetBlueHeader">Create and register classes</p>
+    <p>Create an instance of the RPC3 plugin:<br>
+      <span class="RakNetCode">RPC3 rpc3;</span></p>
+    <p>Attach the plugin to an instance of RakPeerInterface:<br>
+      <span class="RakNetCode">rakPeer-&gt;AttachPlugin(&amp;rpc3);</span></p>
+    <p>If calling C++ class member functions, create (or use an existing) instance of <a href="networkidobject.html">NetworkIDManager</a><br>
+      <span class="RakNetCode">NetworkIDManager networkIDManager;</span></p>
+    <p>If calling C++ class member functions, tell the plugin about your instance of <a href="networkobject.html">NetworkIDManager</a><br>
+      <span class="RakNetCode">rpc3.SetNetworkIDManager(&amp;networkIDManager);</span></p>
+    <p class="RakNetBlueHeader">Register functions</p>
+     <span class="RakNetCode">
+    void MyFunc() {}<BR>
+    <BR>
+    class MyClass<BR>
+    {<BR>
+    	void ClassFunc() {}<BR>
+    }<BR>
+   rpc3.RegisterFunction("MyFunc", MyFunc);</span><BR>
+    <span class="RakNetCode">rpc3.RegisterFunction("&MyClass::ClassFunc", &MyClass::ClassFunc);</span><BR>
+    <BR>
+    A macro can do both at once if you want<BR><BR>
+    <span class="RakNetCode">RPC3_REGISTER_FUNCTION(&rpc3Inst, CFunc);</span><BR>
+    <span class="RakNetCode">RPC3_REGISTER_FUNCTION(&rpc3Inst, &MyClass::ClassFunc);</span><BR>
+    <BR>
+    You don't need the ampersand in the string function identifier, but the macro does this automatically.
+    
+    <p><span class="RakNetBlueHeader">Call functions</span><br>
+    	 <BR>
+      <span class="RakNetCode">rpc3.Call(&quot;myFunction&quot;, param1, param2, param3);</span></p>
+    <p>To designate the packet recipient, if this is a C call or C++ member function, etc. use the functions in the RPC3 class. See RPC3.h for parameter documentation:<br>
+    	<BR>
+      <span class="RakNetCode">void SetTimestamp(RakNetTime timeStamp);<br>
+        void SetSendParams(PacketPriority priority, PacketReliability reliability, char orderingChannel);<br>
+        void SetRecipientAddress(SystemAddress systemAddress, bool broadcast);<br>
+        void SetRecipientObject(NetworkID networkID);</span><br>
+    </p>
+    <p>On error, the remote system will send ID_RPC_REMOTE_ERROR. The error code is held in the 2nd byte, e.g. packet-&gt;data[1]. The name of the function starts at the 3rd byte, e.g. packet-&gt;data[2]; See the enumeration RPCErrorCodes for a full list of error codes.</p>
+    <p class="RakNetBlueHeader">Determining sender, etc.</p>
+    <p>There are two ways to get access to the sender, timestamp, and other parameters relevant to recieving a packet.</p>
+    <p>First, you can query the plugin if you know contextually that the called function is triggered from the network:<br>
+    	<BR>
+      <span class="RakNetCode">RakNetTime GetLastSenderTimestamp(void) const;<br>
+        SystemAddress GetLastSenderAddress(void) const;<br>
+        RakPeerInterface *GetRakPeer(void) const;<br>
+      const char *GetCurrentExecution(void) const;</span></p>
+    <p>Second, you can add an RPC3 pointer to your function parameter list. This will be filled in automatically by the plugin when the function is called.<br>
+      </p>
+
+    <p><em>See the sample project RPC3 for a detailed implementation of this system.</em></p>    </TD>
+</TR></TABLE>
+
+
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">See Also</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+
+<A HREF="index.html">Index</A><br>
+<A HREF="autorpc.html">AutoRPC</A><BR>
+<a href="compilersetup.html">Compiler Setup</a><br>
+<a href="networkidobject.html">NetworkIDManager</a><br>
+<a href="plugininterface.html">PluginInterface</a><BR>
+<A HREF="http://www.jenkinssoftware.com/raknet/manual/RPC3Video.htm">RPC3 Video</A><BR>
+
+</TD></TR></TABLE>
+</BODY>
+</HTML>

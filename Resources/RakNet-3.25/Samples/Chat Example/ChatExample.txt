@@ -1,0 +1,7 @@
+RakNet
+Copyright 2002-2004 Rakkarsoft LLC
+
+Please refer to root directory and /Help for the license agreement and documention pertaining to the files herein.
+
+This is the sample implementation chat engine included in the documentation.  This contains all the code you need for both the client and the server.
+To run, run one instance of Chat Example Server and one or more instances of Chat Example Client.

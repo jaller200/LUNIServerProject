@@ -1,0 +1,2 @@
+This sample demonstrates how to verify the files on the client are valid when a new client connects to the server.
+It uses the SHA-1 class that comes with the library to generate an SHA-1 code for all files that are being checked.

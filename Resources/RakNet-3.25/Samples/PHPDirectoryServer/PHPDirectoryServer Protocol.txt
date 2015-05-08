@@ -1,0 +1,71 @@
+
+The Communication Protocol
+==========================
+
+Definitions
+-----------
+
+client - the RakNet game, written in C++
+server - the PHP script and webserver
+key - name of the column
+record - all the keys and values representing a client
+
+Updates
+-------
+
+When the client wants to update it's status with the server
+it sends an HTTP POST message to the php script with a url
+parameter of "update".  For example, the url would be:
+
+	http://someserver/webgamelist.php?update
+
+and the body of the message is a list of key=value pairs
+where the pairs are seperated by ASCII 0x01 and the key
+and value are seperated by ASCII 0x02.  Those two characters
+cannot be contained in the keys or values.  Special fields
+are:
+
+	__GAME_LISTING_TIMEOUT - after this time you will be removed from the server
+	__GAME_NAME - the name of your game
+    GAME_PASSWORD_COMMAND - this may be required by the page admin to update records
+    __GAME_PORT - the port # of your server: used for identification
+    __DELETE_ROW - if you set this to "true", the record of your server will be removed
+
+Key names are case-sensitive.  "Name" and "name" are different.
+
+Reponse to Update
+-----------------
+
+The response will start with "Configuration Follows\n" and
+the rest of the lines will contain a variable name, followed
+by a colon and space, followed by the value, then a "\n"
+character.  For example:
+
+	Configuration follows
+	title: Your game server list
+	max_length: 2000
+	max_timeout: 1500
+
+Only those three fields are currenly defined.  max_length
+specifies the maximum amount of characters allowed in a
+record.  max_timeout is in seconds and timeouts greater
+than this will become this value.  Any "\n" character will
+be changed to "\r", for instance in the title.
+
+Queries
+-------
+
+When the client wants to get a list of other clients from the
+server, it sends an HTTP POST message with a url parameter of
+"query".  The response will start like the response to an
+update, followed by "Game List follows\n" and one record per
+line, where lines are delimited by "\n" characters.
+
+Each line is of the same form as that supplied by the client
+in the update, except there are two new automaticly filled
+fields and and "\n" characters will have been transformed
+into "\r" characters.  The new fields are:
+
+	__SystemAddress - the IP address of the client in the record
+	__SEC_AFTER_EPOCH_SINCE_LAST_UPDATE - seconds after the epoch when this record was
+	          last updated.

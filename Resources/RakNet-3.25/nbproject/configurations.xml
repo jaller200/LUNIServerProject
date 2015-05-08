@@ -1,0 +1,1394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="45">
+  <logicalFolder name="root" displayName="root" projectFiles="true">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>Source/_FindFirst.h</itemPath>
+      <itemPath>Source/AsynchronousFileIO.h</itemPath>
+      <itemPath>Source/AutopatcherPatchContext.h</itemPath>
+      <itemPath>Source/AutopatcherRepositoryInterface.h</itemPath>
+      <itemPath>Source/AutoRPC.h</itemPath>
+      <itemPath>Source/BigTypes.h</itemPath>
+      <itemPath>Source/BitStream.h</itemPath>
+      <itemPath>Source/BitStream_NoTemplate.h</itemPath>
+      <itemPath>Source/CheckSum.h</itemPath>
+      <itemPath>Source/ClientContextStruct.h</itemPath>
+      <itemPath>Source/CommandParserInterface.h</itemPath>
+      <itemPath>Source/ConnectionGraph.h</itemPath>
+      <itemPath>Source/ConsoleServer.h</itemPath>
+      <itemPath>Source/DataBlockEncryptor.h</itemPath>
+      <itemPath>Source/DataCompressor.h</itemPath>
+      <itemPath>Source/DirectoryDeltaTransfer.h</itemPath>
+      <itemPath>Source/DS_BinarySearchTree.h</itemPath>
+      <itemPath>Source/DS_BPlusTree.h</itemPath>
+      <itemPath>Source/DS_BytePool.h</itemPath>
+      <itemPath>Source/DS_ByteQueue.h</itemPath>
+      <itemPath>Source/DS_Heap.h</itemPath>
+      <itemPath>Source/DS_HuffmanEncodingTree.h</itemPath>
+      <itemPath>Source/DS_HuffmanEncodingTreeFactory.h</itemPath>
+      <itemPath>Source/DS_HuffmanEncodingTreeNode.h</itemPath>
+      <itemPath>Source/DS_LinkedList.h</itemPath>
+      <itemPath>Source/DS_List.h</itemPath>
+      <itemPath>Source/DS_Map.h</itemPath>
+      <itemPath>Source/DS_MemoryPool.h</itemPath>
+      <itemPath>Source/DS_OrderedChannelHeap.h</itemPath>
+      <itemPath>Source/DS_OrderedList.h</itemPath>
+      <itemPath>Source/DS_Queue.h</itemPath>
+      <itemPath>Source/DS_QueueLinkedList.h</itemPath>
+      <itemPath>Source/DS_RangeList.h</itemPath>
+      <itemPath>Source/DS_Table.h</itemPath>
+      <itemPath>Source/DS_Tree.h</itemPath>
+      <itemPath>Source/DS_WeightedGraph.h</itemPath>
+      <itemPath>Source/EmailSender.h</itemPath>
+      <itemPath>Source/EpochTimeToString.h</itemPath>
+      <itemPath>Source/Export.h</itemPath>
+      <itemPath>Source/ExtendedOverlappedPool.h</itemPath>
+      <itemPath>Source/FileList.h</itemPath>
+      <itemPath>Source/FileListTransfer.h</itemPath>
+      <itemPath>Source/FileListTransferCBInterface.h</itemPath>
+      <itemPath>Source/FileOperations.h</itemPath>
+      <itemPath>Source/FormatString.h</itemPath>
+      <itemPath>Source/FullyConnectedMesh.h</itemPath>
+      <itemPath>Source/FunctionThread.h</itemPath>
+      <itemPath>Source/Gen_RPC8.h</itemPath>
+      <itemPath>Source/GetTime.h</itemPath>
+      <itemPath>Source/GridSectorizer.h</itemPath>
+      <itemPath>Source/HTTPConnection.h</itemPath>
+      <itemPath>Source/InternalPacket.h</itemPath>
+      <itemPath>Source/Itoa.h</itemPath>
+      <itemPath>Source/LightweightDatabaseClient.h</itemPath>
+      <itemPath>Source/LightweightDatabaseCommon.h</itemPath>
+      <itemPath>Source/LightweightDatabaseServer.h</itemPath>
+      <itemPath>Source/LinuxStrings.h</itemPath>
+      <itemPath>Source/LobbyClientInterface.h</itemPath>
+      <itemPath>Source/LogCommandParser.h</itemPath>
+      <itemPath>Source/MessageFilter.h</itemPath>
+      <itemPath>Source/MessageIdentifiers.h</itemPath>
+      <itemPath>Source/MTUSize.h</itemPath>
+      <itemPath>Source/NatPunchthrough.h</itemPath>
+      <itemPath>Source/NetworkIDManager.h</itemPath>
+      <itemPath>Source/NetworkIDObject.h</itemPath>
+      <itemPath>Source/PacketConsoleLogger.h</itemPath>
+      <itemPath>Source/PacketFileLogger.h</itemPath>
+      <itemPath>Source/PacketLogger.h</itemPath>
+      <itemPath>Source/PacketPool.h</itemPath>
+      <itemPath>Source/PacketPriority.h</itemPath>
+      <itemPath>Source/PluginInterface.h</itemPath>
+      <itemPath>Source/RakAssert.h</itemPath>
+      <itemPath>Source/RakMemoryOverride.h</itemPath>
+      <itemPath>Source/RakNetCommandParser.h</itemPath>
+      <itemPath>Source/RakNetDefines.h</itemPath>
+      <itemPath>Source/RakNetMemory.h</itemPath>
+      <itemPath>Source/RakNetStatistics.h</itemPath>
+      <itemPath>Source/RakNetTransport.h</itemPath>
+      <itemPath>Source/RakNetTypes.h</itemPath>
+      <itemPath>Source/RakNetVersion.h</itemPath>
+      <itemPath>Source/RakNetworkFactory.h</itemPath>
+      <itemPath>Source/RakPeer.h</itemPath>
+      <itemPath>Source/RakPeerInterface.h</itemPath>
+      <itemPath>Source/RakSleep.h</itemPath>
+      <itemPath>Source/RakString.h</itemPath>
+      <itemPath>Source/RakThread.h</itemPath>
+      <itemPath>Source/Rand.h</itemPath>
+      <itemPath>Source/ReadyEvent.h</itemPath>
+      <itemPath>Source/RefCountedObj.h</itemPath>
+      <itemPath>Source/ReliabilityLayer.h</itemPath>
+      <itemPath>Source/Replica.h</itemPath>
+      <itemPath>Source/ReplicaEnums.h</itemPath>
+      <itemPath>Source/ReplicaManager.h</itemPath>
+      <itemPath>Source/ReplicaManager2.h</itemPath>
+      <itemPath>Source/Rijndael-Boxes.h</itemPath>
+      <itemPath>Source/Rijndael.h</itemPath>
+      <itemPath>Source/Router.h</itemPath>
+      <itemPath>Source/RouterInterface.h</itemPath>
+      <itemPath>Source/RPCMap.h</itemPath>
+      <itemPath>Source/RPCNode.h</itemPath>
+      <itemPath>Source/RSACrypt.h</itemPath>
+      <itemPath>Source/SHA1.h</itemPath>
+      <itemPath>Source/SimpleMutex.h</itemPath>
+      <itemPath>Source/SimpleTCPServer.h</itemPath>
+      <itemPath>Source/SingleProducerConsumer.h</itemPath>
+      <itemPath>Source/SocketLayer.h</itemPath>
+      <itemPath>Source/StringCompressor.h</itemPath>
+      <itemPath>Source/StringTable.h</itemPath>
+      <itemPath>Source/SuperFastHash.h</itemPath>
+      <itemPath>Source/SystemAddressList.h</itemPath>
+      <itemPath>Source/TableSerializer.h</itemPath>
+      <itemPath>Source/TCPInterface.h</itemPath>
+      <itemPath>Source/TelnetTransport.h</itemPath>
+      <itemPath>Source/ThreadPool.h</itemPath>
+      <itemPath>Source/ThreadsafePacketLogger.h</itemPath>
+      <itemPath>Source/TransportInterface.h</itemPath>
+      <itemPath>Source/Types.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>Source/_FindFirst.cpp</itemPath>
+      <itemPath>Source/AsynchronousFileIO.cpp</itemPath>
+      <itemPath>Source/AutoRPC.cpp</itemPath>
+      <itemPath>Source/BitStream.cpp</itemPath>
+      <itemPath>Source/BitStream_NoTemplate.cpp</itemPath>
+      <itemPath>Source/CheckSum.cpp</itemPath>
+      <itemPath>Source/CommandParserInterface.cpp</itemPath>
+      <itemPath>Source/ConnectionGraph.cpp</itemPath>
+      <itemPath>Source/ConsoleServer.cpp</itemPath>
+      <itemPath>Source/DataBlockEncryptor.cpp</itemPath>
+      <itemPath>Source/DataCompressor.cpp</itemPath>
+      <itemPath>Source/DirectoryDeltaTransfer.cpp</itemPath>
+      <itemPath>Source/DS_BytePool.cpp</itemPath>
+      <itemPath>Source/DS_ByteQueue.cpp</itemPath>
+      <itemPath>Source/DS_HuffmanEncodingTree.cpp</itemPath>
+      <itemPath>Source/DS_Table.cpp</itemPath>
+      <itemPath>Source/EmailSender.cpp</itemPath>
+      <itemPath>Source/EncodeClassName.cpp</itemPath>
+      <itemPath>Source/EpochTimeToString.cpp</itemPath>
+      <itemPath>Source/ExtendedOverlappedPool.cpp</itemPath>
+      <itemPath>Source/FileList.cpp</itemPath>
+      <itemPath>Source/FileListTransfer.cpp</itemPath>
+      <itemPath>Source/FileOperations.cpp</itemPath>
+      <itemPath>Source/FormatString.cpp</itemPath>
+      <itemPath>Source/FullyConnectedMesh.cpp</itemPath>
+      <itemPath>Source/FunctionThread.cpp</itemPath>
+      <itemPath>Source/Gen_RPC8.cpp</itemPath>
+      <itemPath>Source/GetTime.cpp</itemPath>
+      <itemPath>Source/GridSectorizer.cpp</itemPath>
+      <itemPath>Source/HTTPConnection.cpp</itemPath>
+      <itemPath>Source/Itoa.cpp</itemPath>
+      <itemPath>Source/LightweightDatabaseClient.cpp</itemPath>
+      <itemPath>Source/LightweightDatabaseCommon.cpp</itemPath>
+      <itemPath>Source/LightweightDatabaseServer.cpp</itemPath>
+      <itemPath>Source/LinuxStrings.cpp</itemPath>
+      <itemPath>Source/LogCommandParser.cpp</itemPath>
+      <itemPath>Source/MessageFilter.cpp</itemPath>
+      <itemPath>Source/NatPunchthrough.cpp</itemPath>
+      <itemPath>Source/NetworkIDManager.cpp</itemPath>
+      <itemPath>Source/NetworkIDObject.cpp</itemPath>
+      <itemPath>Source/PacketConsoleLogger.cpp</itemPath>
+      <itemPath>Source/PacketFileLogger.cpp</itemPath>
+      <itemPath>Source/PacketLogger.cpp</itemPath>
+      <itemPath>Source/PluginInterface.cpp</itemPath>
+      <itemPath>Source/RakMemoryOverride.cpp</itemPath>
+      <itemPath>Source/RakNetCommandParser.cpp</itemPath>
+      <itemPath>Source/RakNetMemory.cpp</itemPath>
+      <itemPath>Source/RakNetStatistics.cpp</itemPath>
+      <itemPath>Source/RakNetTransport.cpp</itemPath>
+      <itemPath>Source/RakNetTypes.cpp</itemPath>
+      <itemPath>Source/RakNetworkFactory.cpp</itemPath>
+      <itemPath>Source/RakPeer.cpp</itemPath>
+      <itemPath>Source/RakSleep.cpp</itemPath>
+      <itemPath>Source/RakString.cpp</itemPath>
+      <itemPath>Source/RakThread.cpp</itemPath>
+      <itemPath>Source/Rand.cpp</itemPath>
+      <itemPath>Source/ReadyEvent.cpp</itemPath>
+      <itemPath>Source/ReliabilityLayer.cpp</itemPath>
+      <itemPath>Source/ReplicaManager.cpp</itemPath>
+      <itemPath>Source/ReplicaManager2.cpp</itemPath>
+      <itemPath>Source/rijndael.cpp</itemPath>
+      <itemPath>Source/Router.cpp</itemPath>
+      <itemPath>Source/RPCMap.cpp</itemPath>
+      <itemPath>Source/SHA1.cpp</itemPath>
+      <itemPath>Source/SimpleMutex.cpp</itemPath>
+      <itemPath>Source/SocketLayer.cpp</itemPath>
+      <itemPath>Source/StringCompressor.cpp</itemPath>
+      <itemPath>Source/StringTable.cpp</itemPath>
+      <itemPath>Source/SuperFastHash.cpp</itemPath>
+      <itemPath>Source/SystemAddressList.cpp</itemPath>
+      <itemPath>Source/TableSerializer.cpp</itemPath>
+      <itemPath>Source/TCPInterface.cpp</itemPath>
+      <itemPath>Source/TelnetTransport.cpp</itemPath>
+      <itemPath>Source/ThreadsafePacketLogger.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceEncoding>UTF-8</sourceEncoding>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="3">
+      <toolsSet>
+        <compilerSet>GNU|GNU</compilerSet>
+        <platform>2</platform>
+      </toolsSet>
+      <compileType>
+        <archiverTool>
+          <output>Lib/GNU-Linux-x86/libraknetd.a</output>
+        </archiverTool>
+      </compileType>
+      <item path="Source/AsynchronousFileIO.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/AsynchronousFileIO.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/AutoRPC.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/AutoRPC.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/AutopatcherPatchContext.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/AutopatcherRepositoryInterface.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/BigTypes.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/BitStream.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/BitStream.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/BitStream_NoTemplate.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/BitStream_NoTemplate.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/CheckSum.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/CheckSum.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ClientContextStruct.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/CommandParserInterface.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/CommandParserInterface.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ConnectionGraph.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/ConnectionGraph.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ConsoleServer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/ConsoleServer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_BPlusTree.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_BinarySearchTree.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_BytePool.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/DS_BytePool.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_ByteQueue.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/DS_ByteQueue.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_Heap.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_HuffmanEncodingTree.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/DS_HuffmanEncodingTree.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_HuffmanEncodingTreeFactory.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_HuffmanEncodingTreeNode.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_LinkedList.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_List.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_Map.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_MemoryPool.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_OrderedChannelHeap.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_OrderedList.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_Queue.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_QueueLinkedList.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_RangeList.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_Table.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/DS_Table.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_Tree.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_WeightedGraph.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DataBlockEncryptor.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/DataBlockEncryptor.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DataCompressor.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/DataCompressor.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DirectoryDeltaTransfer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/DirectoryDeltaTransfer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/EmailSender.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/EmailSender.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/EncodeClassName.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/EpochTimeToString.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/EpochTimeToString.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/Export.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ExtendedOverlappedPool.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/ExtendedOverlappedPool.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/FileList.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/FileList.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/FileListTransfer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/FileListTransfer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/FileListTransferCBInterface.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/FileOperations.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/FileOperations.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/FormatString.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/FormatString.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/FullyConnectedMesh.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/FullyConnectedMesh.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/FunctionThread.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/FunctionThread.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/Gen_RPC8.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/Gen_RPC8.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/GetTime.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/GetTime.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/GridSectorizer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/GridSectorizer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/HTTPConnection.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/HTTPConnection.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/InternalPacket.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/Itoa.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/Itoa.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/LightweightDatabaseClient.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/LightweightDatabaseClient.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/LightweightDatabaseCommon.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/LightweightDatabaseCommon.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/LightweightDatabaseServer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/LightweightDatabaseServer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/LinuxStrings.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/LinuxStrings.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/LobbyClientInterface.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/LogCommandParser.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/LogCommandParser.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/MTUSize.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/MessageFilter.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/MessageFilter.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/MessageIdentifiers.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/NatPunchthrough.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/NatPunchthrough.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/NetworkIDManager.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/NetworkIDManager.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/NetworkIDObject.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/NetworkIDObject.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/PacketConsoleLogger.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/PacketConsoleLogger.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/PacketFileLogger.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/PacketFileLogger.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/PacketLogger.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/PacketLogger.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/PacketPool.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/PacketPriority.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/PluginInterface.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/PluginInterface.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RPCMap.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RPCMap.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RPCNode.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RSACrypt.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakAssert.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakMemoryOverride.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakMemoryOverride.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakNetCommandParser.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakNetCommandParser.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakNetDefines.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakNetMemory.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakNetMemory.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakNetStatistics.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakNetStatistics.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakNetTransport.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakNetTransport.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakNetTypes.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakNetTypes.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakNetVersion.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakNetworkFactory.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakNetworkFactory.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakPeer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakPeer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakPeerInterface.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakSleep.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakSleep.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakString.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakString.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakThread.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakThread.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/Rand.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/Rand.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ReadyEvent.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/ReadyEvent.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RefCountedObj.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ReliabilityLayer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/ReliabilityLayer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/Replica.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ReplicaEnums.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ReplicaManager.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/ReplicaManager.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ReplicaManager2.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/ReplicaManager2.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/Rijndael-Boxes.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/Rijndael.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/Router.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/Router.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RouterInterface.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/SHA1.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/SHA1.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/SimpleMutex.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/SimpleMutex.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/SimpleTCPServer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/SingleProducerConsumer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/SocketLayer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/SocketLayer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/StringCompressor.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/StringCompressor.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/StringTable.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/StringTable.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/SuperFastHash.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/SuperFastHash.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/SystemAddressList.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/SystemAddressList.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/TCPInterface.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/TCPInterface.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/TableSerializer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/TableSerializer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/TelnetTransport.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/TelnetTransport.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ThreadPool.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ThreadsafePacketLogger.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/ThreadsafePacketLogger.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/TransportInterface.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/Types.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/_FindFirst.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/_FindFirst.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/rijndael.cpp">
+        <itemTool>1</itemTool>
+      </item>
+    </conf>
+    <conf name="Release" type="3">
+      <toolsSet>
+        <compilerSet>GNU|GNU</compilerSet>
+        <platform>2</platform>
+      </toolsSet>
+      <compileType>
+        <cCompilerTool>
+          <developmentMode>5</developmentMode>
+        </cCompilerTool>
+        <ccCompilerTool>
+          <developmentMode>5</developmentMode>
+        </ccCompilerTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <archiverTool>
+          <output>Lib/GNU-Linux-x86/libraknet.a</output>
+        </archiverTool>
+      </compileType>
+      <item path="Source/AsynchronousFileIO.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/AsynchronousFileIO.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/AutoRPC.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/AutoRPC.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/AutopatcherPatchContext.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/AutopatcherRepositoryInterface.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/BigTypes.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/BitStream.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/BitStream.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/BitStream_NoTemplate.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/BitStream_NoTemplate.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/CheckSum.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/CheckSum.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ClientContextStruct.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/CommandParserInterface.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/CommandParserInterface.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ConnectionGraph.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/ConnectionGraph.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ConsoleServer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/ConsoleServer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_BPlusTree.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_BinarySearchTree.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_BytePool.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/DS_BytePool.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_ByteQueue.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/DS_ByteQueue.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_Heap.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_HuffmanEncodingTree.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/DS_HuffmanEncodingTree.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_HuffmanEncodingTreeFactory.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_HuffmanEncodingTreeNode.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_LinkedList.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_List.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_Map.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_MemoryPool.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_OrderedChannelHeap.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_OrderedList.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_Queue.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_QueueLinkedList.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_RangeList.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_Table.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/DS_Table.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_Tree.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DS_WeightedGraph.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DataBlockEncryptor.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/DataBlockEncryptor.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DataCompressor.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/DataCompressor.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/DirectoryDeltaTransfer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/DirectoryDeltaTransfer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/EmailSender.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/EmailSender.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/EncodeClassName.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/EpochTimeToString.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/EpochTimeToString.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/Export.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ExtendedOverlappedPool.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/ExtendedOverlappedPool.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/FileList.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/FileList.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/FileListTransfer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/FileListTransfer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/FileListTransferCBInterface.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/FileOperations.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/FileOperations.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/FormatString.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/FormatString.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/FullyConnectedMesh.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/FullyConnectedMesh.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/FunctionThread.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/FunctionThread.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/Gen_RPC8.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/Gen_RPC8.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/GetTime.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/GetTime.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/GridSectorizer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/GridSectorizer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/HTTPConnection.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/HTTPConnection.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/InternalPacket.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/Itoa.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/Itoa.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/LightweightDatabaseClient.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/LightweightDatabaseClient.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/LightweightDatabaseCommon.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/LightweightDatabaseCommon.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/LightweightDatabaseServer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/LightweightDatabaseServer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/LinuxStrings.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/LinuxStrings.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/LobbyClientInterface.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/LogCommandParser.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/LogCommandParser.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/MTUSize.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/MessageFilter.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/MessageFilter.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/MessageIdentifiers.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/NatPunchthrough.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/NatPunchthrough.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/NetworkIDManager.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/NetworkIDManager.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/NetworkIDObject.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/NetworkIDObject.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/PacketConsoleLogger.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/PacketConsoleLogger.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/PacketFileLogger.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/PacketFileLogger.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/PacketLogger.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/PacketLogger.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/PacketPool.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/PacketPriority.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/PluginInterface.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/PluginInterface.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RPCMap.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RPCMap.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RPCNode.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RSACrypt.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakAssert.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakMemoryOverride.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakMemoryOverride.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakNetCommandParser.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakNetCommandParser.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakNetDefines.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakNetMemory.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakNetMemory.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakNetStatistics.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakNetStatistics.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakNetTransport.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakNetTransport.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakNetTypes.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakNetTypes.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakNetVersion.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakNetworkFactory.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakNetworkFactory.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakPeer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakPeer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakPeerInterface.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakSleep.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakSleep.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakString.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakString.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RakThread.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/RakThread.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/Rand.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/Rand.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ReadyEvent.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/ReadyEvent.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RefCountedObj.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ReliabilityLayer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/ReliabilityLayer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/Replica.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ReplicaEnums.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ReplicaManager.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/ReplicaManager.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ReplicaManager2.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/ReplicaManager2.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/Rijndael-Boxes.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/Rijndael.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/Router.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/Router.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/RouterInterface.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/SHA1.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/SHA1.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/SimpleMutex.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/SimpleMutex.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/SimpleTCPServer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/SingleProducerConsumer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/SocketLayer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/SocketLayer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/StringCompressor.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/StringCompressor.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/StringTable.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/StringTable.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/SuperFastHash.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/SuperFastHash.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/SystemAddressList.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/SystemAddressList.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/TCPInterface.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/TCPInterface.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/TableSerializer.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/TableSerializer.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/TelnetTransport.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/TelnetTransport.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ThreadPool.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/ThreadsafePacketLogger.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/ThreadsafePacketLogger.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/TransportInterface.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/Types.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/_FindFirst.cpp">
+        <itemTool>1</itemTool>
+      </item>
+      <item path="Source/_FindFirst.h">
+        <itemTool>3</itemTool>
+      </item>
+      <item path="Source/rijndael.cpp">
+        <itemTool>1</itemTool>
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

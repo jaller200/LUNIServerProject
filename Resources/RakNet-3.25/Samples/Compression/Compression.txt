@@ -1,0 +1,2 @@
+This sample demonstrates the use of compression.
+To test, just put this file in your project.  It includes the main function.

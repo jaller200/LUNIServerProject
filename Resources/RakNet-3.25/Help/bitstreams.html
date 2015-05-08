@@ -1,0 +1,112 @@
+<HTML>
+<HEAD>
+
+<TITLE>Bitstreams</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<span style="background-color: rgb(255, 255, 255);"><img src="RakNet_Icon_Final-copy.jpg" alt="Jenkins Software" width="150" height="150"></span><BR>
+<BR>
+
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">Bitstream Overview</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<span class="RakNetBlueHeader">Description</span><BR>
+<BR>
+
+The bitstream class is a helper class under the namespace RakNet that is used to wrap a dynamic array for the purpose of packing and unpacking bits.  Its main three benefits are:
+<OL>
+<LI>Creating packets dynamically
+<LI>Compression
+<LI>Writing Bits
+</OL>
+With structs you have to predefine your structures and cast them to a (char*).  With a bitstream, you can choose to write blocks at runtime, depending on the context.  Bitstreams can compress the native types.<BR>
+<BR>
+The compression is quite simple and uses the following algorithm:<BR>
+1. Is the upper half all 0's (1's for unsigned types)?<BR>
+TRUE - Write a 1<BR>
+FALSE - Write a 0, and the upper half<BR>
+2. Repeat with the lower half, until we are at half a byte.<BR>
+What this means is you will save bits if your data under half its maximum range.  So if you know this is usually the case in advance, you can use WriteCompressed instead of Write and ReadCompressed instead of read.<BR>
+<BR>
+Finally, you can write bits.  Most of the time you will not care about this.  However, when writing booleans it will automatically only write one bit.  This can also be very useful for encryption since your data will no longer be byte aligned.<BR>
+<BR>
+Writing Data
+</p>
+Writing data is a snap.  Create a bitstream, and call the Write method for each of your data types.  If your data type is a native type, then the correct overloaded version will be called.  If the data type is your own type, you must cast it first as in<BR>
+<BR>
+bitStream.Write((char*)&myType, sizeof(myType);<BR>
+<BR>
+Optional - One of the constructor versions takes a length in bytes as a parameter.  If you have an idea of the size of your data you can pass this number when creating the bitstream to avoid internal reallocations.<BR>
+<BR>
+See <A HREF="creatingpackets.html">Creating Packets</A> for more details.<BR>
+<BR>
+Reading Data
+<BR>
+<BR>
+Reading data is equally simple.  Create a bitstream, and in the constructor assign it your data.<BR>
+<BR>
+// Assuming we have a Packet *<BR>
+BitStream myBitStream(packet->data, packet->length, false);<BR>
+<BR>
+See <A HREF="receivingpackets.html">Receiving Packets</A> for a more complete example.<BR>
+<BR>
+
+
+</TD>
+</TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">Major functions</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+<span class="RakNetBlueHeader">See BitStream.h for a full list of functions.</span><BR>
+<BR>
+
+<B>Constructor</B><BR>
+BitStream(int initialBytesToAllocate);<BR>
+Use the constuctor version that takes an int to determine how many bytes to initially allocate.  While not necessary, you can avoid reallocations when doing writes this way.<BR>
+<BR>
+<B>Constructor</B><BR>
+BitStream(const char* _data, unsigned int lengthInBytes, bool _copyData);<BR>
+This version of the constructor gives the bitstream some initial data.  This is used for interpreting an existing data stream as a bitstream, which you will almost always do when recieving a bitstream that you sent previously.  Use false for _copyData to simply point to the existing data (used for pure reading).  Use true if you want to make an internal copy, either to save the data or if you plan to change it.<BR>
+<BR>
+<B>Write functions</B><BR>
+The write functions write data to the bitstream at the end of the bitstream. You should use the analogous Read to get the data back out.<BR>
+<BR>
+<B>WriteCompressed functions</B><BR>
+The write functions write data to the bitstream at the end of the bitstream. You should use the analogous ReadCompressed to get the data back out<BR>
+<BR>
+<B>Read functions</B><BR>
+The read functions read data already in the bitstream, in order from beginning to end.  The read function returns false if there is no more data in the bitstream.<BR>
+<BR>
+<B>ReadCompressed functions</B><BR>
+The read compressed functions read data already in the bitstream, in order from beginning to end, written with WriteCompressed.  The ReadCompressed function returns false if there is no more data in the bitstream.<BR>
+<BR>
+<B>GetNumberOfBitsUsed</B><BR>
+<B>GetNumberOfBytesUsed</B><BR>
+Gives you the number of bytes or bits written.<BR>
+<BR>
+<B>GetData</B><BR>
+Gives you a pointer to the internal data of the bitstream.  This is a (char*) allocated with malloc and is presented in case you need direct assess to the data.
+
+
+
+</TD>
+</TR></TABLE>
+
+
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">See Also</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+
+<A HREF="index.html">Index</A><BR>
+<A HREF="creatingpackets.html">Creating Packets</A><BR>
+<A HREF="receivingpackets.html">Receiving Packets</A><BR>
+
+</TD></TR></TABLE>
+</BODY>
+</HTML>

@@ -1,0 +1,108 @@
+<HTML>
+<HEAD>
+
+<TITLE>System Overview</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></HEAD>
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<img src="RakNet_Icon_Final-copy.jpg" alt="Jenkins Software" width="150" height="150"><BR>
+<BR>
+
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92">
+<img src="spacer.gif" width="8" height="1"><span class="RakNetWhiteHeader">System Overview</span></td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR>
+  <TD><strong class="RakNetBlueHeader">System Architecture</strong>
+    <p>
+<b>RakPeer.h</b> provides the base 
+functionality for all of RakNet.&nbsp; On start, RakPeer starts a thread that 
+will process all incoming datagrams and send most outgoing datagrams.&nbsp; A 
+shared memory array of RemoteSystem structures is shared between the user thread 
+and the network thread.&nbsp; Messages are sent between these two threads using 
+a fast single producer single consumer object.&nbsp; Each player has one entry 
+in the array of RemoteSystem structures.&nbsp; Each element in the array has an 
+instance of the ReliabilityLayer class, which handles reliable sends, ordering, 
+and integrates with the message security classes.&nbsp; As user messages arrive, 
+they are stored a single producer single consumer queue.&nbsp; When a user wants 
+a message, by calling Receive(), this will return a pointer to one element of 
+the queue.&nbsp; When a user is done with a message, by calling DeallocatePacket(), 
+this will increment the write pointer of the queue.&nbsp; This is why you have 
+to return messages in the same order as you get them.</p>
+<p>Calling Receive() also does any 
+user-thread based processing.&nbsp; One case of this is <b>RakNet's plugin 
+system.</b>&nbsp; The plugin system is just an interface (PluginInterface.h) 
+that has hooks inside RakPeer to perform certain functionality on certain 
+events.&nbsp; The biggest two are Update() and the processing of packets in 
+OnReceive(), both of which happen when the user calls RakPeer::Receive().&nbsp; 
+This has two advantages.&nbsp; First, you don't have to keep track of which 
+plugin modules you are using.&nbsp; Second, if a plugin module has its own 
+message types, those message types can be processed in the plugin and blocked 
+from being returned from Receive().&nbsp; Hence, your application can add 
+modular functionality with no code changes beyond adding the plugin itself.</p>
+<p>RakNet's messaging system works 
+by treating the first byte of any message as an identifier indicating the format 
+and meaning of the rest of the data in the message.&nbsp; The message id bytes 
+used by RakNet are stored in the file MessageIdentifiers.h.&nbsp; Users that 
+want to extend this system can start their own enumerations starting at the 
+highest enumeration in MessageIdentifiers.h + 1.&nbsp; Users would then check 
+the first byte of messages that are returned to them and call a function to 
+handle the rest of the data in the message.&nbsp; To make this easier, RakNet 
+supports <b>remote function calls</b>.&nbsp; Essentially, remote function calls 
+perform this mapping for you by registering a string with a function pointer.&nbsp; 
+You then call RakPeer::RPC with the name of the function and if the other side 
+has that function registered, it will call the function pointer along with a 
+structure containing data such as encoded parameters and who sent the message.&nbsp; 
+This system has two further extensions.&nbsp; First, it supports return values 
+by blocking in the Receive() call until a message is returned or until a timeout 
+elapses.&nbsp; Second, it supports calling into object member functions, not 
+just static C functions.</p>
+<p>The <b>NetworkIDObject</b> 
+class provides the ability for systems to refer to common objects and is used by 
+object member remote function calls.&nbsp; It is a fairly simple system that has 
+the server assign a number to objects as they are created.&nbsp; When a client 
+creates an object, it is responsible for sending this event to the server, 
+getting the number to use when the object is created on the server in turn, and 
+then assigning this number to the object.&nbsp; This way systems can refer to 
+objects on multiple systems which would otherwise be impossible since pointer 
+addresses would probably not be the same.&nbsp; The easiest way to use this 
+system is to derive from it.&nbsp; However, you can also include it as a member 
+variable of your base class and call SetParent(parentClassPointer).&nbsp; The 
+disadvantage of this architecture is that it relies on a single system being 
+present to assign network IDs.&nbsp; This can be addressed by having <b>
+NetworkID</b>s be a <b>SystemAddress / NetworkID </b>pair instead of a simple number.&nbsp; 
+However, that takes more bandwidth which would be wasted in server/client 
+topology, which happens to be the most common case.&nbsp; It is currently 
+implemented using a single number.</p>
+<p>The <b>
+<a href="systemaddresses.html">SystemAddress</a></b> structure is what RakNet uses to 
+represent remote systems.&nbsp; It is the binary encoding of the IP address 
+along with the port of that system.</p>
+<p>The <b>
+<a href="bitstreams.html">BitStream</a></b> class, located in BitStream.h, is 
+natively supported by RakNet.&nbsp; This is both a user class and an internal 
+class.&nbsp; It is primarily used to write single bits to a stream and for 
+automatic endian swapping, which can be enabled by commenting out&nbsp; __BITSTREAM_NATIVE_END 
+in RakNetDefines.h.&nbsp; It is disabled by default for speed, since most users do 
+not need endian swapping.</p>
+<p>
+
+<BR>
+
+Next page: <A HREF="detailedimplementation.html">Detailed Implementation</A>
+</TD></TR></TABLE>
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">See Also</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+
+<A HREF="index.html">Index</A><BR>
+<A HREF="introduction.html">Introduction</A><BR>
+<A HREF="detailedimplementation.html">Detailed Implementation</A><BR>
+<A HREF="tutorial.html">Tutorial</A><BR>
+<A HREF="compilersetup.html">Compiler Setup</A><BR>
+
+</TD></TR></TABLE>
+</BODY>
+</HTML>

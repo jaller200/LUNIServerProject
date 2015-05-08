@@ -1,0 +1,67 @@
+<HTML>
+<HEAD>
+
+<TITLE>Replica Manager</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+</HEAD>
+<link href="RaknetManual.css" rel="stylesheet" type="text/css">
+<meta name="title" content="RakNet - Advanced multiplayer game networking API">
+</HEAD>
+<BODY BGCOLOR="#ffffff" LINK="#003399" vlink="#003399" alink="#003399" LEFTMARGIN="0" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0"">
+<span style="background-color: rgb(255, 255, 255);"><img src="RakNet_Icon_Final-copy.jpg" alt="Jenkins Software" width="150" height="150"></span><BR>
+<BR>
+
+<table width="100%" border="0"><tr>
+  <td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">Replica Manager 2 Plugin Interface Implementation</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR>
+  <TD>
+    <p><span class="RakNetBlueHeader">Replica Manager 2 Implementation Overview</span>      <BR>
+      </p>
+    <p>Any game that has objects that are created and destroyed while the game is in progress, almost all non-trivial games, faces a minimum of 3 problems:</p>
+    <ul>
+      <li>How to broadcast existing game objects to new players</li>
+      <li>How to broadcast new game objects to existing players</li>
+      <li>How to broadcast deleted game objects to existing players</li>
+    </ul>
+    <p>Additional potential problems, depending on  complexity and optimization</p>
+    <ul>
+      <li>How to only send object updates to players that can see those objects</li>
+      <li>How to create and destroy objects dynamically as the player moves around the world</li>
+      <li>How to allow the client to create objects locally when this is necessary right away for programming or graphical reasons (such as shooting a bullet).</li>
+      <li>How to indicate to a player when they are done downloading all game objects and can start playing</li>
+      </ul>
+    <p>The solution to most of these problems is usually straightforward, yet still requires a significant amount of work and debugging, with several dozen lines of code per object.</p>
+    <p>ReplicaManager2 is designed to be a generic, overridable plugin that handles as many of these details as possible automatically. ReplicaManager2 automatically creates and destroys objects, downloads the world to new players, manages players, and automatically serializes as needed. It also includes the advanced ability to automatically relay messages, to automatically serialize your objects when the serialized member data changes, and to automatically handle object scope based on a boolean callback indicating if a particular system can see a particular object.</p>
+    <p><strong> Quick start:</strong><br>
+      </p>
+    <ol>
+      <li> Create a class that derives from Connection_RM2, implementing the Construct() function. Construct() is a factory function that should return instances of your game objects, given a user-defined identifier.</li>
+      <li> Create a class that derives from Connection_RM2Factory, implementing AllocConnection() and DeallocConnection() to return instances of the class from step 1.</li>
+      <li> Attach ReplicaManager2 as a plugin</li>
+      <li> Call ReplicaManager2::SetConnectionFactory with an instance of the class from step 2.</li>
+      <li> For each of your game classes that use this system, derive from Replica2 and implement SerializeConstruction(), Serialize(), Deserialize(). The output of SerializeConstruction() is sent to Connection_RM2::Construct()</li>
+      <li> When these classes are allocated, call Replica2::SetReplicaManager() with the instance of ReplicaManager2 class created in step 3 (this could be done automatically in the constructor)</li>
+      <li> Creation: Use Replica2::SendConstruction() to create the object remotely, Replica2::SendDestruction() to delete the object remotely.</li>
+      <li> Scoping: Override Replica2::QueryVisibility() and Replica2::QueryConstruction() to return BQR_YES or BQR_NO if an object should be visible and in scope to a given connection. Defaults to BQR_ALWAYS</li>
+      <li> Automatic serialization: Call Replica2::AddAutoSerializeTimer() to automatically call Replica2::Serialize() at intervals, compare this to the last value, and broadcast out the object when the serialized variables change.</li>
+    </ol>    
+    <p>For a full list of functions with detailed documentation on each parameter, see ReplicaManager2.h.</p>
+    <p>The primary sample is located at <I>Samples\ReplicaManager2</I>. There is also a 3D sample, <a href="ogre3dinterpdemo.html">Ogre3DInterpDemo</a><BR>
+      </p></TD>
+</TR></TABLE>
+
+<table width="100%" border="0"><tr><td bgcolor="#2c5d92" class="RakNetWhiteHeader">
+<img src="spacer.gif" width="8" height="1">See Also</td>
+</tr></table>
+<TABLE BORDER="0" CELLPADDING="10" CELLSPACING="0" WIDTH="100%"><TR><TD>
+
+  <p><A HREF="index.html">Index</A><BR>
+      <A HREF="plugininterface.html">PluginInterface</A><br>
+      <a href="ogre3dinterpdemo.html">Ogre3DInterpDemo</a><BR>
+        <BR>
+    </p>
+  </TD></TR></TABLE>
+</BODY>
+</HTML>

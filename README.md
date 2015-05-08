@@ -40,8 +40,8 @@ See [CONTRIBUTING](CONTRIBUTING.md)
 
 0.1.0: Concept
 
-##Credits and License, and Disclaimer
-See [CREDITS AND LICENSE.md](CREDITS AND LICENSE.md)
+##Credits and License
+See [CREDITS AND LICENSE](CREDITS AND LICENSE.md)
 
 ##Disclaimer
 

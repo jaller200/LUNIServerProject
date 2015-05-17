@@ -1,20 +1,9 @@
-﻿Build started 1/26/2015 9:47:56 PM.
-     1>Project "C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server\SUtil\SUtil.vcxproj" on node 3 (Rebuild target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Exceptions.cpp IniReader.cpp MemWrp.cpp Object.cpp
-         Exceptions.cpp
-         IniReader.cpp
-     1>IniReader.cpp(19): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-         MemWrp.cpp
-         Object.cpp
-       Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server\Release\SUtil.lib" /NOLOGO /LTCG Release\Exceptions.obj
-         Release\IniReader.obj
-         Release\MemWrp.obj
-         Release\Object.obj
-         SUtil.vcxproj -> C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server\Release\SUtil.lib
-     1>Done Building Project "C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server\SUtil\SUtil.vcxproj" (Rebuild target(s)).
+﻿Build started 5/16/2015 12:25:02 PM.
+     1>Project "C:\Users\knigh\Documents\GitHub\Fork\LUNIServerProject\Source\LUNI Latest No SQL\Source\SUtil\SUtil.vcxproj" on node 3 (Build target(s)).
+     1>Lib:
+         SUtil.vcxproj -> C:\Users\knigh\Documents\GitHub\Fork\LUNIServerProject\Source\LUNI Latest No SQL\Source\Release\SUtil.lib
+     1>Done Building Project "C:\Users\knigh\Documents\GitHub\Fork\LUNIServerProject\Source\LUNI Latest No SQL\Source\SUtil\SUtil.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:06.38
+Time Elapsed 00:00:00.86

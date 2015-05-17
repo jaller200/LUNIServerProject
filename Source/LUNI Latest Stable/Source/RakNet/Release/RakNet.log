@@ -1,0 +1,191 @@
+﻿Build started 5/16/2015 12:21:02 PM.
+     1>Project "C:\Users\knigh\Documents\GitHub\Fork\LUNIServerProject\Source\LUNI Latest Stable\Source\RakNet\RakNet.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl- /O2 /Oi /Oy- /GL /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AsynchronousFileIO.cpp AutoRPC.cpp BitStream.cpp BitStream_NoTemplate.cpp CheckSum.cpp CommandParserInterface.cpp ConnectionGraph.cpp ConsoleServer.cpp DataBlockEncryptor.cpp DataCompressor.cpp DirectoryDeltaTransfer.cpp DS_BytePool.cpp DS_ByteQueue.cpp DS_HuffmanEncodingTree.cpp DS_Table.cpp EmailSender.cpp EncodeClassName.cpp EpochTimeToString.cpp ExtendedOverlappedPool.cpp FileList.cpp FileListTransfer.cpp FileOperations.cpp FormatString.cpp FullyConnectedMesh.cpp FunctionThread.cpp Gen_RPC8.cpp GetTime.cpp GridSectorizer.cpp HTTPConnection.cpp InlineFunctor.cpp Itoa.cpp LightweightDatabaseClient.cpp LightweightDatabaseCommon.cpp LightweightDatabaseServer.cpp LinuxStrings.cpp LogCommandParser.cpp MessageFilter.cpp NatPunchthrough.cpp NetworkIDManager.cpp NetworkIDObject.cpp PacketConsoleLogger.cpp PacketFileLogger.cpp PacketLogger.cpp PluginInterface.cpp RakMemoryOverride.cpp RakNetCommandParser.cpp RakNetStatistics.cpp RakNetTransport.cpp RakNetTypes.cpp RakNetworkFactory.cpp RakPeer.cpp RakSleep.cpp RakString.cpp RakThread.cpp Rand.cpp ReadyEvent.cpp ReliabilityLayer.cpp ReplicaManager.cpp ReplicaManager2.cpp rijndael.cpp Router.cpp RPCMap.cpp SHA1.cpp SimpleMutex.cpp SocketLayer.cpp StringCompressor.cpp StringTable.cpp SuperFastHash.cpp SystemAddressList.cpp TableSerializer.cpp TCPInterface.cpp TelnetTransport.cpp ThreadsafePacketLogger.cpp _FindFirst.cpp
+         AsynchronousFileIO.cpp
+         AutoRPC.cpp
+         BitStream.cpp
+         BitStream_NoTemplate.cpp
+         CheckSum.cpp
+         CommandParserInterface.cpp
+     1>CommandParserInterface.cpp(151): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 C:\Program Files\Windows Kits\8.1\Include\um\winsock2.h(1868) : see declaration of 'inet_ntoa'
+     1>CommandParserInterface.cpp(152): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 C:\Program Files\Windows Kits\8.1\Include\um\winsock2.h(1868) : see declaration of 'inet_ntoa'
+         ConnectionGraph.cpp
+         ConsoleServer.cpp
+         DataBlockEncryptor.cpp
+     1>DataBlockEncryptor.cpp(142): warning C4101: 'randomChar' : unreferenced local variable
+         DataCompressor.cpp
+         DirectoryDeltaTransfer.cpp
+         DS_BytePool.cpp
+         DS_ByteQueue.cpp
+         DS_HuffmanEncodingTree.cpp
+         DS_Table.cpp
+         EmailSender.cpp
+         EncodeClassName.cpp
+         EpochTimeToString.cpp
+         ExtendedOverlappedPool.cpp
+         FileList.cpp
+         Compiling...
+         FileListTransfer.cpp
+         FileOperations.cpp
+         FormatString.cpp
+         FullyConnectedMesh.cpp
+         FunctionThread.cpp
+         Gen_RPC8.cpp
+         GetTime.cpp
+         GridSectorizer.cpp
+         HTTPConnection.cpp
+         InlineFunctor.cpp
+         Itoa.cpp
+         LightweightDatabaseClient.cpp
+         LightweightDatabaseCommon.cpp
+         LightweightDatabaseServer.cpp
+         LinuxStrings.cpp
+         LogCommandParser.cpp
+         MessageFilter.cpp
+         NatPunchthrough.cpp
+         NetworkIDManager.cpp
+         NetworkIDObject.cpp
+         Compiling...
+         PacketConsoleLogger.cpp
+         PacketFileLogger.cpp
+         PacketLogger.cpp
+         PluginInterface.cpp
+         RakMemoryOverride.cpp
+         RakNetCommandParser.cpp
+         RakNetStatistics.cpp
+         RakNetTransport.cpp
+         RakNetTypes.cpp
+     1>RakNetTypes.cpp(86): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 C:\Program Files\Windows Kits\8.1\Include\um\winsock2.h(1868) : see declaration of 'inet_ntoa'
+         RakNetworkFactory.cpp
+         RakPeer.cpp
+     1>RakPeer.cpp(374): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 C:\Program Files\Windows Kits\8.1\Include\um\winsock2.h(1850) : see declaration of 'inet_addr'
+     1>RakPeer.cpp(376): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 C:\Program Files\Windows Kits\8.1\Include\um\winsock2.h(1850) : see declaration of 'inet_addr'
+         -- RakNet: _RAKNET_THREADSAFE not defined.  Do NOT use multiple threads on the same instance of RakPeer (Fast!). --
+         -- RakNet: Using WaitForSingleObject. Comment out USE_WAIT_FOR_MULTIPLE_EVENTS in RakNetDefines.h if you want to use Sleep instead. --
+         RakSleep.cpp
+         RakString.cpp
+         RakThread.cpp
+         Rand.cpp
+         ReadyEvent.cpp
+         ReliabilityLayer.cpp
+         ReplicaManager.cpp
+         ReplicaManager2.cpp
+         rijndael.cpp
+         Compiling...
+         Router.cpp
+         RPCMap.cpp
+         SHA1.cpp
+         SimpleMutex.cpp
+         SocketLayer.cpp
+     1>SocketLayer.cpp(283): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 C:\Program Files\Windows Kits\8.1\Include\um\winsock2.h(1850) : see declaration of 'inet_addr'
+     1>SocketLayer.cpp(348): warning C4996: 'gethostbyname': Use getaddrinfo() or GetAddrInfoW() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 C:\Program Files\Windows Kits\8.1\Include\um\winsock2.h(2238) : see declaration of 'gethostbyname'
+     1>SocketLayer.cpp(361): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 C:\Program Files\Windows Kits\8.1\Include\um\winsock2.h(1868) : see declaration of 'inet_ntoa'
+     1>SocketLayer.cpp(589): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 C:\Program Files\Windows Kits\8.1\Include\um\winsock2.h(1850) : see declaration of 'inet_addr'
+     1>SocketLayer.cpp(665): warning C4996: 'gethostbyname': Use getaddrinfo() or GetAddrInfoW() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 C:\Program Files\Windows Kits\8.1\Include\um\winsock2.h(2238) : see declaration of 'gethostbyname'
+     1>SocketLayer.cpp(693): warning C4996: 'inet_ntoa': Use inet_ntop() or InetNtop() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 C:\Program Files\Windows Kits\8.1\Include\um\winsock2.h(1868) : see declaration of 'inet_ntoa'
+         StringCompressor.cpp
+         StringTable.cpp
+         SuperFastHash.cpp
+         SystemAddressList.cpp
+         TableSerializer.cpp
+         TCPInterface.cpp
+     1>TCPInterface.cpp(198): warning C4996: 'inet_addr': Use inet_pton() or InetPton() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 C:\Program Files\Windows Kits\8.1\Include\um\winsock2.h(1850) : see declaration of 'inet_addr'
+     1>TCPInterface.cpp(361): warning C4996: 'gethostbyname': Use getaddrinfo() or GetAddrInfoW() instead or define _WINSOCK_DEPRECATED_NO_WARNINGS to disable deprecated API warnings
+                 C:\Program Files\Windows Kits\8.1\Include\um\winsock2.h(2238) : see declaration of 'gethostbyname'
+         TelnetTransport.cpp
+         ThreadsafePacketLogger.cpp
+         _FindFirst.cpp
+       Lib:
+         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\knigh\Documents\GitHub\Fork\LUNIServerProject\Source\LUNI Latest Stable\Source\Release\RakNet.lib" /NOLOGO /LTCG Release\AsynchronousFileIO.obj
+         Release\AutoRPC.obj
+         Release\BitStream.obj
+         Release\BitStream_NoTemplate.obj
+         Release\CheckSum.obj
+         Release\CommandParserInterface.obj
+         Release\ConnectionGraph.obj
+         Release\ConsoleServer.obj
+         Release\DataBlockEncryptor.obj
+         Release\DataCompressor.obj
+         Release\DirectoryDeltaTransfer.obj
+         Release\DS_BytePool.obj
+         Release\DS_ByteQueue.obj
+         Release\DS_HuffmanEncodingTree.obj
+         Release\DS_Table.obj
+         Release\EmailSender.obj
+         Release\EncodeClassName.obj
+         Release\EpochTimeToString.obj
+         Release\ExtendedOverlappedPool.obj
+         Release\FileList.obj
+         Release\FileListTransfer.obj
+         Release\FileOperations.obj
+         Release\FormatString.obj
+         Release\FullyConnectedMesh.obj
+         Release\FunctionThread.obj
+         Release\Gen_RPC8.obj
+         Release\GetTime.obj
+         Release\GridSectorizer.obj
+         Release\HTTPConnection.obj
+         Release\InlineFunctor.obj
+         Release\Itoa.obj
+         Release\LightweightDatabaseClient.obj
+         Release\LightweightDatabaseCommon.obj
+         Release\LightweightDatabaseServer.obj
+         Release\LinuxStrings.obj
+         Release\LogCommandParser.obj
+         Release\MessageFilter.obj
+         Release\NatPunchthrough.obj
+         Release\NetworkIDManager.obj
+         Release\NetworkIDObject.obj
+         Release\PacketConsoleLogger.obj
+         Release\PacketFileLogger.obj
+         Release\PacketLogger.obj
+         Release\PluginInterface.obj
+         Release\RakMemoryOverride.obj
+         Release\RakNetCommandParser.obj
+         Release\RakNetStatistics.obj
+         Release\RakNetTransport.obj
+         Release\RakNetTypes.obj
+         Release\RakNetworkFactory.obj
+         Release\RakPeer.obj
+         Release\RakSleep.obj
+         Release\RakString.obj
+         Release\RakThread.obj
+         Release\Rand.obj
+         Release\ReadyEvent.obj
+         Release\ReliabilityLayer.obj
+         Release\ReplicaManager.obj
+         Release\ReplicaManager2.obj
+         Release\rijndael.obj
+         Release\Router.obj
+         Release\RPCMap.obj
+         Release\SHA1.obj
+         Release\SimpleMutex.obj
+         Release\SocketLayer.obj
+         Release\StringCompressor.obj
+         Release\StringTable.obj
+         Release\SuperFastHash.obj
+         Release\SystemAddressList.obj
+         Release\TableSerializer.obj
+         Release\TCPInterface.obj
+         Release\TelnetTransport.obj
+         Release\ThreadsafePacketLogger.obj
+         Release\_FindFirst.obj
+         RakNet.vcxproj -> C:\Users\knigh\Documents\GitHub\Fork\LUNIServerProject\Source\LUNI Latest Stable\Source\Release\RakNet.lib
+     1>Done Building Project "C:\Users\knigh\Documents\GitHub\Fork\LUNIServerProject\Source\LUNI Latest Stable\Source\RakNet\RakNet.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:48.37

@@ -1,94 +1,94 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="File di origine">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="File di intestazione">
+    <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
-    <Filter Include="File di risorse">
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Service">
+      <UniqueIdentifier>{2cc4dc73-17a5-42a5-bab6-9cd9ebcf8003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="File di origine\Service">
-      <UniqueIdentifier>{2cc4dc73-17a5-42a5-bab6-9cd9ebcf8003}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="legoPackets.h">
-      <Filter>File di intestazione</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="serverLoop.h">
-      <Filter>File di intestazione</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
-      <Filter>File di intestazione</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="User.h">
-      <Filter>File di intestazione</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Common.h">
-      <Filter>File di intestazione</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Database.h">
-      <Filter>File di intestazione</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="World.h">
-      <Filter>File di intestazione</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Color.h">
-      <Filter>File di intestazione</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="UsersPool.h">
-      <Filter>File di intestazione</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
-      <Filter>File di intestazione</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>File di origine</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Database.cpp">
-      <Filter>File di origine</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="User.cpp">
-      <Filter>File di origine</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Character.cpp">
-      <Filter>File di origine</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Common.cpp">
-      <Filter>File di origine</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="World.cpp">
-      <Filter>File di origine</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AuthLoop.cpp">
-      <Filter>File di origine\Service</Filter>
+      <Filter>Source Files\Service</Filter>
     </ClCompile>
     <ClCompile Include="CharactersLoop.cpp">
-      <Filter>File di origine\Service</Filter>
+      <Filter>Source Files\Service</Filter>
     </ClCompile>
     <ClCompile Include="WorldLoop.cpp">
-      <Filter>File di origine\Service</Filter>
+      <Filter>Source Files\Service</Filter>
     </ClCompile>
     <ClCompile Include="serverLoop.cpp">
-      <Filter>File di origine\Service</Filter>
+      <Filter>Source Files\Service</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc">
-      <Filter>File di risorse</Filter>
+      <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="lu.ico">
-      <Filter>File di risorse</Filter>
+      <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
 </Project>

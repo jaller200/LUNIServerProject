@@ -1,0 +1,21 @@
+﻿Build started 5/12/2015 8:52:04 PM.
+     1>Project "C:\Users\knigh\Documents\GitHub\Fork\LUNIServerProject\Source\LUNI Latest Stable\Source\SUtil\SUtil.vcxproj" on node 3 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Exceptions.cpp IniReader.cpp MemWrp.cpp Object.cpp
+         Object.cpp
+         MemWrp.cpp
+         IniReader.cpp
+     1>c:\users\knigh\documents\github\fork\luniserverproject\source\luni latest stable\source\sutil\inireader.cpp(24): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+         Exceptions.cpp
+         Generating Code...
+       Lib:
+         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\knigh\Documents\GitHub\Fork\LUNIServerProject\Source\LUNI Latest Stable\Source\Debug\SUtil.lib" /NOLOGO Debug\Exceptions.obj
+         Debug\IniReader.obj
+         Debug\MemWrp.obj
+         Debug\Object.obj
+         SUtil.vcxproj -> C:\Users\knigh\Documents\GitHub\Fork\LUNIServerProject\Source\LUNI Latest Stable\Source\Debug\SUtil.lib
+     1>Done Building Project "C:\Users\knigh\Documents\GitHub\Fork\LUNIServerProject\Source\LUNI Latest Stable\Source\SUtil\SUtil.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:14.17

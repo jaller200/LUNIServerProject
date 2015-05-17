@@ -1,0 +1,48 @@
+﻿Build started 5/16/2015 12:21:50 PM.
+     1>Project "C:\Users\knigh\Documents\GitHub\Fork\LUNIServerProject\Source\LUNI Latest Stable\Source\LUNI Server.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IMySql\include /Zi /nologo /W3 /WX- /sdl- /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AuthLoop.cpp Character.cpp CharactersLoop.cpp Common.cpp Database.cpp main.cpp serverLoop.cpp AuthPackets.cpp Packet.cpp CharPackets.cpp User.cpp World.cpp WorldLoop.cpp
+         AuthLoop.cpp
+         Character.cpp
+         CharactersLoop.cpp
+         Common.cpp
+         Database.cpp
+         main.cpp
+         serverLoop.cpp
+         AuthPackets.cpp
+         Packet.cpp
+         CharPackets.cpp
+     1>CharPackets.cpp(92): warning C4244: '=' : conversion from 'ulong' to 'ushort', possible loss of data
+     1>CharPackets.cpp(561): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>CharPackets.cpp(678): warning C4018: '<' : signed/unsigned mismatch
+         User.cpp
+     1>User.cpp(113): warning C4553: '==' : operator has no effect; did you intend '='?
+         World.cpp
+         WorldLoop.cpp
+       ResourceCompile:
+         C:\Program Files\Windows Kits\8.1\bin\x86\rc.exe /l"0x0409" /nologo /fo"Release\Resource.res" Resource.rc 
+       Link:
+         C:\Program Files\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\knigh\Documents\GitHub\Fork\LUNIServerProject\Source\LUNI Latest Stable\Source\Release\LUNI Server.exe" /NOLOGO /LIBPATH:MySql\lib /LIBPATH:"C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server Release Source\MySql\lib" /LIBPATH:Release ws2_32.lib libmysql.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\knigh\Documents\GitHub\Fork\LUNIServerProject\Source\LUNI Latest Stable\Source\Release\LUNI Server.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\knigh\Documents\GitHub\Fork\LUNIServerProject\Source\LUNI Latest Stable\Source\Release\LUNI Server.lib" /MACHINE:X86 /SAFESEH Release\Resource.res
+         Release\AuthLoop.obj
+         Release\Character.obj
+         Release\CharactersLoop.obj
+         Release\Common.obj
+         Release\Database.obj
+         Release\main.obj
+         Release\serverLoop.obj
+         Release\AuthPackets.obj
+         Release\Packet.obj
+         Release\CharPackets.obj
+         Release\User.obj
+         Release\World.obj
+         Release\WorldLoop.obj
+         "C:\Users\knigh\Documents\GitHub\Fork\LUNIServerProject\Source\LUNI Latest Stable\Source\Release\RakNet.lib"
+         "C:\Users\knigh\Documents\GitHub\Fork\LUNIServerProject\Source\LUNI Latest Stable\Source\Release\SUtil.lib"
+         Generating code
+         Finished generating code
+         LUNI Server.vcxproj -> C:\Users\knigh\Documents\GitHub\Fork\LUNIServerProject\Source\LUNI Latest Stable\Source\Release\LUNI Server.exe
+     1>Done Building Project "C:\Users\knigh\Documents\GitHub\Fork\LUNIServerProject\Source\LUNI Latest Stable\Source\LUNI Server.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:31.89

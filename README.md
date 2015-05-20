@@ -28,7 +28,11 @@ See [CONTRIBUTING](CONTRIBUTING.md)
 
 0.7.0: [In Progress]
 
+0.6.0a: Same relative changes as 0.5.1a
+
 0.6.0: Dynamic packet construction (auth and char) and forced saving to SQL, bug in the world server
+
+0.5.1a: Fixed common compilation and execution errors caused by incorrect project settings and missing DLLs. 
 
 0.5.1: Allowed for server to be compiled into Release
 

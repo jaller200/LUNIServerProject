@@ -11,7 +11,7 @@ Repository Owner: [jaller200 (Jon002)](https://github.com/jaller200)
 
 * [Visual Studio 2013](https://www.visualstudio.com/downloads/download-visual-studio-vs) (community/express will work file)
 * [XAMPP](https://www.apachefriends.org/index.html) or similar WAMP stack (specifically a MySQL server and the ability to set it up with the LUNI software)
-* LUNI Compatable LEGO Universe client for testing ([Nexus2](http://timtechsoftware.com/lu/nexus2.zip) client suggested, listed as “Nexus” Client #2 by startreklover)
+* LUNI Compatable LEGO Universe client for testing ([Nexus2 [Direct Download]](http://timtechsoftware.com/lu/nexus2.zip) client suggested)
 
 ##Usage
 

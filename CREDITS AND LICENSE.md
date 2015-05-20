@@ -1,10 +1,8 @@
 ##Credits
 
-Software:
+Original project by raffa505; did work on: 30.01.2013 - 14.02.2013 (Database MySQL, Character, User, World, Color, Threads, Loading both Nimbus Isle and Nimbus Station)
 
 Code done by humanoid24 (aka Triver) as of 01.12.2013
-
-Additional credits to raffa505 30.01.2013 - 14.02.2013 (Database MySQL, Character, User, World, Color, Threads, Loading both Nimbus Isle and Nimbus Station)
 
 Added code and additional documentation done by Jon002 20.02.2015 (Character Creation, Custom Logins and success states, Dynamic Packets for Auth and Char servers)
 

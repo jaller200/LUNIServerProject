@@ -1,7 +1,7 @@
 # LUNIServerProject
 A repository trying to bring back the defunct game, LEGO Universe.
 
-This is a GitHub-Project for the developers of LUNI (Lego Universe Newly Imagined), a project to create a server in C++, using the RakNet libraries, that will be able to provide all aspects of the LEGO Universe game as it was when it was live. Don't download any files from here if you aren't a developer, because the versions here aren't tested and may include many bugs. If you are searching for a tested version of the LUNI-Server, visit http://timtechsoftware.com/?page_id=1065.
+This is a GitHub-Project for the developers of LUNI (Lego Universe Newly Imagined), a project to create a server in C++, using the RakNet libraries, that will be able to provide all aspects of the LEGO Universe game as it was when it was live. Don't download any files from here if you aren't a developer, because the versions here aren't tested and may include many bugs. If you are searching for a tested version of the LUNI-Server, visit [TimTech Software](http://bit.ly/-lu-).
 
 If you would like to get involved, but don't have enough knowledge, please see the [kickstart in the wiki](https://github.com/jaller200/LUNIServerProject/wiki/Getting-Started-in-Development).
 
@@ -9,9 +9,9 @@ Repository Owner: [jaller200 (Jon002)](https://github.com/jaller200)
 
 ##Requirements
 
-* [Visual Studio 2013](https://www.visualstudio.com/downloads/download-visual-studio-vs) (community/express will work file)
+* [Visual Studio 2013](https://www.visualstudio.com/downloads/download-visual-studio-vs) (community/express will work fine)
 * [XAMPP](https://www.apachefriends.org/index.html) or similar WAMP stack (specifically a MySQL server and the ability to set it up with the LUNI software)
-* LUNI Compatable LEGO Universe client for testing ([Nexus2 [Direct Download]](http://timtechsoftware.com/lu/nexus2.zip) client suggested)
+* LUNI Compatable LEGO Universe client for testing ([Nexus2 (Direct Download)](http://timtechsoftware.com/lu/nexus2.zip) client suggested)
 
 ##Usage
 
@@ -24,7 +24,7 @@ Repository Owner: [jaller200 (Jon002)](https://github.com/jaller200)
 See [CONTRIBUTING](CONTRIBUTING.md)
 
 ##ChangeLog
-(Much info thanks to [luni.info](http://luni.info/servers/))
+Much info thanks to [luni.info's server changelog](http://luni.info/servers/).
 
 0.7.0: [In Progress]
 

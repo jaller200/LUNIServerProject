@@ -1,0 +1,21 @@
+﻿Build started 4/10/2015 7:20:14 PM.
+     1>Project "C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server Release Source\SUtil\SUtil.vcxproj" on node 3 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Exceptions.cpp IniReader.cpp MemWrp.cpp Object.cpp
+         Object.cpp
+         MemWrp.cpp
+         IniReader.cpp
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\sutil\inireader.cpp(24): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+         Exceptions.cpp
+         Generating Code...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server Release Source\Debug\SUtil.lib" /NOLOGO Debug\Exceptions.obj
+         Debug\IniReader.obj
+         Debug\MemWrp.obj
+         Debug\Object.obj
+         SUtil.vcxproj -> C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server Release Source\Debug\SUtil.lib
+     1>Done Building Project "C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server Release Source\SUtil\SUtil.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:09.17

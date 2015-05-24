@@ -145,7 +145,7 @@ void CharactersLoop(CONNECT_INFO* cfg, Ref< UsersPool > OnlineUsers, Ref< CrossT
 									else if ( usr->nextcid == 2444680020 ) s << " monkeybrown!\n";
 									else if ( usr->nextcid == 1534792735 ) s << " GruntMonkey!\n";
 									else if ( usr->nextcid == 1457240027 ) s << " Shafantastic!\n";
-									else s << "Unknown ID: " << usr->nextcid << endl;
+									else s << "Unknown Character ID: " << usr->nextcid << endl;
 									OutputQueue->Insert(s.str());
 								#endif
 								}

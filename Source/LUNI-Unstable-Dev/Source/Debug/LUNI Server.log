@@ -1,0 +1,53 @@
+﻿Build started 5/5/2015 10:00:42 PM.
+     1>Project "C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server Release Source\LUNI Server.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IMySql\include /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _CRT_SECURE_NO_WARNINGS /D DEBUG /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Character.cpp
+         Character.cpp
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(38): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(39): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(40): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(43): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(44): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(45): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(46): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(49): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(50): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(51): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(52): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(53): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(54): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(269): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(293): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(1406): warning C4244: 'argument' : conversion from 'wchar_t' to 'char', possible loss of data
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(255): warning C4101: 'nameData' : unreferenced local variable
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(220): warning C4101: 'wcharData' : unreferenced local variable
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(222): warning C4101: 'doubleData' : unreferenced local variable
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(1451): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\the doctor\luniserver\luniserver_version_5_downloaded\luniserver\luni server release source\character.cpp(1572): warning C4018: '<' : signed/unsigned mismatch
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server Release Source\Debug\LUNI Server.exe" /INCREMENTAL /NOLOGO /LIBPATH:MySql\lib /LIBPATH:Debug ws2_32.lib libmysql.lib SUtil.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server Release Source\Debug\LUNI Server.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server Release Source\Debug\LUNI Server.lib" /MACHINE:X86 Debug\Resource.res
+         Debug\AuthLoop.obj
+         Debug\Character.obj
+         Debug\Character_old.obj
+         Debug\CharactersLoop.obj
+         Debug\Common.obj
+         Debug\Database.obj
+         Debug\main.obj
+         Debug\Player.obj
+         Debug\serverLoop.obj
+         Debug\AuthPackets.obj
+         Debug\Packet.obj
+         Debug\CharPackets.obj
+         Debug\GameMessages.obj
+         Debug\User.obj
+         Debug\World.obj
+         Debug\WorldLoop.obj
+         Debug\WorldPackets.obj
+         "C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server Release Source\Debug\RakNet.lib"
+         "C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server Release Source\Debug\SUtil.lib"
+         LUNI Server.vcxproj -> C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server Release Source\Debug\LUNI Server.exe
+     1>Done Building Project "C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server Release Source\LUNI Server.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:02:26.71

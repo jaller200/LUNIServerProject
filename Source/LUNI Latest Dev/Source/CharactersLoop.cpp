@@ -33,7 +33,7 @@ void CharactersLoop(CONNECT_INFO* cfg, Ref< UsersPool > OnlineUsers, Ref< CrossT
 	// server to function properly)
 	if (rakServer->Startup(8, 30, &socketDescriptor, 1)) {
 		stringstream s;
-		s << "characters started! Listening on: " << cfg->listenPort << "\n";
+		s << "Characters started! Listening on: " << cfg->listenPort << "\n";
 		OutputQueue->Insert(s.str());
 	} else exit(2);
 
@@ -103,7 +103,7 @@ void CharactersLoop(CONNECT_INFO* cfg, Ref< UsersPool > OnlineUsers, Ref< CrossT
 									AddCharToDatabase(rakServer, packet->systemAddress, packet->data, packet->length, usr);
 								}
 								else {
-									cout << "ERROR SAVING USER! USER IS NULL!!!" << endl;
+									cout << "ERROR SAVING USER: User is null." << endl;
 								}
 								
 								// If the username is in use, do NOT send the char packet. Otherwise, send it
@@ -145,7 +145,7 @@ void CharactersLoop(CONNECT_INFO* cfg, Ref< UsersPool > OnlineUsers, Ref< CrossT
 									else if ( usr->nextcid == 2444680020 ) s << " monkeybrown!\n";
 									else if ( usr->nextcid == 1534792735 ) s << " GruntMonkey!\n";
 									else if ( usr->nextcid == 1457240027 ) s << " Shafantastic!\n";
-									else s << " Unknow cid: " << usr->nextcid << endl;
+									else s << "Unknown Character ID: " << usr->nextcid << endl;
 									OutputQueue->Insert(s.str());
 								#endif
 								}
@@ -176,7 +176,7 @@ void CharactersLoop(CONNECT_INFO* cfg, Ref< UsersPool > OnlineUsers, Ref< CrossT
 						stringstream s;
 
 						// If packet is unidentified, print data to console
-						s << "\ncharacters received unknow pakcet: " << RawDataToString(packet->data, packet->length) << endl;
+						s << "\nCharacters received unknown packet: " << RawDataToString(packet->data, packet->length) << endl;
 						OutputQueue->Insert(s.str());
 				}
 
@@ -201,7 +201,7 @@ void CharactersLoop(CONNECT_INFO* cfg, Ref< UsersPool > OnlineUsers, Ref< CrossT
 			// Default msg (if packet is unidentified)
 			default:
 				stringstream s;
-				s << "\ncharacters received unknow pakcet: " << RawDataToString(packet->data, packet->length) << endl;
+				s << "\nCharacters received unknown packet: " << RawDataToString(packet->data, packet->length) << endl;
 				OutputQueue->Insert(s.str());
 		}
 	}

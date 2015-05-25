@@ -11,6 +11,8 @@ Client:
 
 Original client by The LEGO Group/Netdevil<br>
 
+Uploaded by Jon002 and hosted by Timtech
+
 Client's audio files fixed by CDFalcon and startreklover
 
 <br>

@@ -16,7 +16,7 @@ void SendCharPacket(RakPeerInterface *rakServer, SystemAddress& systemAddress, R
 	CreatePacketHeader(ID_USER_PACKET_ENUM, 5, 6, &bitStream);
 	
 	if (usr == NULL) {
-		cout << "Usr is null!!! ERROR!" << endl;
+		cout << "ERROR: User is null!" << endl;
 	}
 
 	uchar charactersLength = (uchar)usr->userChars;

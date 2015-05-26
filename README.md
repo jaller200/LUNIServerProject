@@ -54,4 +54,4 @@ See [CREDITS AND LICENSE](CREDITS AND LICENSE.md)
 The LEGO® Group does endorse or authorize the operation of this game and is not liable for any safety issues in relation to the operation of this game. Use permitted on a solely non-commercial basis.
 
 
-This project is not endorsed or addiliated with the original LUNI Server repository at http://sourceforge.net/projects/luniserver/
+This project is not endorsed or affiliated with the original LUNI Server repository at http://sourceforge.net/projects/luniserver/

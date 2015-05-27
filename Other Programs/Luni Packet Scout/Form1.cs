@@ -46,7 +46,7 @@ namespace Luni_Packet_Scout_Cs
         }
 
         private void bgw_DoWork(object sender, DoWorkEventArgs e) {
-            buff = "Listening on door " + ndoor.Value + endl;
+            buff = "Listening on port " + ndoor.Value + endl;
 
             while (socket != null) {
                 if (socket.Available > 0) {

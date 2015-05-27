@@ -8,7 +8,7 @@ namespace Luni_Packet_Scout_Cs
     static class Program
     {
         /// <summary>
-        /// Punto di ingresso principale dell'applicazione.
+        /// Main entry point of the application.
         /// </summary>
         [STAThread]
         static void Main()

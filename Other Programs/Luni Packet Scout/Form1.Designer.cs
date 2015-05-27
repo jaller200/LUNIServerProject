@@ -3,14 +3,14 @@
     partial class Form1
     {
         /// <summary>
-        /// Variabile di progettazione necessaria.
+        /// Required.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Liberare le risorse in uso.
+        /// All resources are open source.
         /// </summary>
-        /// <param name="disposing">ha valore true se le risorse gestite devono essere eliminate, false in caso contrario.</param>
+        /// <param name="disposing">Set to true if values should be disposed of.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,11 +20,10 @@
             base.Dispose(disposing);
         }
 
-        #region Codice generato da Progettazione Windows Form
+        #region Code by Windows Form Designer
 
         /// <summary>
-        /// Metodo necessario per il supporto della finestra di progettazione. Non modificare
-        /// il contenuto del metodo con l'editor di codice.
+        /// Do not modify.
         /// </summary>
         private void InitializeComponent()
         {
@@ -65,7 +64,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(36, 16);
             this.label1.TabIndex = 1;
-            this.label1.Text = "door";
+            this.label1.Text = "Port";
             // 
             // btnstart
             // 
@@ -111,7 +110,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ndoor);
             this.Name = "Form1";
-            this.Text = "Ultra Luni Packet Scouter";
+            this.Text = "LEGO Universe Newly Imagined Packet Scout";
             ((System.ComponentModel.ISupportInitialize)(this.ndoor)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -128,4 +127,3 @@
         private System.Windows.Forms.Timer tmbuf;
     }
 }
-

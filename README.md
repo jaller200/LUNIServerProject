@@ -32,7 +32,7 @@ Much info thanks to [luni.info's server changelog](http://luni.info/servers/).
 
 0.6.0: Dynamic packet construction (auth and char) and forced saving to SQL, bug in the world server
 
-0.5.1a: Fixed common compilation and execution errors caused by incorrect project settings and missing DLLs. 
+0.5.1a: Fixed common compilation and execution errors caused by incorrect project settings and missing DLLs 
 
 0.5.1: Allowed for server to be compiled into Release
 
@@ -51,7 +51,7 @@ See [CREDITS AND LICENSE](CREDITS AND LICENSE.md)
 
 ##Disclaimer
 
-The LEGO® Group does endorse or authorize the operation of this game and is not liable for any safety issues in relation to the operation of this game. Use permitted on a solely non-commercial basis.
+The LEGO® Group does not endorse or authorize the operation of this game and is not liable for any safety issues in relation to the operation of this game. Use permitted on a solely non-commercial basis.
 
 
 This project is not endorsed or affiliated with the original LUNI Server repository at http://sourceforge.net/projects/luniserver/

@@ -5,7 +5,7 @@ This is a GitHub-Project for the developers of LUNI (Lego Universe Newly Imagine
 
 If you would like to get involved, but don't have enough knowledge, please see the [kickstart in the wiki](https://github.com/jaller200/LUNIServerProject/wiki/Getting-Started-in-Development).
 
-Please join the Freenode channel #luni-server for general LUNI discussion, and #luni-server-dev for discussion of LUNI software development. 
+Please visit out development IRC channel at #luni-server-dev on Freenode! [![Visit the development IRC channel](https://kiwiirc.com/buttons/irc.freenode.net/luni-server-dev.png)](https://kiwiirc.com/client/irc.freenode.net/?nick=luniuser|?&theme=mini#luni-server-dev)
 
 Repository Owner: [jaller200 (Jon002)](https://github.com/jaller200)
 

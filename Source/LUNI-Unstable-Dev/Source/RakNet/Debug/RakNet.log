@@ -1,0 +1,83 @@
+﻿Build started 4/10/2015 8:02:45 PM.
+     1>Project "C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server Release Source\RakNet\RakNet.vcxproj" on node 2 (Build target(s)).
+     1>Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server Release Source\Debug\RakNet.lib" /NOLOGO Debug\AsynchronousFileIO.obj
+         Debug\AutoRPC.obj
+         Debug\BitStream.obj
+         Debug\BitStream_NoTemplate.obj
+         Debug\CheckSum.obj
+         Debug\CommandParserInterface.obj
+         Debug\ConnectionGraph.obj
+         Debug\ConsoleServer.obj
+         Debug\DataBlockEncryptor.obj
+         Debug\DataCompressor.obj
+         Debug\DirectoryDeltaTransfer.obj
+         Debug\DS_BytePool.obj
+         Debug\DS_ByteQueue.obj
+         Debug\DS_HuffmanEncodingTree.obj
+         Debug\DS_Table.obj
+         Debug\EmailSender.obj
+         Debug\EncodeClassName.obj
+         Debug\EpochTimeToString.obj
+         Debug\ExtendedOverlappedPool.obj
+         Debug\FileList.obj
+         Debug\FileListTransfer.obj
+         Debug\FileOperations.obj
+         Debug\FormatString.obj
+         Debug\FullyConnectedMesh.obj
+         Debug\FunctionThread.obj
+         Debug\Gen_RPC8.obj
+         Debug\GetTime.obj
+         Debug\GridSectorizer.obj
+         Debug\HTTPConnection.obj
+         Debug\InlineFunctor.obj
+         Debug\Itoa.obj
+         Debug\LightweightDatabaseClient.obj
+         Debug\LightweightDatabaseCommon.obj
+         Debug\LightweightDatabaseServer.obj
+         Debug\LinuxStrings.obj
+         Debug\LogCommandParser.obj
+         Debug\MessageFilter.obj
+         Debug\NatPunchthrough.obj
+         Debug\NetworkIDManager.obj
+         Debug\NetworkIDObject.obj
+         Debug\PacketConsoleLogger.obj
+         Debug\PacketFileLogger.obj
+         Debug\PacketLogger.obj
+         Debug\PluginInterface.obj
+         Debug\RakMemoryOverride.obj
+         Debug\RakNetCommandParser.obj
+         Debug\RakNetStatistics.obj
+         Debug\RakNetTransport.obj
+         Debug\RakNetTypes.obj
+         Debug\RakNetworkFactory.obj
+         Debug\RakPeer.obj
+         Debug\RakSleep.obj
+         Debug\RakString.obj
+         Debug\RakThread.obj
+         Debug\Rand.obj
+         Debug\ReadyEvent.obj
+         Debug\ReliabilityLayer.obj
+         Debug\ReplicaManager.obj
+         Debug\ReplicaManager2.obj
+         Debug\rijndael.obj
+         Debug\Router.obj
+         Debug\RPCMap.obj
+         Debug\SHA1.obj
+         Debug\SimpleMutex.obj
+         Debug\SocketLayer.obj
+         Debug\StringCompressor.obj
+         Debug\StringTable.obj
+         Debug\SuperFastHash.obj
+         Debug\SystemAddressList.obj
+         Debug\TableSerializer.obj
+         Debug\TCPInterface.obj
+         Debug\TelnetTransport.obj
+         Debug\ThreadsafePacketLogger.obj
+         Debug\_FindFirst.obj
+         RakNet.vcxproj -> C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server Release Source\Debug\RakNet.lib
+     1>Done Building Project "C:\Users\The Doctor\LuniServer\luniserver_version_5_downloaded\luniserver\LUNI Server Release Source\RakNet\RakNet.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.47

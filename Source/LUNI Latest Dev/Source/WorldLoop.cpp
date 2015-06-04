@@ -400,7 +400,7 @@ void WorldLoop(CONNECT_INFO* cfg, Ref< UsersPool > OnlineUsers, Ref< CrossThread
 
 							default:
 								stringstream s;
-								s << "\nworld received unknow pakcet: " << RawDataToString(packet->data, packet->length) << endl;
+								s << "\nWorld received unknown packet: " << RawDataToString(packet->data, packet->length) << endl;
 								OutputQueue->Insert(s.str());
 						}
 
@@ -408,7 +408,7 @@ void WorldLoop(CONNECT_INFO* cfg, Ref< UsersPool > OnlineUsers, Ref< CrossThread
 
 					default:
 						stringstream s;
-						s << "\nworld received unknow pakcet: " << RawDataToString(packet->data, packet->length) << endl;
+						s << "\nWorld received unknown packet: " << RawDataToString(packet->data, packet->length) << endl;
 						OutputQueue->Insert(s.str());
 				}
 				break;
@@ -429,7 +429,7 @@ void WorldLoop(CONNECT_INFO* cfg, Ref< UsersPool > OnlineUsers, Ref< CrossThread
 
 			default:
 				stringstream s;
-				s << "\nworld received unknow pakcet: " << RawDataToString(packet->data, packet->length) << endl;
+				s << "\nWorld received unknown packet: " << RawDataToString(packet->data, packet->length) << endl;
 				OutputQueue->Insert(s.str());
 		}
 

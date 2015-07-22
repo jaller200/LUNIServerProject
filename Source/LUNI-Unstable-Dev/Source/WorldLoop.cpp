@@ -328,14 +328,15 @@ void WorldLoop(CONNECT_INFO* cfg, Ref< UsersPool > OnlineUsers, Ref< CharactersP
 														cout << "\n Replying to Character\n";
 
 														//auto v = OpenPacket("LEGO Software.bin");
-
+														
+														//Change "63450" to a chars ID in your MySQL database.
 														cout << "Attempting to create new char..." << endl;
-														//if (character == 0) {
-															//cout << "Creating new char..." << endl;
-															//character = new Character(63450);
-															//replicaManager.Construct(character, false, UNASSIGNED_SYSTEM_ADDRESS, true);
-															//replicaManager.SignalSerializeNeeded(character, UNASSIGNED_SYSTEM_ADDRESS, true);
-														//}
+														if (character == 0) {
+															cout << "Creating new char..." << endl;
+															character = new Character(63450);
+															replicaManager.Construct(character, false, UNASSIGNED_SYSTEM_ADDRESS, true);
+															replicaManager.SignalSerializeNeeded(character, UNASSIGNED_SYSTEM_ADDRESS, true);
+														}
 													  
 														auto v = OpenPacket(".\\world\\world_2a.bin");
 

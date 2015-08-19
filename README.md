@@ -9,6 +9,12 @@ Please visit out development IRC channel at #luni-server-dev on Freenode! [![Vis
 
 Repository Owner: [jaller200 (Jon002)](https://github.com/jaller200)
 
+##Packet Files
+
+You can download packet captures of LEGO Universe [here](http://sourceforge.net/p/myverse/wiki/Home/). Credits to pwjones for the extensive packet captures.
+
+NOTE: The above link contains many packet captures; however, there are still a lot that are unable to be decrypted. But feel free to use the available ones in your research! In addition, the packet captures themselves take a couple GB of hard drive space.
+
 ##Requirements
 
 * [Visual Studio 2013](https://www.visualstudio.com/downloads/download-visual-studio-vs) (community/express will work fine)

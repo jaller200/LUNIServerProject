@@ -9,7 +9,7 @@ Please visit out development IRC channel at #luni-server-dev on Freenode! [![Vis
 
 Repository Owner: [jaller200 (Jon002)](https://github.com/jaller200)
 
-##Packet Files
+##Packet Captures
 
 You can download packet captures of LEGO Universe [here](http://sourceforge.net/p/myverse/wiki/Home/). Credits to pwjones for the extensive packet captures.
 

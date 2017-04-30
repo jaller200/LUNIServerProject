@@ -77,7 +77,7 @@ char* into, const char* dir, const char* type, unsigned int packet, unsigned int
 , const BitSize_t bitLen, unsigned long long time, const SystemAddress& local, const SystemAddress& remote,
 unsigned int splitPacketId, unsigned int splitPacketIndex, unsigned int splitPacketCount, unsigned int orderingIndex)
 {
-	sprintf(into, "%s%s,%s,%5u,%5u,%s,%u,%"PRINTF_TIME_MODIFIER"u,%u:%u,%u:%u,%i,%i,%i,%i,%s"
+	sprintf(into, "%s%s,%s,%5u,%5u,%s,%u,%" PRINTF_TIME_MODIFIER "u,%u:%u,%u:%u,%i,%i,%i,%i,%s"
 					, prefix
 					, dir
 					, type

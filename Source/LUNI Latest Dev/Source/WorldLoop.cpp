@@ -354,7 +354,7 @@ void WorldLoop(CONNECT_INFO* cfg, Ref< UsersPool > OnlineUsers, Ref< CrossThread
 							}
 								break;
 
-							case 22: //user moving / update request?
+							case CLIENT_POSITION_UPDATE: //user moving / update request?
 							{
 								auto usr = OnlineUsers->Find(packet->systemAddress);
 							#ifdef DEBUG
@@ -375,7 +375,7 @@ void WorldLoop(CONNECT_INFO* cfg, Ref< UsersPool > OnlineUsers, Ref< CrossThread
 							}*/
 								break;
 
-							case 5:
+							case CLIENT_GAME_MSG:
 							{
 							#ifdef DEBUG
 								vector< uchar > t;
